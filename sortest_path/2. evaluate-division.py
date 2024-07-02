@@ -46,6 +46,10 @@ class Solution:
 
         ans = []
         for a, b in queries:
+            if a not in self.parent or b not in self.parent:
+                ans.append(-1.0)
+                continue
+
             if self.find(a)!=self.find(b):
                 ans.append(-1.0)
                 continue
