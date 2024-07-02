@@ -73,10 +73,15 @@ class Solution:
                 ans.append(res)
 
         return ans
-# %%
+
 g=Solution()
+# %%
 g.calcEquation(equations = [["a","b"],["b","c"]], values = [2.0,3.0], queries = [["a","c"],["b","a"],["a","e"],["a","a"],["x","x"]])
 # %%
-g=Solution()
 g.calcEquation(equations = [["a","b"],["b","c"],["bc","cd"]], values = [1.5,2.5,5.0], queries = [["a","c"],["c","b"],["bc","cd"],["cd","bc"]])
+# %%
+# output = [360.00000,0.00833,6.66667,1.00000,-1.00000,-1.00000]...
+# expected = [360.00000,0.00833,20.00000,1.00000,-1.00000,-1.00000]...
+g.calcEquation([["x1","x2"],["x2","x3"],["x3","x4"],["x4","x5"]], [3.0,4.0,5.0,6.0], [["x1","x5"],["x5","x2"],["x2","x4"],["x2","x2"],["x2","x9"],["x9","x9"]])
+
 # %%
