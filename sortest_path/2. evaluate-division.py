@@ -11,10 +11,13 @@ class Solution:
             if child in self.visit: continue
             
             if self.res is None: self.res = w
-            else: self.res*=w
+            else: self.res.append(w)
             
-            if child==b: return
-            self.dfs(child, b)
+            if child==b: return True
+            if self.dfs(child, b):# death end tracking
+                return True
+            self.res.pop()
+
 
     def find(self, a):
         if a not in self.parent:
@@ -59,11 +62,15 @@ class Solution:
                 continue
 
             self.visit = set()
-            self.res = None
+            self.res = []
 
             self.dfs(a, b)
             if self.res is None: ans.append(-1.0)
-            else: ans.append(self.res)
+            else: 
+                res = 1
+                print(self.res)
+                for i in self.res: res*=i
+                ans.append(res)
 
         return ans
 # %%
