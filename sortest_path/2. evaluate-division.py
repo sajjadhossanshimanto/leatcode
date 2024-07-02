@@ -52,6 +52,8 @@ class Solution:
 
             self.visit = set()
             self.res = None
+
+            self.dfs(a, b)
             if self.res is None: ans.append(-1.0)
             else: ans.append(self.res)
 
