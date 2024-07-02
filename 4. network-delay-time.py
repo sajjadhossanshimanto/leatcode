@@ -21,7 +21,6 @@ class Solution:
         sssp = [inf]*(n+1)
         sssp[node] = 0
 
-        max_dis = 0
         visit = set()
 
         pq = []
@@ -34,9 +33,9 @@ class Solution:
                 if w+dis>sssp[child]: continue
                 sssp[child] = w+dis
                 heappush(pq, (child, w+dis))
-                max_dis = max(max_dis, w+dis)
+
         if len(visit)!=n: return -1
-        return max_dis
+        return max(sssp[1:])
 
 #%%
 Solution().networkDelayTime(times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2)
@@ -44,6 +43,10 @@ Solution().networkDelayTime(times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2)
 Solution().networkDelayTime(times = [[1,2,1]], n = 2, k = 1)
 # %%
 Solution().networkDelayTime(times = [[1,2,1]], n = 2, k = 2)
+#%%
+Solution().networkDelayTime([[1,2,1],[2,3,2],[1,3,4]], n=3, k=1)
+# ex = 3
+# out = 4
 #%%
 Solution().networkDelayTime
 Solution().networkDelayTime
