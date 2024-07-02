@@ -27,8 +27,9 @@ class Solution:
         return p
     
     def union(self, a, b):
-        if self.find(a)!=self.find(b):
-            self.parent[self.find(b)] = self.find(a)
+        if self.find(a)==self.find(b): return
+        # no need to check for who is larger parent. as edge is directed
+        self.parent[self.find(b)] = self.find(a)
 
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         self.adj = defaultdict(list)
@@ -41,8 +42,8 @@ class Solution:
             self.adj[a].append([b, w])
             self.adj[b].append([a, 1/w])
 
-            self.parent[b]=a
-        
+            self.union(a, b)
+
         ans = []
         for a, b in queries:
             if self.find(a)!=self.find(b):
