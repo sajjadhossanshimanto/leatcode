@@ -37,3 +37,13 @@ class Solution:
                 max_dis = max(max_dis, w+dis)
         if len(visit)!=n: return -1
         return max_dis
+
+#%%
+Solution().networkDelayTime(times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2)
+# %%
+Solution().networkDelayTime(times = [[1,2,1]], n = 2, k = 1)
+# %%
+Solution().networkDelayTime(times = [[1,2,1]], n = 2, k = 2)
+#%%
+Solution().networkDelayTime
+Solution().networkDelayTime
