@@ -50,6 +50,10 @@ class Solution:
                 ans.append(-1.0)
                 continue
 
+            if a==b:
+                ans.append(1.0)
+                continue
+
             self.visit = set()
             self.res = None
 
