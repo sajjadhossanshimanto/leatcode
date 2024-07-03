@@ -19,17 +19,17 @@ class Solution:
         
         visit = set()
 
-        def dfs(node, cost=0):
+        def dfs(node, cost=1):
             visit.add(node)
             for child, w in adj[node]:
                 if child in visit: continue
                 
                 # avoid marking end_point as visit
                 # so that alternative paths can reach that node as well
-                if child==end: return cost+w
-                r = dfs(child, cost+w) or 0
+                if child==end: return cost*w
+                r = dfs(child, cost*w) or 0
                 if r>max_dis[0]: max_dis[0] = r
-                    
+
         max_dis = [0.0]
         dfs(start)
         return max_dis[0]
