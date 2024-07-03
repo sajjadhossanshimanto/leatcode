@@ -36,24 +36,6 @@ class Solution:
             max_dis = max(i, max_dis)
 
         return max_dis
-        
-        # q = deque()# (node,  dis_sum)
-        # q.append((start, 0))
-        # max_dis = 0.0# refalut ans is 0.00000
-        # while q:
-        #     node, dis = q.popleft()
-        #     if node == end:
-        #         if dis>max_dis: max_dis = dis
-        #         # continue
-
-        #     for child, w in adj[node]:
-        #         if child in visit:
-        #             if child==node: continue
-                
-        #         visit.add(child)
-        #         q.append((child, dis+w))
-        
-        return max_dis
 
 #%%
 Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2)
