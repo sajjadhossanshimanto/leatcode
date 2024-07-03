@@ -7,8 +7,9 @@ def read_json(test_file):
     with open(test_file) as f:
         return json.load(f)
 
-def write_json(obj, test_file, mood="w"):
-    pass
+def write_json(obj, test_file, mode="w"):
+    with open(test_file, mode) as f:
+        json.dump(obj, f, indent=4)
 
 #%%
 def sample_test(function, test_name, test_file):
