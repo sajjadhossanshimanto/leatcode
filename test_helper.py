@@ -35,10 +35,26 @@ def save_paramiter(test_file, test_name, **kwargs):
     prev[test_name] = kwargs
     write_json(prev, test_file, "w")
 
+#%%
+def create_template(test_file, test_name):
+    with open(test_file) as f:
+        data = json.load(f)
+        for i in data:
+            i=data[i]
+            break
+
+        new={}
+        for k, v in i.items():
+            new[k] = str(type(v).__name__)
+
+        data[test_name] = new
+        print(data)
+        write_json(data, test_file)
+
 # %%
 if __name__=="__main__":
-    save_paramiter(
-        "testcase\\5.json", "c", 
-        n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2
+#%%
+    create_template(
+        "testcase\\5.json", "y"
     )
 # %%
