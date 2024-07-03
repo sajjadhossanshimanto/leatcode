@@ -26,9 +26,12 @@ class Solution:
                 
                 # avoid marking end_point as visit
                 # so that alternative paths can reach that node as well
-                if child==end: return cost*w
-                r = dfs(child, cost*w) or 0
-                if r>max_dis[0]: max_dis[0] = r
+                if child==end: 
+                    r = cost*w
+                    if r>max_dis[0]:
+                        max_dis[0] = r
+                    return# no need to deep dive any more let other come through available back edge
+                dfs(child, cost*w)
 
         max_dis = [0.0]
         dfs(start)
@@ -36,6 +39,9 @@ class Solution:
 
 #%%
 Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2)
+#%%
+# ex = .3
+Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2)
 #%%
 Solution().maxProbability
 Solution().maxProbability
