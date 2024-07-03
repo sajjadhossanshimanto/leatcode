@@ -1,5 +1,6 @@
 '''
 https://leetcode.com/problems/path-with-maximum-probability/description/
+- zero indexed
 '''
 #%%
 from typing import List
@@ -17,19 +18,45 @@ class Solution:
             adj[b].append((a, w))
         
         visit = set()
-        q = deque()# (node,  dis_sum)
-        q.append((start, 0))
-        max_dis = 0.0# refalut ans is 0.00000
-        while q:
-            node, dis = q.popleft()
-            if node == end:
-                if dis>max_dis: max_dis = dis
-                # continue
 
+        def dfs(node, cost=0):
+            visit.add(node)
             for child, w in adj[node]:
                 if child in visit: continue
                 
-                visit.add(child)
-                q.append((child, dis+w))
+                # avoid marking end_point as visit
+                # so that alternative paths can reach that node as well
+                if child==end: return cost+w
+                r = dfs(child, cost+w)
+                if r: yield r
+        
+        all_cost = dfs(start)
+        max_dis = 0.0
+        for i in all_cost:
+            max_dis = max(i, max_dis)
+
+        return max_dis
+        
+        # q = deque()# (node,  dis_sum)
+        # q.append((start, 0))
+        # max_dis = 0.0# refalut ans is 0.00000
+        # while q:
+        #     node, dis = q.popleft()
+        #     if node == end:
+        #         if dis>max_dis: max_dis = dis
+        #         # continue
+
+        #     for child, w in adj[node]:
+        #         if child in visit:
+        #             if child==node: continue
+                
+        #         visit.add(child)
+        #         q.append((child, dis+w))
         
         return max_dis
+
+#%%
+Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2)
+#%%
+Solution().maxProbability
+Solution().maxProbability
