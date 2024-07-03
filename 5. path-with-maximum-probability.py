@@ -27,15 +27,12 @@ class Solution:
                 # avoid marking end_point as visit
                 # so that alternative paths can reach that node as well
                 if child==end: return cost+w
-                r = dfs(child, cost+w)
-                if r: yield r
-        
-        all_cost = dfs(start)
-        max_dis = 0.0
-        for i in all_cost:
-            max_dis = max(i, max_dis)
-
-        return max_dis
+                r = dfs(child, cost+w) or 0
+                if r>max_dis[0]: max_dis[0] = r
+                    
+        max_dis = [0.0]
+        dfs(start)
+        return max_dis[0]
 
 #%%
 Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2)
