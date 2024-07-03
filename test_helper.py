@@ -2,13 +2,19 @@
 import json
 from pathlib import Path
 
+#%%
+def read_json(test_file):
+    with open(test_file) as f:
+        return json.load(f)
+
+def write_json(obj, test_file, mood="w"):
+    pass
 
 #%%
 def sample_test(function, test_name, test_file):
     '''only supported key-word arguments'''
 
-    with open(test_file) as f:
-        paramiter = json.load(f)[test_name]
+    paramiter = read_json(test_file)[test_name]
     
     return function(**paramiter)
 
@@ -26,8 +32,7 @@ def save_paramiter(test_file, test_name, **kwargs):
             if text: prev = json.load(f)
     
     prev[test_name] = kwargs
-    with open(test_file, "w") as f:
-        json.dump(prev, f)
+    write_json(prev, test_file, "w")
 
 # %%
 if __name__=="__main__":
