@@ -1,6 +1,7 @@
 '''
 https://leetcode.com/problems/path-with-maximum-probability/description/
 - zero indexed
+- for n nodes its not gurantd there would be n edges
 '''
 #%%
 from typing import List
@@ -11,9 +12,9 @@ class Solution:
     def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
         adj = defaultdict(list)
 
-        for i in range(n):
-            a, b = edges[i]
-            w = succProb[i]
+        succProb = iter(succProb)
+        for a, b in edges:
+            w = next(succProb)
             adj[a].append((b, w))
             adj[b].append((a, w))
         
@@ -43,5 +44,8 @@ Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.
 # ex = .3
 Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2)
 #%%
+Solution().maxProbability(n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2)
+#%%
+Solution().maxProbability
 Solution().maxProbability
 Solution().maxProbability
