@@ -18,7 +18,7 @@ class Solution:
                 node, money = q.popleft()
                 for child, w in adj[node]:
                     if child in visit: continue
-                    visit.add(node)
+                    visit.add(child)
                     if w>money: 
                         continue
                     c+=1
@@ -42,6 +42,7 @@ class Solution:
                 min_node = i
         
         return min_node
+
 #%%
 Solution().findTheCity(n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4)
 # ans = 3
