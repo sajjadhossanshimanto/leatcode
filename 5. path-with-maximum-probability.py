@@ -21,30 +21,36 @@ class Solution:
             adj[b].append((a, w))
 
         # def dijkstra():
-        sssp=[inf]*n
-        sssp[start]=0
+        sssp=[0.0]*n
+        sssp[start]=1
         pq = []
         heappush(pq, (1, start))
+        visit = set()
 
         while pq:
             dis, node = heappop(pq)
-            if node in visit or dis>sssp[node]: continue
-        
+            if node in visit or dis<sssp[node]: continue
+            visit.add(node)
+
             for child, w in adj[node]:
-                nd = w+dis
-                if nd>sssp[child]: continue
+                nd = w*dis
+                if nd<sssp[child]: continue
+                # if node==end:
+                
                 sssp[child] = nd
                 heappush(pq, (nd, child))
 
-        return 
+        return sssp[end]
 
 #%%
 Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2)
+# ans =.25
 #%%
 # ex = .3
 Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.3], start = 0, end = 2)
 #%%
 Solution().maxProbability(n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2)
+# ans = 0.0
 #%%
 Solution().maxProbability
 Solution().maxProbability
