@@ -62,4 +62,36 @@ sample_test(Solution().maxProbability, "d", r"testcase\5.json")
 #%%
 Solution().maxProbability
 Solution().maxProbability
-Solution().maxProbability
+#%%
+class Solution:
+    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start_node: int, end_node: int) -> float:
+        
+                # Create the adjacency list
+        adj_list = [{} for _ in range(n)]
+        for i in range(len(edges)):
+            a, b = edges[i]
+            adj_list[a][b] = succProb[i]
+            adj_list[b][a] = succProb[i]  # Since the graph is undirected
+
+        # Priority queue
+        maxHeap = []
+        heappush(maxHeap, (-1, start_node))  # Using -1 to simulate max-heap with min-heap
+
+        # Dictionary to store the maximum probability to each node
+        probabilities = [0.0] * n
+        probabilities[start_node] = 1.0
+
+        while maxHeap:
+            probability, node = heappop(maxHeap)
+            probability = -probability  # Convert back to positive
+
+            if node == end_node:
+                return probability
+
+            for neighbor, edge_prob in adj_list[node].items():
+                new_prob = probability * edge_prob
+                if new_prob > probabilities[neighbor]:
+                    probabilities[neighbor] = new_prob
+                    heappush(maxHeap, (-new_prob, neighbor))  # Push negative to simulate max-heap
+
+        return 0.0
