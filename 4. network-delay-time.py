@@ -66,3 +66,36 @@ sample_test(Solution().networkDelayTime, "39tl", r"testcase\4.json")
 #%%
 Solution().networkDelayTime
 Solution().networkDelayTime
+#%%
+with open("user.out", "w") as f:
+    for times, n, k in zip(
+        map(loads, stdin),
+        map(loads, stdin),
+        map(loads, stdin)
+    ):
+        adj = {i: {} for i in range(n)}
+
+        for u, v, w in times:
+            adj[u - 1][v - 1] = w
+
+        dists = [inf for i in range(n)]
+        bfs = [(0, k - 1)]
+        dists[k - 1] = 0
+
+        while bfs:
+            d, node = heappop(bfs)
+
+            for child in adj[node]:
+                if d + adj[node][child] >= dists[child]:
+                    continue
+                
+                dists[child] = d + adj[node][child]
+                heappush(bfs, (d + adj[node][child], child))
+        
+        time = max(dists)
+        if time == inf:
+            time = -1
+        
+        print(time, file=f)
+
+exit()
