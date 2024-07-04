@@ -6,8 +6,10 @@ https://leetcode.com/problems/path-with-maximum-probability/description/
 #%%
 from typing import List
 from collections import deque, defaultdict
+from heapq import heappush, heappop
 
 
+inf = float("inf")
 class Solution:
     def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
         adj = defaultdict(list)
@@ -17,26 +19,24 @@ class Solution:
             w = next(succProb)
             adj[a].append((b, w))
             adj[b].append((a, w))
+
+        # def dijkstra():
+        sssp=[inf]*n
+        sssp[start]=0
+        pq = []
+        heappush(pq, (1, start))
+
+        while pq:
+            dis, node = heappop(pq)
+            if node in visit or dis>sssp[node]: continue
         
-        visit = set()
-
-        def dfs(node, cost=1):
-            visit.add(node)
             for child, w in adj[node]:
-                if child in visit: continue
-                
-                # avoid marking end_point as visit
-                # so that alternative paths can reach that node as well
-                if child==end: 
-                    r = cost*w
-                    if r>max_dis[0]:
-                        max_dis[0] = r
-                    return# no need to deep dive any more let other come through available back edge
-                dfs(child, cost*w)
+                nd = w+dis
+                if nd>sssp[child]: continue
+                sssp[child] = nd
+                heappush(pq, (nd, child))
 
-        max_dis = [0.0]
-        dfs(start)
-        return max_dis[0]
+        return 
 
 #%%
 Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2)
