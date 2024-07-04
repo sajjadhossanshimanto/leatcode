@@ -19,7 +19,7 @@ move = (
 inf = float("inf")
 class Solution:
     def valid(self, x, y):
-        return self.x>x>=0 and 0<y<self.y
+        return self.x>x>=0 and 0<=y<self.y
 
     def dijkstra(self, x, y):
         pq = []
