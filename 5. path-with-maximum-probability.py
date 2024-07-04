@@ -14,6 +14,7 @@ class Solution:
     def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
         adj = defaultdict(list)
 
+        # return n, start, end
         succProb = iter(succProb)
         for a, b in edges:
             w = next(succProb)
@@ -22,25 +23,25 @@ class Solution:
 
         # def dijkstra():
         sssp=[0.0]*n
-        sssp[start]=1
+        sssp[start]=-1
         pq = []
-        heappush(pq, (1, start))
+        heappush(pq, (-1, start))
         visit = set()
 
         while pq:
             dis, node = heappop(pq)
-            if node in visit or dis<sssp[node]: continue
+            if node in visit or dis>sssp[node]: continue
             visit.add(node)
 
             for child, w in adj[node]:
-                nd = w*dis
-                if nd<sssp[child]: continue
-                # if node==end:
+                nd = -abs(w*dis)
+                if nd>sssp[child]: continue
                 
                 sssp[child] = nd
-                heappush(pq, (nd, child))
+                if node!=end:
+                    heappush(pq, (nd, child))
 
-        return sssp[end]
+        return abs(sssp[end])
 
 #%%
 Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.5,0.2], start = 0, end = 2)
