@@ -29,10 +29,12 @@ class Solution:
             dis, node = heappop(pq)
             visit.add(node)
             if dis>sssp[node]: continue
+
             for child, w in adj[node]:
-                if w+dis>sssp[child]: continue
-                sssp[child] = w+dis
-                heappush(pq, (w+dis, child))
+                nd = w+dis
+                if nd>sssp[child]: continue
+                sssp[child] = nd
+                heappush(pq, (nd, child))
 
         if len(visit)!=n: return -1
         return max(sssp[1:])
