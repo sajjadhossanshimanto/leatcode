@@ -24,15 +24,15 @@ class Solution:
         visit = set()
 
         pq = []
-        heappush(pq, (node, 0))
+        heappush(pq, (0, node))
         while pq:
-            node, dis = heappop(pq)
+            dis, node = heappop(pq)
             visit.add(node)
             if dis>sssp[node]: continue
             for child, w in adj[node]:
                 if w+dis>sssp[child]: continue
                 sssp[child] = w+dis
-                heappush(pq, (child, w+dis))
+                heappush(pq, (w+dis, child))
 
         if len(visit)!=n: return -1
         return max(sssp[1:])
