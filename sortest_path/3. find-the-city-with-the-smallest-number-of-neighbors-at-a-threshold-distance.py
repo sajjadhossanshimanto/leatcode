@@ -15,19 +15,25 @@ class Solution:
             heappush(pq, (0, node))
             sssp = defaultdict(lambda :distanceThreshold)
             sssp[node] = 0
-            
+            visit = set()
+
             c = 0
             while pq:
                 dis, node = heappop(pq)
                 if dis>sssp[node]: continue
-
+                if node in visit: continue
+                visit.add(node)
+                
                 for child, w in adj[node]:
+                    # need visit set cause there might be more than one valit way to reach a node
+                    # witch end up counting one node muktiple time
+                    # if child in visit: continue
                     nd = dis+w
                     if nd>sssp[child]: continue
-                    c+=1
+                    # c+=1
                     heappush(pq, (nd, child))
             
-            return c
+            return len(visit)
 
         adj = [[] for _ in range(n)]
         for a, b, w in edges:
