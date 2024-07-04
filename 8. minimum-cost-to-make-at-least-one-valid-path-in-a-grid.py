@@ -22,6 +22,7 @@ class Solution:
             return 0<=x<gx and 0<=y<gy
         
         distance = [[inf]*gy for _ in range(gx)]
+        distance[0][0] = 0
         q = deque()
         q.append((0, 0, 0))
         #         dis, (pos)
@@ -38,14 +39,15 @@ class Solution:
                 if (adx, ady)!=move_map[grid[cx][cy]-1]:
                     nd+=1
 
-                if nd>=distance[cx][cy]: continue
+                if nd<distance[cx][cy]:
+                    distance[cx][cy]=nd
 
-                if dis==nd:# same check
-                    q.appendleft((dis, cx, cy))
-                else:
-                    q.append((dis+1, cx, cy))
+                    if dis==nd:# same check
+                        q.appendleft((nd, cx, cy))
+                    else:
+                        q.append((nd, cx, cy))
 
-        return 0
+        return distance[gx-1][gy-1]
 
 g = Solution()
 # %%
