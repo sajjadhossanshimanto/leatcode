@@ -52,6 +52,13 @@ Solution().maxProbability(n = 3, edges = [[0,1],[1,2],[0,2]], succProb = [0.5,0.
 #%%
 Solution().maxProbability(n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2)
 # ans = 0.0
+#%% wrong ans
+# ex = 0.34414
+# out = 0.02214
+from test_helper import sample_test
+
+sample_test(Solution().maxProbability, "d", r"testcase\5.json")
+
 #%%
 Solution().maxProbability
 Solution().maxProbability
