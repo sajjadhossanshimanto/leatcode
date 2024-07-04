@@ -53,8 +53,12 @@ def create_template(test_file, test_name):
 
 # %%
 if __name__=="__main__":
-#%%
-    create_template(
-        "testcase\\5.json", "y"
+    save_paramiter(
+        "testcase\\4.json", "39tl", 
+
     )
+#%%
+    # create_template(
+    #     "testcase\\5.json", "y"
+    # )
 # %%
