@@ -37,7 +37,7 @@ class Solution:
                 if not valid_path(cx, cy): continue
 
                 nd = dis
-                if (adx, ady)!=move_map[grid[cx][cy]-1]:
+                if (adx, ady)!=move_map[grid[x][y]-1]:
                     nd+=1
 
                 if nd<distance[cx][cy]:
@@ -52,6 +52,9 @@ g = Solution()
 g.minCost(grid = [[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]])
 # %%
 # ex = 0
-# out = 2
+# out = 2 ----fixed
 g.minCost(grid = [[1,1,3],[3,2,2],[1,1,4]])
+# %%
+# ans = 1
+g.minCost([[1,2],[4,3]])
 # %%
