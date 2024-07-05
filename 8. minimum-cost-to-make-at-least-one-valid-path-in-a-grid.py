@@ -5,6 +5,7 @@ https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-
 #%%
 from typing import List
 from collections import deque
+from heapq import heappop, heappush
 
 
 move_map = (
@@ -23,11 +24,11 @@ class Solution:
         
         distance = [[inf]*gy for _ in range(gx)]
         distance[0][0] = 0
-        q = deque()
-        q.append((0, 0, 0))
+        pq = []
+        pq.append((0, 0, 0))
         #         dis, (pos)
-        while q:
-            dis, x, y = q.popleft()
+        while pq:
+            dis, x, y = heappop(pq)
             if (x, y)==(gx-1, gy-1):
                 return dis
 
@@ -41,11 +42,7 @@ class Solution:
 
                 if nd<distance[cx][cy]:
                     distance[cx][cy]=nd
-
-                    if dis==nd:# same check
-                        q.appendleft((nd, cx, cy))
-                    else:
-                        q.append((nd, cx, cy))
+                    heappush(pq, (nd, cx, cy))
 
         return distance[gx-1][gy-1]
 
