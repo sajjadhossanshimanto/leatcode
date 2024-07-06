@@ -15,14 +15,14 @@ class Solution:
             adj[b].append(a)
         
         ans = []
-        intime = [inf]*n
-        lowtime = [inf]*n
+        intime = [-1]*n
+        lowtime = [-1]*n
         def dfs(node, parent, time):
             intime[node] = time
             lowtime[node] = time
 
             for child in adj[node]:
-                if intime[child]!=inf:# if child in visit
+                if intime[child]!=-1:# if child in visit
                     # this child is not child actually an ansistor
                     if child!=parent:
                         lowtime[node] = min(lowtime[node], lowtime[child])
