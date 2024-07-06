@@ -29,7 +29,8 @@ class Solution:
                         # TODO: here
                     continue
 
-                dfs(child, node, time+1)
+                time+=1
+                dfs(child, node, time)
                 lowtime[node] = min(lowtime[node], lowtime[child])
                 if lowtime[child]>lowtime[node]:
                     ans.append([node, child])
