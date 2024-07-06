@@ -4,8 +4,10 @@ https://leetcode.com/problems/parallel-courses-iii/description/
 #%%
 from typing import List
 from collections import defaultdict, deque
+from heapq import heappop, heappush
 
 
+inf = float('inf')
 class Solution:
     def dfs(self, node):
         self.visit.add(node)
@@ -41,29 +43,30 @@ class Solution:
         self.visit.clear()
         visit.add(self.root)
         
-        sssp = [inf]*n
+        sssp = [-inf]*n
         sssp[self.root] = 0
         ans = 0
         while q:
             dis, node = heappop(q)
-            if dis>sssp[node]: continue
+            dis = abs(dis)
+            if dis<sssp[node]: continue
 
             if not reverse_adj[node]:
                 sssp[node]+=time[node]
-                ans = max(ans, sssp[node])
+                ans = max(ans, abs(sssp[node]))
                 continue
             
             for child in reverse_adj[node]:
-                if child in self.visit: continue
-                visit.add(child)
+                # if child in self.visit: continue
+                # visit.add(child)
 
                 nd = dis+time[node]# a bit strange here
-                if nd>sssp[child]: continue
+                if nd<sssp[child]: continue
 
                 sssp[child] = nd
-                heappush(q, (nd, child))
+                heappush(q, (-nd, child))
 
-        return ans, sssp
+        return ans
 
 g=Solution()
 #%%
