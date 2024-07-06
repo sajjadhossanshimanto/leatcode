@@ -48,11 +48,13 @@ class Solution:
                 val = abs(x1-x2)+abs(y1-y2)
                 heappush(pq, (val, (x1, y1), (x2, y2)))
 
-        for _ in range(len(points)-1):
+        i=0
+        while i!=len(points)-1:
             w, pos1, pos2 = heappop(pq)
             if self.find(pos1)==self.find(pos2):
                 continue
-
+            # print(w, pos1, pos2)
+            i+=1
             ans+=w
             self.union(pos1, pos2)
 
