@@ -26,7 +26,7 @@ def save_paramiter(test_file, test_name, **kwargs):
     
     prev = {}
     if test_file.exists():
-        test_file.touch()
+        test_file.touch(exist_ok=1)
     else:
         with open(test_file, "r") as f:
             text = f.read()
