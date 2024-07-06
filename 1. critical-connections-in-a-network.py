@@ -41,8 +41,13 @@ class Solution:
 g=Solution()
 #%%
 g.criticalConnections(n = 4, connections = [[0,1],[1,2],[2,0],[1,3]])
+# ans = [[1, 3]]
 # %%
 from test_helper import sample_test
+import sys
+sys.setrecursionlimit(10000)
 
 sample_test(g.criticalConnections, "wa15", r"testcase\1.json")
+# ex = [[]]
+# out = [[], [], ...]
 # %%
