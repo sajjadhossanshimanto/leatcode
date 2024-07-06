@@ -19,9 +19,6 @@ class Solution:
             r=self.dfs(child)
         return r
 
-    def bfs(self):
-        pass
-
     def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
         self.visit = set()
         visit = self.visit
@@ -36,32 +33,31 @@ class Solution:
             reverse_adj[b].append(a)
         
         self.root = self.dfs(self.root)
+
+        # dijkstra
+        q = []
+        heappush(q, (0, self.root))# root, level
+        
         self.visit.clear()
-
-        q = deque()
-        q.append((self.root, 1))# root, level
         visit.add(self.root)
-        current_level = 1
-        ans = 0
-        _max = 0
+        
+        sssp = [inf]*n
+        sssp[self.root] = 0
         while q:
-            node, level = q.popleft()
-            if level!=current_level:
-                # level has changed
-                ans+=_max
-                _max = 0
-                current_level = level
-            _max = max(_max, time[node])
+            dis, node = heappop(q)
+            if dis>sssp[node]: continue
 
-            # if not reverse_adj:
-            #     _max = max(_max, time[node])
-                
             for child in reverse_adj[node]:
                 if child in self.visit: continue
                 visit.add(child)
-                q.append((child, level+1))
 
-        return ans+_max
+                nd = dis+time[node]# a bit strange here
+                if nd>sssp[child]: continue
+
+                sssp[child] = nd
+                heappush(q, (nd, child))
+
+        return sssp
 
 g=Solution()
 #%%
