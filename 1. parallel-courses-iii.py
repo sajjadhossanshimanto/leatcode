@@ -43,10 +43,16 @@ class Solution:
         
         sssp = [inf]*n
         sssp[self.root] = 0
+        ans = 0
         while q:
             dis, node = heappop(q)
             if dis>sssp[node]: continue
 
+            if not reverse_adj[node]:
+                sssp[node]+=time[node]
+                ans = max(ans, sssp[node])
+                continue
+            
             for child in reverse_adj[node]:
                 if child in self.visit: continue
                 visit.add(child)
@@ -57,7 +63,7 @@ class Solution:
                 sssp[child] = nd
                 heappush(q, (nd, child))
 
-        return sssp
+        return ans, sssp
 
 g=Solution()
 #%%
