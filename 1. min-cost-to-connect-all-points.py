@@ -25,16 +25,8 @@ class Solution:
         - it is confirmed that parent[pos1]!=parent[pos2]
         - 
         '''
-        p1 = self.parents[self.find(pos1)]
-        p2 = self.parents[self.find(pos2)]
-        if p1>=p2:
-            # make pos1 as parent
-            self.parents[self.find(pos1)]=p1+p2
-            self.parents[self.find(pos2)] = self.find(pos1)
-        else:
-            self.parents[self.find(pos2)]=p1+p2
-            self.parents[self.find(pos1)] = self.find(pos2)
-
+        self.parents[self.find(pos1)]+=self.parents[self.find(pos2)]
+        self.parents[self.find(pos2)] = self.find(pos1)
 
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         self.parents = {}
