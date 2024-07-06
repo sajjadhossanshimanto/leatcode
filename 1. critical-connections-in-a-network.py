@@ -6,6 +6,7 @@ from typing import List
 from collections import defaultdict
 
 
+inf = float("inf")
 class Solution:
     def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
         adj = defaultdict(list)
@@ -14,14 +15,14 @@ class Solution:
             adj[b].append(a)
         
         ans = []
-        intime = [-1]*n
-        lowtime = [-1]*n
+        intime = [inf]*n
+        lowtime = [inf]*n
         def dfs(node, parent, time):
             intime[node] = time
             lowtime[node] = time
 
             for child in adj[node]:
-                if intime[child]!=-1:# if in visit
+                if intime[child]!=inf:# if child in visit
                     # this child is not child actually an ansistor
                     if child!=parent:
                         lowtime[node] = min(lowtime[node], lowtime[child])
