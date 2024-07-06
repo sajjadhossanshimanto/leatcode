@@ -32,9 +32,9 @@ class Solution:
                 time+=1
                 dfs(child, node, time)
                 lowtime[node] = min(lowtime[node], lowtime[child])
-                if lowtime[child]>lowtime[node]:
+                if lowtime[child]>intime[node]:# low time of node might be lowered by previous line
                     ans.append([node, child])
-        
+
         dfs(0, -1, 1)
         return ans
 
