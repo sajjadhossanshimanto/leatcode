@@ -14,6 +14,7 @@ class Solution:
             adj[a].append(b)
         
         visit = set()
+        done = set()
         oder = []
         def back_edge(node):
             visit.add(node)
@@ -22,16 +23,18 @@ class Solution:
                 if child in visit:
                     # as graph is directed. parent is also a back edge
                     return True
-
+                if child in done: continue
+                
                 if back_edge(child):
                     return True
                 visit.remove(child)
             # if up and till not returned
             adj[node] = []
             oder.append(node)
-        
+            done.add(node)
+
         for i in range(numCourses):
-            if not adj[i]: continue
+            if i in done: continue
 
             visit.clear()
             if back_edge(i):
