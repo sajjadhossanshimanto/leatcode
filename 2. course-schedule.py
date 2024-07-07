@@ -20,7 +20,7 @@ class Solution:
             # lowtime[node] = time
 
             for child in adj[node]:
-                if not intime[child]:
+                if intime[child]:# if visited
                     if child!=parent:
                         # an ansistor
                         return False
@@ -36,7 +36,13 @@ class Solution:
 
 g = Solution()
 #%%
+# ans = true
 g.canFinish(numCourses = 2, prerequisites = [[1,0]])
 # %%
+# ans = false
 g.canFinish(numCourses = 2, prerequisites = [[1,0],[0,1]])
+# %% wa
+# ans = 1
+# out = 0
+g.canFinish(numCourses = 2, prerequisites = [[0, 1]])
 # %%
