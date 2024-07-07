@@ -14,24 +14,23 @@ class Solution:
             adj[a].append(b)
         
         visit = set()
-        def dfs(node):
+        def back_edge(node):
             visit.add(node)
 
             for child in adj[node]:
                 if child in visit:
-                    return False
+                    # as graph is directed. parent is also a back edge
+                    return True
 
-                r = dfs(child)
-                if r==False: 
-                    return r
+                if back_edge(child):
+                    return True                
                 adj[node].remove(child)
         
         for i in range(numCourses):
             if not adj[i]: continue
 
             visit.clear()
-            r = dfs(i)
-            if r==False:
+            if back_edge(i):
                 return False
 
         return True
@@ -52,3 +51,6 @@ g.canFinish(numCourses = 2, prerequisites = [[0, 1]])
 # out = true
 g.canFinish(20, [[0,10],[3,18],[5,5],[6,11],[11,14],[13,1],[15,1],[17,4]])
 # proablem is multiple cc
+#%% wa37
+# ex = true
+g.canFinish(3, [[0,1],[0,2],[1,2]])
