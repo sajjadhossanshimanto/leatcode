@@ -23,8 +23,9 @@ class Solution:
                     return True
 
                 if back_edge(child):
-                    return True                
-                adj[node].remove(child)
+                    return True
+            # if up and till not returned            
+            adj[node] = []
         
         for i in range(numCourses):
             if not adj[i]: continue
