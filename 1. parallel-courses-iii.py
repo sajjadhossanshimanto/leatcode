@@ -22,6 +22,9 @@ class Solution:
         return r
 
     def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
+        if not relations:# wa
+            return max(time)
+        
         self.visit = set()
         visit = self.visit
         self.root = 0
