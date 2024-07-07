@@ -13,29 +13,24 @@ class Solution:
         for a, b in prerequisites:
             adj[a].append(b)
         
-        intime = [0]*numCourses
-        # lowtime = [0]*numCourses
-        def dfs(node, parent, time=1):
-            intime[node] = time
-            # lowtime[node] = time
+        visit = set()
+        def dfs(node):
+            visit.add(node)
 
             for child in adj[node]:
-                if intime[child]:# if visited
-                    if child==node:# self cycle
-                        return False
-                    if child!=parent:
-                        # an ansistor
-                        return False
-                    continue
+                if child in visit:
+                    return False
 
-                time+=1
-                r = dfs(child, parent, time)
-                # lowtime[node] = min()
-                if r==False: return r
+                r = dfs(child)
+                if r==False: 
+                    return r
+                adj[node].remove(child)
         
         for i in range(numCourses):
-            if intime[i]: continue
-            r = dfs(0, -1)
+            if not adj[i]: continue
+
+            visit.clear()
+            r = dfs(i)
             if r==False:
                 return False
 
@@ -52,4 +47,8 @@ g.canFinish(numCourses = 2, prerequisites = [[1,0],[0,1]])
 # ans = 1
 # out = 0
 g.canFinish(numCourses = 2, prerequisites = [[0, 1]])
-# %%
+# %% wa41
+# ex = false
+# out = true
+g.canFinish(20, [[0,10],[3,18],[5,5],[6,11],[11,14],[13,1],[15,1],[17,4]])
+# proablem is multiple cc
