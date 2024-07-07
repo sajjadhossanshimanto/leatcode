@@ -30,9 +30,14 @@ class Solution:
                 r = dfs(child, parent, time)
                 # lowtime[node] = min()
                 if r==False: return r
+        
+        for i in range(numCourses):
+            if intime[i]: continue
+            r = dfs(0, -1)
+            if r==False:
+                return False
 
-        r=dfs(0, -1)
-        return r==None or r
+        return True
 
 g = Solution()
 #%%
