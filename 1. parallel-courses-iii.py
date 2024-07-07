@@ -14,6 +14,7 @@ class Solution:
         if not self.adj[node]:
             return node
 
+        r=node# wa9
         for child in self.adj[node]:
             if child in self.visit: continue
 
@@ -37,6 +38,8 @@ class Solution:
             self.adj[a].append(b)
             reverse_adj[b].append(a)
         
+        self.root = self.dfs(self.root)
+        visit.clear()
         self.root = self.dfs(self.root)
 
         # dijkstra
