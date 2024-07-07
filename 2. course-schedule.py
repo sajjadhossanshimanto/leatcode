@@ -21,6 +21,8 @@ class Solution:
 
             for child in adj[node]:
                 if intime[child]:# if visited
+                    if child==node:# self cycle
+                        return False
                     if child!=parent:
                         # an ansistor
                         return False
