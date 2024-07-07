@@ -24,7 +24,8 @@ class Solution:
 
                 if back_edge(child):
                     return True
-            # if up and till not returned            
+                visit.remove(child)
+            # if up and till not returned
             adj[node] = []
         
         for i in range(numCourses):
@@ -55,3 +56,15 @@ g.canFinish(20, [[0,10],[3,18],[5,5],[6,11],[11,14],[13,1],[15,1],[17,4]])
 #%% wa37
 # ex = true
 g.canFinish(3, [[0,1],[0,2],[1,2]])
+#%% wa49
+# ex=1
+g.canFinish(3, [[0,1],[0,2],[1,2]])
+#%% wa 51
+# ex = 1
+# out = 0
+from test_helper import sample_test
+
+sample_test(g.canFinish, "wa51", r"testcase\2.json")
+#%%
+g.canFinish
+g.canFinish
