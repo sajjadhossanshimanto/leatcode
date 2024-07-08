@@ -11,7 +11,8 @@ class Solution:
     def getAncestors(self, n: int, edges: List[List[int]]) -> List[List[int]]:
         adj = defaultdict(list)
         for a, b in edges:
-            adj[a].append(b)
+            # adj[a].append(b)
+            adj[b].append(a)
 
         visit = set()
         def dfs(node):
