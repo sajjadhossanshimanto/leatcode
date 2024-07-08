@@ -18,9 +18,11 @@ class Solution:
             
             richer = node
             for child in adj[node]:
-                if child in visit: continue
+                if child in visit: 
+                    r = ans[child]
+                else:
+                    r = dfs(child)
 
-                r = dfs(child)
                 if quiet[r]<quiet[richer]:# loud == less qukite
                     richer = r
             
