@@ -27,6 +27,7 @@ class Solution:
                 ansistor = chain(ansistor, r)
             
             ans[node] = sorted(ansistor)
+            # print(node, ans[node])
             return ans[node]
 
         ans = [[] for _ in range(n)]
