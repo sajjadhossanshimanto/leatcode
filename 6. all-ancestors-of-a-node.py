@@ -4,7 +4,7 @@ https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-grap
 #%%
 from typing import List
 from collections import defaultdict
-# from itertools import chain
+from itertools import chain
 
 
 class Solution:
@@ -25,10 +25,10 @@ class Solution:
                 else:
                     r = dfs(child)
                 # r = r.copy()
-                # ansistor = chain(ansistor, r)
-                ansistor = ansistor+[child]+r
+                ansistor = chain(ansistor, [child], r)
+                # ansistor = ansistor+[child]+r
             
-            ans[node] = sorted(ansistor)
+            ans[node] = sorted(set(ansistor))
             # print(node, ans[node])
             return ans[node]
 
