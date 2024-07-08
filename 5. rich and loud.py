@@ -10,7 +10,9 @@ class Solution:
     def loudAndRich(self, richer: List[List[int]], quiet: List[int]) -> List[int]:
         adj = defaultdict(list)
         for a, b in richer:
-            adj[a].append(b)
+            # adj[a].append(b)
+            adj[b].append(a)# according to the question
+            # ans[1] -> 1 er opor jara tader mode k loud
         
         visit = set()
         def dfs(node):
