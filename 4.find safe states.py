@@ -10,7 +10,7 @@ class Solution:
         
         visit = set()
         def dfs(node):
-            print(node)
+            # print(node)
             visit.add(node)
             # if not graph[node]:
             #     ans.append(node)
@@ -19,22 +19,25 @@ class Solution:
             safe = True
             for child in graph[node]:
                 if child in visit:
+                    safe = False
                     continue
-
+                
+                if child in ans: continue
                 if not dfs(child):
                     safe = False
             
             if safe:
                 ans.append(node)
-                print('append', node)
+                # print('append', node)
+                visit.remove(node)
                 return True
 
         ans = []
         for i in range(len(graph)):
-            if i in visit: continue
+            if i in visit or i in ans: continue
             dfs(i)
         
-        # ans.sort()
+        ans.sort()
         return ans
 
 g = Solution()
