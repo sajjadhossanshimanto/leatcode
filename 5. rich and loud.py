@@ -21,7 +21,7 @@ class Solution:
                 if child in visit: continue
 
                 r = dfs(child)
-                if quiet[r]>quiet[richer]:
+                if quiet[r]<quiet[richer]:# loud == less qukite
                     richer = r
             
             ans[node] = richer
