@@ -21,6 +21,7 @@ class Solution:
         visit = set()
         def dfs(x, y):
             visit.add((x, y))
+            # print(x, y)
 
             edge = 4
             for cx, cy in move:
@@ -30,6 +31,7 @@ class Solution:
                     if (cx, cy) not in visit:
                         edge = edge-1+dfs(cx, cy)
             
+            # print((x, y), "edge ->", edge)
             return edge
 
 
