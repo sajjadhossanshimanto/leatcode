@@ -28,7 +28,9 @@ class Solution:
                 cx+=x
                 cy+=y
                 if is_valid(cx, cy):
-                    if (cx, cy) not in visit:
+                    if (cx, cy) in visit:
+                        edge-=1
+                    else:
                         edge = edge-1+dfs(cx, cy)
             
             # print((x, y), "edge ->", edge)
@@ -38,7 +40,8 @@ class Solution:
         for x in range(gx):
             for y in range(gy):
                 # if (x, y) not in visit:
-                return dfs(x, y)
+                if grid[x][y]:
+                    return dfs(x, y)
 
 g = Solution()
 #%%
