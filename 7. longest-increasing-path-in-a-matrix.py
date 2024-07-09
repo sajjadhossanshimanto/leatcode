@@ -35,7 +35,7 @@ class Solution:
             print(matrix[x][y])
             print_grid(visit)
 
-            child = 1# this node itself
+            ans = 1# this node itself
             for adx, ady in move:
                 cx, cy = (x+adx, y+ady)
                 if not isvalid(cx, cy): continue
@@ -43,10 +43,10 @@ class Solution:
             
                 if op(matrix[x][y], matrix[cx][cy]):
                     # child+=1# for this child itself
-                    child+=dfs(cx, cy)
+                    ans=max(dfs(cx, cy)+1, ans)
         
-            print(f"{matrix[x][y]} child->", child)
-            return child
+            print(f"{matrix[x][y]} ans->", ans)
+            return ans
 
         op = None
         ans = 0
