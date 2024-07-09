@@ -47,7 +47,7 @@ class Solution:
                     visit.add(child)
                     q.append((dis+1, child))
 
-        return 0 if ans==inf else ans
+        return 0 if ans==inf else ans+1
 
 g = Solution()
 #%%
