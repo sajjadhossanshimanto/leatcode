@@ -60,3 +60,46 @@ g.ladderLength(beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog"
 # ans = 2
 g.ladderLength("a", "c", ["a", "b", "c"])
 # %%
+# best solution
+# optimisation->
+# 1. word list 
+# 2. arriving to the result in 2 way
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        wordSet = set(wordList)
+
+        if endWord not in wordSet:
+            return 0
+
+        beginSet = {beginWord}
+        endSet = {endWord}
+        distance = 1
+
+        while beginSet and endSet:
+            wordSet -= beginSet
+            distance += 1
+            newSet = set()
+
+            for word in beginSet:
+                for i in range(len(word)):
+                    left = word[:i]
+                    right = word[i + 1:]
+
+                    for c in string.ascii_lowercase:
+                        # optimazation here. compering with wordlist might be huge
+                        # buc englist alphabets are fix 26
+                        new_word = left + c + right
+
+                        if new_word in wordSet:
+                            if new_word in endSet:
+                                return distance
+                            newSet.add(new_word)
+
+            if len(beginSet) > len(endSet): #swap to lowest set
+                # builds endset and beginset at the same time
+                beginSet = endSet
+                endSet = newSet
+            else: beginSet = newSet
+
+        return 0
+        
