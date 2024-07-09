@@ -3,6 +3,7 @@ https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
 '''
 #%%
 from typing import List
+from collections import defaultdict
 from operator import gt, lt
 
 
@@ -29,11 +30,12 @@ class Solution:
         def isvalid(x, y):
             return 0<=x<gx and 0<=y<gy
 
-        visit = [[0]*gy for _ in range(gx)]
+        # visit = [[0]*gy for _ in range(gx)]
+        visit = defaultdict(lambda :defaultdict(lambda :0))
         def dfs(x, y):
             visit[x][y]=1
-            print(matrix[x][y])
-            print_grid(visit)
+            # print(matrix[x][y])
+            # print_grid(visit)
 
             ans = 1# this node itself
             for adx, ady in move:
@@ -45,26 +47,27 @@ class Solution:
                     # child+=1# for this child itself
                     ans=max(dfs(cx, cy)+1, ans)
         
-            print(f"{matrix[x][y]} ans->", ans)
+            # print(f"{matrix[x][y]} ans->", ans)
             return ans
 
         op = None
         ans = 0
         for x in range(gx):
             for y in range(gy):
-                if visit[x][y]: continue
+                # if visit[x][y]: continue
 
                 for adx, ady in move:
                     cx, cy = (x+adx, y+ady)
                     if not isvalid(cx, cy): continue
-                    if visit[cx][cy]: continue
+                    # if visit[cx][cy]: continue
                     if matrix[x][y] == matrix[cx][cy]: continue
 
                     if matrix[x][y] > matrix[cx][cy]:
                         op = gt
                     elif matrix[x][y] < matrix[cx][cy]:
                         op = lt
-                    print(op)
+                    # print(op)
+                    visit.clear()
                     r = dfs(x, y)
                     ans = max(ans, r)
         
@@ -83,6 +86,10 @@ g.longestIncreasingPath([[1]])
 #%% wa28
 # ans = 3
 g.longestIncreasingPath([[1,2],[2,3]])
+#%% wa35
+# ans = 6
+# out = 4
+g.longestIncreasingPath([[7,8,9],[9,7,6],[7,2,3]])
 #%%
 g.longestIncreasingPath
 g.longestIncreasingPath
