@@ -39,13 +39,14 @@ class Solution:
             dp[(x, y)] = ans
             return ans
         
+        res = 0
         for x in range(gx):
             for y in range(gy):
                 if dp.get((x, y)): continue
 
-                dfs(x, y)
+                res = max(res, dfs(x, y))
         
-        return max(dp.values())# he sas its the same as tracking max with avariable
+        return res# just slightly improvement of 7ms 
 
 
 
