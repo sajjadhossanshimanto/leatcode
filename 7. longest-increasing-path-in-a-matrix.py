@@ -13,6 +13,9 @@ move = (
 )
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        if len(matrix)==1 and len(matrix[0])==1:
+            return 1
+
         gx = len(matrix)
         gy = len(matrix[0])
         
@@ -62,6 +65,9 @@ g.longestIncreasingPath([[9,9,4],[6,6,8],[2,1,1]])
 #%%
 # ans = 4
 g.longestIncreasingPath([[3,4,5],[3,2,6],[2,2,1]])
+#%%
+# ans = 1
+g.longestIncreasingPath([[1]])
 #%%
 g.longestIncreasingPath
 g.longestIncreasingPath
