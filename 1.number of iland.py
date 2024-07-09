@@ -19,23 +19,23 @@ class Solution:
 
         visit = set()
         def dfs(x, y):
+            # print(x, y)
             visit.add((x, y))
 
             for adx, ady in move:
                 cx, cy = (x+adx, y+ady)
                 if not is_valid(cx, cy): continue
-                if (cx, cy) in visit: continue
+                if grid[cx][cy]=="0": continue
 
-                if grid[cx][cy]:
+                if (cx, cy) not in visit:
                     dfs(cx, cy)
         
         cc=0
         for x in range(gx):
             for y in range(gy):
                 if (x, y) in visit: continue
-                if grid[x][y]:
+                if grid[x][y]=="1":
                     dfs(x, y)
-                    print(x, y)
                     cc+=1
         
         return cc
