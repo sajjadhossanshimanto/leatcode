@@ -14,9 +14,6 @@ move = (
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         gx, gy = len(grid), len(grid[0])
-
-        def is_valid(x, y):
-            return 0<=x<gx and 0<=y<gy and grid[x][y]
         
         visit = set()
         def dfs(x, y):
@@ -27,7 +24,7 @@ class Solution:
             for cx, cy in move:
                 cx+=x
                 cy+=y
-                if is_valid(cx, cy):
+                if 0<=cx<gx and 0<=cy<gy and grid[cx][cy]:
                     if (cx, cy) in visit:
                         edge-=1
                     else:
