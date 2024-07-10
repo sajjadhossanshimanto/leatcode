@@ -21,10 +21,12 @@ class Solution:
             return r
 
         def union(a, b):
+            '''return newly added child count'''
             p1 = find(a)
             p2 = find(b)
             parent[p2] = p1
-            parent[p1] -=1
+            parent[p1] += parent[p2]
+            return abs(parent[p1])
 
         ans = 0
         connections = deque(connections)
@@ -36,11 +38,9 @@ class Solution:
                 # as b tends to zero
                 union(b, a)
             elif find(a)==0:
-                ans+=1
-                union(a, b)
+                ans+=union(a, b)
             else:
-                connections.append((a, b))
-        
+                union_rank((a, b))
         return ans
 
 g = Solution()
