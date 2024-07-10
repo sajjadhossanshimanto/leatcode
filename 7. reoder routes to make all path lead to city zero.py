@@ -12,20 +12,23 @@ class Solution:
         for a, b in connections:
             adj[a].append(b)
         
-        visit = set()
-        def dfs(node):
+        def edge_counter(node, adj):
             visit.add(node)
 
             c = 0
             fold = False
             for child in adj[node]:
-                if child in visit: continue
-                
-                if child==0:
+                if child in visit:
+                # if child in team_zero:
                     fold = True
+                    continue
                 else:
-                    r, fold = dfs(child)
-                    c+=r
+                    if fold:
+                        r, _ = edge_counter(child, adj)
+                    else:
+                        r, fold = edge_counter(child, adj)
+
+                    c+= r+1
 
             return c, fold
 
