@@ -9,8 +9,10 @@ from collections import defaultdict
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
         adj = defaultdict(list)
+        rev_adj = defaultdict(list)
         for a, b in connections:
             adj[a].append(b)
+            rev_adj[b].append(a)
         
         def edge_counter(node, adj):
             visit.add(node)
@@ -32,7 +34,9 @@ class Solution:
 
             return c, fold
 
-        ans = 0
+        visit = set()
+        ans, _ = edge_counter(0, adj)
+        edge_counter(0, rev_adj)
         for i in range(n):
             if i not in visit:
                 c, fold = dfs(i)
