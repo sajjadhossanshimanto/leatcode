@@ -33,10 +33,11 @@ class Solution:
             # a ---> b
             # if b point to 0: right edge
             if find(b)==0:
-                union(a, b)
+                # as b tends to zero
+                union(b, a)
             elif find(a)==0:
                 ans+=1
-                union(b, a)
+                union(a, b)
             else:
                 connections.append((a, b))
         
