@@ -51,11 +51,18 @@ class Solution:
             elif find(a)==0:
                 ans+=union(a, b)
             else:
-                union_rank((a, b))
+                union_rank(a, b)
         return ans
 
 g = Solution()
 #%%
 # ans = 3
 g.minReorder(n = 6, connections = [[0,1],[1,3],[2,3],[4,0],[4,5]])
+# %% tl75/76
+from test_helper import sample_test
+import sys
+
+sys.setrecursionlimit(50000)
+
+sample_test(g.minReorder, 'tl75', r'testcase\7.json')
 # %%
