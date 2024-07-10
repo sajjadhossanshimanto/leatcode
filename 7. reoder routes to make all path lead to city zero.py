@@ -3,36 +3,43 @@ https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-
 '''
 #%%
 from typing import List
-from collections import defaultdict
+from collections import defaultdict, deque
 
 
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        adj = defaultdict(list)
-        rev_adj = defaultdict(list)
-        for a, b in connections:
-            adj[a].append(b)
-            rev_adj[b].append(a)
+        parent = {}
+        def find(a):
+            if a not in parent:
+                parent[a] = -1
+                return a
+            if parent[a]<0:
+                return a
+
+            r = find(parent[a])
+            parent[a] = r
+            return r
+
+        def union(a, b):
+            p1 = find(a)
+            p2 = find(b)
+            parent[p2] = p1
+            parent[p1] -=1
+
+        ans = 0
+        connections = deque(connections)
+        while connections:# or while len(0)!=n
+            a, b = connections.popleft()
+            # a ---> b
+            # if b point to 0: right edge
+            if find(b)==0:
+                union(a, b)
+            elif find(a)==0:
+                ans+=1
+                union(b, a)
+            else:
+                connections.append((a, b))
         
-        def edge_counter(node, adj):
-            visit.add(node)
-
-            c = 0
-            for child in adj[node]:
-                if child in visit: continue
-                
-                C += edge_counter(child, adj) +1
-
-            return c
-
-        visit = set()
-        ans, _ = edge_counter(0, adj)
-        edge_counter(0, rev_adj)
-        for i in range(n):
-            if i not in visit:
-                c, fold = dfs(i)
-                if fold: ans+=c
-
         return ans
 
 g = Solution()
