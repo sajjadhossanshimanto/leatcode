@@ -28,6 +28,17 @@ class Solution:
             parent[p1] += parent[p2]
             return abs(parent[p1])
 
+        def union_rank(a, b):
+            '''return newly added child count'''
+            p1 = find(a)
+            p2 = find(b)
+            if parent[p1]>parent[p2]:
+                parent[p2] = p1
+                parent[p1] += parent[p2]
+            else:
+                parent[p1] = p2
+                parent[p2] += parent[p1]
+
         ans = 0
         connections = deque(connections)
         while connections:# or while len(0)!=n
