@@ -1,5 +1,6 @@
 '''
 https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/description/
+- sol: https://www.youtube.com/watch?v=m17yOR5_PpI&list=PLot-Xpze53ldBT_7QA8NVot219jFNr_GI&index=11
 '''
 #%%
 from typing import List
@@ -8,51 +9,28 @@ from collections import defaultdict, deque
 
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        parent = {}
-        def find(a):
-            if a not in parent:
-                parent[a] = -1
-                return a
-            if parent[a]<0:
-                return a
+        edges = {}
+        adj = defaultdict(list)
+        edge = set()
+        for a, b in connections:
+            adj[a].append(b)
+            adj[b].append(a)
+            edge.add((a, b))
+        del connections
+        
+        ans = [0]
+        visit = set()
+        def dfs(node):
+            visit.add(node)
 
-            r = find(parent[a])
-            parent[a] = r
-            return r
+            for child in adj[node]:
+                if child not in visit:
+                    if (node, child) in edge:
+                        ans[0]+=1
+                    dfs(child)
 
-        def union(a, b):
-            '''return newly added child count'''
-            p1 = find(a)
-            p2 = find(b)
-            parent[p2] = p1
-            parent[p1] += parent[p2]
-            return abs(parent[p1])
-
-        def union_rank(a, b):
-            '''return newly added child count'''
-            p1 = find(a)
-            p2 = find(b)
-            if parent[p1]>parent[p2]:
-                parent[p2] = p1
-                parent[p1] += parent[p2]
-            else:
-                parent[p1] = p2
-                parent[p2] += parent[p1]
-
-        ans = 0
-        connections = deque(connections)
-        while connections:# or while len(0)!=n
-            a, b = connections.popleft()
-            # a ---> b
-            # if b point to 0: right edge
-            if find(b)==0:
-                # as b tends to zero
-                union(b, a)
-            elif find(a)==0:
-                ans+=union(a, b)
-            else:
-                union_rank(a, b)
-        return ans
+        dfs(0)
+        return ans[0]
 
 g = Solution()
 #%%
