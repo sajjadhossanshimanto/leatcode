@@ -18,21 +18,12 @@ class Solution:
             visit.add(node)
 
             c = 0
-            fold = False
             for child in adj[node]:
-                if child in visit:
-                # if child in team_zero:
-                    fold = True
-                    continue
-                else:
-                    if fold:
-                        r, _ = edge_counter(child, adj)
-                    else:
-                        r, fold = edge_counter(child, adj)
+                if child in visit: continue
+                
+                C += edge_counter(child, adj) +1
 
-                    c+= r+1
-
-            return c, fold
+            return c
 
         visit = set()
         ans, _ = edge_counter(0, adj)
