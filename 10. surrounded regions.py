@@ -36,26 +36,10 @@ class Solution:
                 if board[cx][cy]!='X':
                     in_place(cx, cy)
 
-        #up
-        x= 0
-        for y in range(gy):
-            if board[x][y]=='O':
-                dfs(x, y)
-        # down
-        x= gx-1
-        for y in range(gy):
-            if board[x][y]=='O':
-                dfs(x, y)
-        # left
-        y= 0
         for x in range(gx):
-            if board[x][y]=='O':
-                dfs(x, y)
-        # right
-        y= gy-1
-        for x in range(gx):
-            if board[x][y]=='O':
-                dfs(x, y)
+            for y in range(gy):
+                if board[x][y]=='O' and (x in (0, gx-1) or y in (0, gy-1)):
+                    dfs(x, y)
 
         for x in range(gx):
             for y in range(gy):
