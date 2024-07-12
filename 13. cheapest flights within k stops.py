@@ -19,9 +19,9 @@ class Solution:
         sssp[src] = 0
 
         q = []
-        heappush(q, (0, src))
+        heappush(q, (0, src, k))# dis, node, step_count
         while q:
-            dis, node = heappop(q)
+            dis, node, step = heappop(q)
 
             if dis>sssp[node]: continue
             
@@ -31,15 +31,21 @@ class Solution:
 
                 nd = dis+w
                 if child==dst:
-                    return nd
+                    # excluding the dist node from counting
+                    print(k, "-->", nd)
+                    if step-1<=k:
+                        return nd
                 
                 if nd<sssp[child]:
                     sssp[child]=nd
-                    heappush(q, (nd, child))
+                    heappush(q, (nd, child, step+1))
         return -1
 
 g = Solution()
 #%%
 # ans = 700
 g.findCheapestPrice(n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0, dst = 3, k = 1)
+# %%
+# ans 500
+g.findCheapestPrice(n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1)
 # %%
