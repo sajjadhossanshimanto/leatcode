@@ -9,9 +9,9 @@ class Solution:
     def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
         gx, gy = len(grid1), len(grid1[0])
 
-        visit = set()
+        visit = [[0]*gy for _ in range(gx)]
         def dfs(x, y, plus):
-            visit.add((x, y))
+            visit[x][y] = 1
 
             for cx, cy in (
                 (x+1, y),
@@ -19,7 +19,7 @@ class Solution:
                 (x, y+1),
                 (x, y-1)
             ):
-                if cx<0 or cy<0 or cx==gx or cy==gy or (cx, cy) in visit or grid2[cx][cy]==0:
+                if cx<0 or cy<0 or cx==gx or cy==gy or visit[cx][cy] or grid2[cx][cy]==0:
                     continue
                 
                 if grid1[cx][cy]==0:
@@ -32,7 +32,7 @@ class Solution:
         cc=0
         for x in range(gx):
             for y in range(gy):
-                if grid1[x][y] and grid2[x][y] and (x, y) not in visit:
+                if grid1[x][y] and grid2[x][y] and visit[x][y]==0:
                     cc+=dfs(x, y, 1)
                     # print(x, y, "-->", cc)
                     
