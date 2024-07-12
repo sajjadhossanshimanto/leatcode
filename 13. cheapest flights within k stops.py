@@ -22,20 +22,18 @@ class Solution:
         heappush(q, (0, src, k))# dis, node, step_count
         while q:
             dis, node, step = heappop(q)
-
             if dis>sssp[node]: continue
+            if node==dst:
+                # excluding the dist node from counting
+                print(step, "-->", dis)
+                if step-1<=k:
+                    return dst
             
             for child, w in adj[node]:
                 if visit[child]: continue
                 visit[child]=1
 
                 nd = dis+w
-                if child==dst:
-                    # excluding the dist node from counting
-                    print(k, "-->", nd)
-                    if step-1<=k:
-                        return nd
-                
                 if nd<sssp[child]:
                     sssp[child]=nd
                     heappush(q, (nd, child, step+1))
