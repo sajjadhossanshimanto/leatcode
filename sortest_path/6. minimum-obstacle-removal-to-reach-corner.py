@@ -29,7 +29,7 @@ class Solution:
             heappush(pq, (0, x, y))
             sssp = [[inf]*col for _ in range(row)]
 
-            visit = set((0, 0))
+            visit = [[0]*col for _ in range(row)]
 
             while pq:
                 dis, x, y = heappop(pq)
@@ -41,8 +41,8 @@ class Solution:
                     cy = y+ady
                     if not valid(cx, cy): continue
                     
-                    if (cx, cy) in visit: continue
-                    visit.add((cx, cy))
+                    if visit[cx][cy]: continue
+                    visit[cx][cy] = 1
                     
                     nd = dis
                     if grid[cx][cy]:

@@ -17,23 +17,23 @@ class Solution:
         def is_valid(x, y):
             return 0<=x<gx and 0<=y<gy
 
-        visit = set()
+        visit = [[0]*gy for _ in range(gx)]
         def dfs(x, y):
             # print(x, y)
-            visit.add((x, y))
+            visit[x][y] = 1
 
             for adx, ady in move:
                 cx, cy = (x+adx, y+ady)
                 if not is_valid(cx, cy): continue
                 if grid[cx][cy]=="0": continue
 
-                if (cx, cy) not in visit:
+                if visit[cx][cy]==0:
                     dfs(cx, cy)
         
         cc=0
         for x in range(gx):
             for y in range(gy):
-                if (x, y) in visit: continue
+                if visit[x][y]: continue
                 if grid[x][y]=="1":
                     dfs(x, y)
                     cc+=1

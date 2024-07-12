@@ -26,12 +26,12 @@ class Solution:
         sssp[start]=-1
         pq = []
         heappush(pq, (-1, start))
-        visit = set()
+        visit = [0]*n
 
         while pq:
             dis, node = heappop(pq)
-            if node in visit or dis>sssp[node]: continue
-            visit.add(node)
+            if visit[node] or dis>sssp[node]: continue
+            visit[node] = 1
 
             for child, w in adj[node]:
                 nd = -abs(w*dis)

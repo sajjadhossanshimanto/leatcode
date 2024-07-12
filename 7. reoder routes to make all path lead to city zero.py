@@ -19,12 +19,12 @@ class Solution:
         del connections
         
         ans = [0]
-        visit = set()
+        visit = [0]*n
         def dfs(node):
-            visit.add(node)
+            visit[node]=1
 
             for child in adj[node]:
-                if child not in visit:
+                if not visit[child]:
                     if (node, child) in edge:
                         ans[0]+=1
                     dfs(child)

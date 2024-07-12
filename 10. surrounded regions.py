@@ -1,3 +1,6 @@
+'''
+https://leetcode.com/problems/surrounded-regions/description/
+'''
 #%%
 from typing import List
 
@@ -9,9 +12,9 @@ class Solution:
         """
         gx, gy = len(board), len(board[0])
 
-        visit = set()
+        visit = [[0]*gy for _ in range(gx)]
         def dfs(x, y):
-            visit.add((x, y))
+            visit[x][y]=1
 
             for cx, cy in (
                 (x+1, y),
@@ -19,7 +22,7 @@ class Solution:
                 (x, y+1),
                 (x, y-1)
             ):
-                if 0<=cx<gx and 0<=cy<gy and board[cx][cy]=='O' and (cx, cy) not in visit:
+                if 0<=cx<gx and 0<=cy<gy and board[cx][cy]=='O' and not visit[cx][cy]:
                     dfs(cx, cy)
 
         def in_place(x, y):
@@ -43,7 +46,7 @@ class Solution:
 
         for x in range(gx):
             for y in range(gy):
-                if board[x][y]=='O' and (x, y) not in visit:
+                if board[x][y]=='O' and not visit[x][y]:
                     in_place(x, y)
 
 g = Solution()

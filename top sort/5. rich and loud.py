@@ -14,13 +14,13 @@ class Solution:
             adj[b].append(a)# according to the question
             # ans[1] -> 1 er opor jara tader mode k loud
         
-        visit = set()
+        visit = [0]*len(quiet)
         def dfs(node):
-            visit.add(node)
+            visit[node] = 1
             
             richer = node
             for child in adj[node]:
-                if child in visit: 
+                if visit[child]:
                     r = ans[child]
                 else:
                     r = dfs(child)

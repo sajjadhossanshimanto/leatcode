@@ -14,13 +14,13 @@ class Solution:
             # adj[a].append(b)
             adj[b].append(a)
 
-        visit = set()
+        visit = [0]*n
         def dfs(node):
-            visit.add(node)
+            visit[node]=1
 
             ansistor = []
             for child in adj[node]:
-                if child in visit:
+                if visit[child]:
                     r = ans[child]
                 else:
                     r = dfs(child)
@@ -34,8 +34,8 @@ class Solution:
 
         ans = [[] for _ in range(n)]
         for i in range(n):
-            if i in visit: continue
-            dfs(i)
+            if not visit[i]:
+                dfs(i)
         
         return ans
 

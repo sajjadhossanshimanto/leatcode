@@ -9,14 +9,14 @@ from typing import List
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
         
-        visit = set()
+        visit = [0]*len(graph)
         def dfs(node):
             # print(node)
-            visit.add(node)
+            visit[node] = 1
 
             safe = True
             for child in graph[node]:
-                if child in visit:
+                if visit[child]:
                     safe = False
                     continue
                 
@@ -28,14 +28,14 @@ class Solution:
                 # heappush(ans, node)
                 ans.append(node)
                 print('append', node)
-                visit.remove(node)
+                visit[node]=0
                 done.add(node)
                 return True
 
         ans = []
         done = set()
         for i in range(len(graph)):
-            if i in visit or i in done: continue
+            if visit[i] or i in done: continue
             dfs(i)
         
         ans.sort()

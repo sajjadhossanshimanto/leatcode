@@ -15,9 +15,9 @@ class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         gx, gy = len(grid), len(grid[0])
         
-        visit = set()
+        visit = [[0]*gy for _ in range(gx)]
         def dfs(x, y):
-            visit.add((x, y))
+            visit[x][y] = 1
             # print(x, y)
 
             edge = 4
@@ -25,7 +25,7 @@ class Solution:
                 cx+=x
                 cy+=y
                 if 0<=cx<gx and 0<=cy<gy and grid[cx][cy]:
-                    if (cx, cy) in visit:
+                    if visit[cx][cy]:
                         edge-=1
                     else:
                         edge = edge-1+dfs(cx, cy)
