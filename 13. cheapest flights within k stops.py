@@ -31,7 +31,8 @@ class Solution:
             
             for child, w in adj[node]:
                 if visit[child]: continue
-                visit[child]=1
+                if child!=dst:
+                    visit[child]=1
 
                 nd = dis+w
                 if nd<sssp[child]:
