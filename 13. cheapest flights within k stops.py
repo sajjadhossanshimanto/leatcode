@@ -19,7 +19,7 @@ class Solution:
         sssp[src] = 0
 
         q = []
-        heappush(q, (0, src, k))# dis, node, step_count
+        heappush(q, (0, src, 0))# dis, node, step_count
         while q:
             dis, node, step = heappop(q)
             # if dis>sssp[node]: continue
@@ -27,8 +27,9 @@ class Solution:
                 # excluding the dist node from counting
                 print(step, "-->", dis)
                 if step-1<=k:
-                    return dst
-            
+                    return dis
+                continue
+
             for child, w in adj[node]:
                 if visit[child]: continue
                 if child!=dst:
