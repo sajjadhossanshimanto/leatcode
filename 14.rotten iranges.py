@@ -19,6 +19,7 @@ class Solution:
                 x, y, level = q.popleft()
                 grid[x][y] = 0
                 ans = max(ans, level)
+                # print(x, y)
 
                 for cx, cy in (
                     (x+1, y),
@@ -36,6 +37,7 @@ class Solution:
 
                     if grid[x][y]==1:
                         q.append((cx, cy, level+1))
+                # print_grid(grid)
             
             return ans
 
