@@ -19,10 +19,10 @@ class Solution:
                 (x, y+1),
                 (x, y-1)
             ):
-                if cx<0 or cy<0 or cx==gx or cy==gy or (cx, cy) in visit or grid2[x][y]==0:
+                if cx<0 or cy<0 or cx==gx or cy==gy or (cx, cy) in visit or grid2[cx][cy]==0:
                     continue
                 
-                if grid1[x][y]==0:
+                if grid1[cx][cy]==0:
                     plus = 0
                 
                 plus = dfs(cx, cy, plus)# once plus is set to zero thers no way to become 1 again
@@ -33,8 +33,8 @@ class Solution:
         for x in range(gx):
             for y in range(gy):
                 if grid1[x][y] and grid2[x][y] and (x, y) not in visit:
-                    # print(x, y)
                     cc+=dfs(x, y, 1)
+                    # print(x, y, "-->", cc)
                     
         return cc
 
