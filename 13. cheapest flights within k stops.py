@@ -22,7 +22,7 @@ class Solution:
         heappush(q, (0, src, k))# dis, node, step_count
         while q:
             dis, node, step = heappop(q)
-            if dis>sssp[node]: continue
+            # if dis>sssp[node]: continue
             if node==dst:
                 # excluding the dist node from counting
                 print(step, "-->", dis)
