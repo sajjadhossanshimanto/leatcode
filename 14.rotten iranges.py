@@ -30,13 +30,14 @@ class Solution:
                     if cx<0 or cy<0 or cx==gx or cy==gy:
                         continue
 
-                    if grid[x][y]==2:
+                    if grid[cx][cy]==2:
                     # what if thers 2 rotten in same active 
                         level = 0
                         ans = ans//2
-
-                    if grid[x][y]==1:
+                    if grid[cx][cy]==1:
                         q.append((cx, cy, level+1))
+                    
+                    grid[cx][cy] = 0
                 # print_grid(grid)
             
             return ans
