@@ -13,6 +13,8 @@ class Solution:
         def bfs(x, y):
             q = deque()
             q.append((x, y, 0))
+            grid[x][y] = 0
+
             # level = 0
             ans = 0
             while q:
@@ -27,7 +29,7 @@ class Solution:
                     (x, y+1),
                     (x, y-1)
                 ):
-                    if cx<0 or cy<0 or cx==gx or cy==gy:
+                    if cx<0 or cy<0 or cx==gx or cy==gy or grid[cx][cy]==0:
                         continue
 
                     if grid[cx][cy]==2:
@@ -56,5 +58,15 @@ class Solution:
 
 g = Solution()
 #%%
+# ans = 4
 g.orangesRotting([[2,1,1],[1,1,0],[0,1,1]])
-# %%
+#%%
+# ans = -1
+g.orangesRotting([[2,1,1],[0,1,1],[1,0,1]])
+#%%
+# ans = 0
+g.orangesRotting([[0,2]])
+# %% wa146
+# ans = 4
+# out = 3
+g.orangesRotting([[2,1,1],[1,1,0],[0,1,1]])
