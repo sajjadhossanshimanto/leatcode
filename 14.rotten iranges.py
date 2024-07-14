@@ -6,10 +6,6 @@ from typing import List
 from collections import deque
 
 
-def print_grid(l):
-    print(*l, sep = '\n')
-    print()
-
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         gx, gy = len(grid), len(grid[0])
