@@ -51,3 +51,30 @@ g.countSubIslands(
 )
 
 # %%
+# %%
+# optimazation
+# they avoids visit to get optizised
+# here setting grid2 = 0 getd this cell to avoid by grid2==1
+class Solution:
+    def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
+        R, C = len(grid1), len(grid1[0])
+        
+        def dfs(r, c):
+            if r < 0 or r >= R or c < 0 or c >= C or grid2[r][c] == 0:
+                return True
+            if grid2[r][c] == 1 and grid1[r][c] == 0:
+                return False
+
+            grid2[r][c] = 0
+            result = True
+            for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                result = dfs(r + dr, c + dc) and result
+            return result
+
+        count = 0
+        for i in range(R):
+            for j in range(C):
+                if grid2[i][j] == 1 and dfs(i, j):
+                    count += 1
+
+        return count
