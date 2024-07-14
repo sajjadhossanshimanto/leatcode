@@ -25,7 +25,7 @@ class Solution:
 
         time = 0
         # it is actually guranted that their wouls be no more rotten orange
-        while q:
+        while q and fresh:# optimization to avoid loopoing edge fresh orange
             for _ in range(len(q)):# in for loop range( ) actually takes the snaps of len(q). it is not changed accordingly
                 x, y = q.popleft()
 
