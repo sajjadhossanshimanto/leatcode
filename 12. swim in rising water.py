@@ -7,14 +7,13 @@ from collections import deque
 from heapq import heappush, heappop
 
 
-inf = float("inf")
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
         gx, gy = len(grid), len(grid[0])
         visit = [[0]*gy for _ in range(gx)]
 
         q = []
-        heappush(q, (-inf, 0, 0))
+        heappush(q, (grid[0][0], 0, 0))
         visit[0][0] = 1# cummon midtaked by me. often forgets to add inital node to visit
         while q:
             mx_elevation, x, y = heappop(q)
@@ -37,7 +36,6 @@ class Solution:
 
 g=Solution()
 #%%
-
 def print_grid(matrix):
     # chould have use pandas dataframe print function
     print(*matrix, sep="\n")
@@ -51,4 +49,8 @@ g.swimInWater(l)
 # ans = 14
 # out = 15
 g.swimInWater([[10,12,4,6],[9,11,3,5],[1,7,13,8],[2,0,15,14]])
-
+# %% wa21
+ex = 3
+out = 1
+g.swimInWater([[3,2],[0,1]])
+# %%
