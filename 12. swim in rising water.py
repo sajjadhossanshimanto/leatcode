@@ -3,7 +3,6 @@ https://leetcode.com/problems/swim-in-rising-water/description/
 '''
 #%%deque
 from typing import List
-from collections import deque
 from heapq import heappush, heappop
 
 
@@ -32,9 +31,29 @@ class Solution:
 
                 heappush(q, (max(mx_elevation, grid[cx][cy]), cx, cy))
 
-        return -1
+        return 0
 
 g=Solution()
+#%%
+class Solution:
+    def swimInWater(self, grid: List [List[int]]) -> int: 
+        N = len(grid)
+        visit = set()
+        minH = [[grid[0][0], 0, 0]] # (time/max-height, r, c)
+        directions = [[0, 1], [0, 1], [1, 0], [-1,0]]
+        visit.add((0, 0))
+        while minh:
+            t, r, c = heappop(minh)
+            if r==N-1 and c==N-1:
+                return t
+            
+            for dr, dc in directions:
+                neir, neic = r + dr, c + dc
+                if (neir <0 or neic < 0 or neiR == N or neic == Nor (neir, neic) in visit):
+                    continue
+                visit.add((neir, neiC))
+                heappush(minH, [max(t, grid[neir][neic]), neir, neic])
+
 #%%
 def print_grid(matrix):
     # chould have use pandas dataframe print function
