@@ -6,22 +6,28 @@ from typing import List
 from collections import deque
 
 
+def print_grid(l):
+    print(*l, sep = '\n')
+    print()
+
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         gx, gy = len(grid), len(grid[0])
+        q = deque()
 
-        def bfs(x, y):
-            q = deque()
-            q.append((x, y, 0))
-            grid[x][y] = 0
+        fresh = 0
+        for x in range(gx):
+            for y in range(gy):
+                if grid[x][y]==2:
+                    q.append((x, y))
+                if grid[x][y]==1:
+                    fresh+=1
 
-            # level = 0
-            ans = 0
-            while q:
-                x, y, level = q.popleft()
-                grid[x][y] = 0
-                ans = max(ans, level)
-                # print(x, y)
+        time = 0
+        # it is actually guranted that their wouls be no more rotten orange
+        while q:
+            for _ in range(len(q)):# in for loop range( ) actually takes the snaps of len(q). it is not changed accordingly
+                x, y = q.popleft()
 
                 for cx, cy in (
                     (x+1, y),
@@ -29,31 +35,16 @@ class Solution:
                     (x, y+1),
                     (x, y-1)
                 ):
-                    if cx<0 or cy<0 or cx==gx or cy==gy or grid[cx][cy]==0:
+                    if cx<0 or cy<0 or cx==gx or cy==gy or grid[cx][cy]!=1:
                         continue
+                    grid[cx][cy] = 0# trick visit list
 
-                    if grid[cx][cy]==2:
-                    # what if thers 2 rotten in same active 
-                        level = 0
-                        ans = ans//2
-                    if grid[cx][cy]==1:
-                        q.append((cx, cy, level+1))
-                    
-                    grid[cx][cy] = 0
-                # print_grid(grid)
-            
-            return ans
+                    q.append((cx, cy))
+                    fresh -= 1
+            time+=1
 
-        ans = 0
-        for x in range(gx):
-            for y in range(gy):
-                if grid[x][y]==2:
-                    ans = max(bfs(x, y), ans)
 
-        for x in range(gx):
-            if 1 in grid[x]: return -1
-        
-        return ans
+        return -1 if fresh else time
 
 
 g = Solution()
@@ -70,3 +61,8 @@ g.orangesRotting([[0,2]])
 # ans = 4
 # out = 3
 g.orangesRotting([[2,1,1],[1,1,0],[0,1,1]])
+# %% wa169
+# ans = 2
+# out = 3
+g.orangesRotting([[2,1,1],[1,1,1],[0,1,2]])
+# %%
