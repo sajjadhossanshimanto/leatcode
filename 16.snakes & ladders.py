@@ -35,4 +35,17 @@ class Solution:
                     else:
                         adj[i].append(j)
 
+        # bfs
+        q = deque()
+        q.append((1, 0))# pos, moves used to reach that node
+        while q:
+            pos, move = q.popleft()
+
+            for child in adj[pos]:
+                # child can't be in visit as it is a directed graph
+                if child==cell:
+                    return move+1
+                q.append(child, move+1)
+        return -1
+
 #%%
