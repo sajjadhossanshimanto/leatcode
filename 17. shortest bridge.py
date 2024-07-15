@@ -12,9 +12,10 @@ class Solution:
         def isValid(x, y):
             return 0<=x<gx and 0<=y<gy
 
-        visit = set()
+        visit = [[0]*gy for _ in range(gx)]
+        source = set()
         def dfs(x, y):
-            visit.add((x, y))
+            visit[x][y] = 1
 
             for cx, cy in (
                 (x+1, y),
@@ -22,14 +23,14 @@ class Solution:
                 (x, y+1),
                 (x, y-1)
             ):
-                if isValid(cx, cy) and grid[cx][cy] and (cx, cy) not in visit:
-                    dfs(cx, cy)
-        
+                if isValid(cx, cy):
+                    if grid[cx][cy]==0:
+                        source.add((x, y))
+                    elif not visit[cx][cy]:
+                        dfs(cx, cy)
+
         def bfs():
-            # use visit list as source list
-            # no matter we are looping over some extra nodes
-            # but thats saves memory
-            q = deque(visit)
+            q = deque(source)
             res = 0
             while q:
                 for _ in range(len(q)):
@@ -40,11 +41,11 @@ class Solution:
                         (x, y+1),
                         (x, y-1)
                     ):
-                        if isValid(cx, cy) and (cx, cy) not in visit:
-                            if  grid[cx][cy]:
+                        if isValid(cx, cy) and visit[cx][cy]==0:
+                            if grid[cx][cy]:
                                 return res
                             
-                            visit.add((cx, cy))
+                            visit[cx][cy] = 1
                             q.append((cx, cy))
                 res+=1
 
@@ -52,6 +53,7 @@ class Solution:
             for y in range(gy):
                 if grid[x][y]:
                     dfs(x, y)
+                    # return source
                     return bfs()
 
 
