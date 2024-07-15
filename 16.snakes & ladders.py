@@ -22,29 +22,26 @@ class Solution:
                 return x, -y
             return x, y
 
-        # num = 1
-        visit = [0]*(cell+1)
-        adj = [[] for _ in range(cell+1)]
-        for i in range(1, cell+1):
-            for j in range(i+1, i+7):
-                if not visit[j]:
-                    visit[j] = 1
-                    if j in maps:
-                        adj[i].append(maps[j])
-                    else:
-                        adj[i].append(j)
-
         # bfs
+        visit = [0]*(cell+1)
         q = deque()
         q.append((1, 0))# pos, moves used to reach that node
         while q:
             pos, move = q.popleft()
 
-            for child in adj[pos]:
-                # child can't be in visit as it is a directed graph
-                if child==cell:
+            for nxt_pos in range(pos+1, pos+7):
+                if visit[nxt_pos]: continue
+
+                x, y = num_to_pos(nxt_pos)
+                if board[x][y]!=-1:
+                    nxt_pos = board[x][y]
+
+                if nxt_pos==cell:
                     return move+1
-                q.append(child, move+1)
+                # avoidend getting visit
+                visit[nxt_pos] = 1
+                q.append(nxt_pos, move+1)
+                
         return -1
 
 #%%
