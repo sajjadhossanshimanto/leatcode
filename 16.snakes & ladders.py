@@ -13,13 +13,14 @@ from collections import deque, defaultdict
 class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         # gx, gy = len(board), len(board[0])
-        n = len(board)+1# squire board and 1 indexed
+        n = len(board)# squire board and 1 indexed
         cell = n*n
 
+        board.reverse()
         def num_to_pos(num):
             x, y = divmod(num-1, n)
             if x&1:
-                return x, -y
+                return x, n-y-1
             return x, y
 
         # bfs
