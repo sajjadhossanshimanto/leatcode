@@ -16,13 +16,12 @@ class Solution:
         n = len(board)+1# squire board and 1 indexed
         cell = n*n
 
-        maps = {}
-        num=1
-        for x in range(gx):
-            for y in range(gy):
-                if board[x][y]!=-1:
-                    maps[num] = board[x][y]
-                    num+=1
+        def num_to_pos(num):
+            x, y = divmod(num-1, n)
+            if x&1:
+                return x, -y
+            return x, y
+
         # num = 1
         visit = [0]*(cell+1)
         adj = [[] for _ in range(cell+1)]
