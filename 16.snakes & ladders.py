@@ -40,8 +40,12 @@ class Solution:
                     return move+1
                 # avoidend getting visit
                 visit[nxt_pos] = 1
-                q.append(nxt_pos, move+1)
-                
+                q.append((nxt_pos, move+1))
+
         return -1
 
+g = Solution()
 #%%
+# ans = 4
+g.snakesAndLadders( [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]])
+# %%
