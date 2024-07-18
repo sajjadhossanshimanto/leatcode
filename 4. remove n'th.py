@@ -39,16 +39,6 @@ l = [1]
 #%%
 def list_to_link(l):
     head = None
-        return head
-
-s= Solution()
-# %%
-l = [1, 2, 3, 4, 5]
-#%%
-l = [1]
-#%%
-def list_to_link(l):
-    head = None
     node = None
     for i in l:
         n = ListNode(i)
@@ -71,6 +61,6 @@ def print_link(ans):
         ans = ans.next
     return l
 
-print_link(head)
+print_link(ans)
 
 # %%
