@@ -34,3 +34,30 @@ class Solution:
         return head
 
 #%%
+l = [1, 2, 3, 4]
+#%%
+def list_to_link(l):
+    head = None
+    node = None
+    for i in l:
+        n = ListNode(i)
+        if not node:
+            head = n
+            node = n
+        else:
+            node.next = n
+            node = n
+
+    return head
+
+head = list_to_link(l)
+ans = s.reorderList(head)
+# %%
+def print_link(ans):
+    l = []
+    while ans:
+        l.append(ans.val)
+        ans = ans.next
+    return l
+
+print_link(head)
