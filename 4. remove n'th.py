@@ -18,7 +18,27 @@ class Solution:
             index.append(node)
             node = node.next
         
-        index[len(index)-n-1].next = index[len(index)-n+1]
+        if len(index)==1:
+            return
+
+        if n==1:
+            index[-2].next = None
+        elif n==len(index):
+            head = head.next
+        else:
+            m = len(index)-n
+            index[m-1].next = index[m+1]
+        
+        return head
+
+s= Solution()
+# %%
+l = [1, 2, 3, 4, 5]
+#%% wa
+l = [1]
+#%%
+def list_to_link(l):
+    head = None
         return head
 
 s= Solution()
