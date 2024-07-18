@@ -21,4 +21,22 @@ class Solution:
         
         return False
 
+s = Solution()
+# %%
+l = [1, 2]
+#%%
+head = None
+node = None
+for i in l:
+    n = ListNode(i)
+    if not node:
+        head = n
+        node = n
+    else:
+        node.next = n
+        node = n
+
+# node.next.next = node
+# %%
+s.hasCycle(head)
 # %%
