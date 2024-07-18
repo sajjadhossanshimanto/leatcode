@@ -33,6 +33,7 @@ class Solution:
         node.next = None
         return head
 
+s = Solution()
 #%%
 l = [1, 2, 3, 4]
 #%%
