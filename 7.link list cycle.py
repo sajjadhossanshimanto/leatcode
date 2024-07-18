@@ -2,6 +2,8 @@
 https://leetcode.com/problems/linked-list-cycle/description/
 '''
 #%%
+from typing import Optional
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -13,10 +15,11 @@ class Solution:
         visit = set()
         node = head
         while node:
-            if node.val in visit:
+            val = id(node)
+            if val in visit:
                 return True
 
-            visit.add(node.val)
+            visit.add(val)
             node = node.next
         
         return False
@@ -24,6 +27,10 @@ class Solution:
 s = Solution()
 # %%
 l = [1, 2]
+#%% wa24
+# value may recome repeated
+# need to check objects
+l = [-21,10,17,8,4,26,5,35,33,-7,-16,27,-12,6,29,-12,5,9,20,14,14,2,13,-24,21,23,-21,5]
 #%%
 head = None
 node = None
