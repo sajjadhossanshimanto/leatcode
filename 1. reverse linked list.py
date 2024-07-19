@@ -26,6 +26,7 @@ class Solution:
                 node = n
             else:
                 node.next = n
+                node = n
 
         return head
 
