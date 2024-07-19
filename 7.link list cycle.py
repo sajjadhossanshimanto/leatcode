@@ -32,17 +32,9 @@ l = [1, 2]
 # need to check objects
 l = [-21,10,17,8,4,26,5,35,33,-7,-16,27,-12,6,29,-12,5,9,20,14,14,2,13,-24,21,23,-21,5]
 #%%
-head = None
-node = None
-for i in l:
-    n = ListNode(i)
-    if not node:
-        head = n
-        node = n
-    else:
-        node.next = n
-        node = n
+from link_helper import list_to_link, print_link
 
+head = list_to_link(l)
 # node.next.next = node
 # %%
 s.hasCycle(head)

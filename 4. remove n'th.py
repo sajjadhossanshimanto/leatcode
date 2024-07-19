@@ -37,30 +37,10 @@ l = [1, 2, 3, 4, 5]
 #%% wa
 l = [1]
 #%%
-def list_to_link(l):
-    head = None
-    node = None
-    for i in l:
-        n = ListNode(i)
-        if not node:
-            head = n
-            node = n
-        else:
-            node.next = n
-            node = n
+from link_helper import list_to_link, print_link
 
-    return head
 
 head = list_to_link(l)
 ans = s.removeNthFromEnd (head, 1)
-# %%
-def print_link(ans):
-    l = []
-    while ans:
-        l.append(ans.val)
-        ans = ans.next
-    return l
-
 print_link(ans)
-
 # %%
