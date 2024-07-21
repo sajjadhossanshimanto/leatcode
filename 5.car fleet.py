@@ -10,16 +10,14 @@ class Solution:
         # return the number of car fleet that will arrive at the distination
         c = 0
         min_time = None
-        position = sorted(
-            [
-                (position[i], i) for i in range(len(position))
-            ],
+        cars = sorted(
+            zip(position, speed),
             key= lambda x: x[0]
         )
-        # print(position)
+        print(cars)
         # for idx in range(len(position)-1, -1, -1):
-        for pos, idx in position:
-            time = (target-pos)/speed[idx]
+        for position, speed in reversed(cars):
+            time = (target-position)/speed
             if not min_time:
                 min_time = time
                 print("min time", time)
