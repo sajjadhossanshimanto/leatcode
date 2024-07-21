@@ -16,16 +16,20 @@ class Solution:
             ],
             key= lambda x: x[0]
         )
+        # print(position)
         # for idx in range(len(position)-1, -1, -1):
         for pos, idx in position:
             time = (target-pos)/speed[idx]
             if not min_time:
                 min_time = time
+                print("min time", time)
             elif time<=min_time:
                 # ager garir chay aro kom time modhe jete casce
                 c+=1
+                print(time)
             elif time>min_time:
                 min_time = time
+                print("min time", time)
             # min_time = max(min_time, )
 
         return c
