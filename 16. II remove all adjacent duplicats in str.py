@@ -6,18 +6,19 @@ from typing import List
 inf = float('inf')
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> int:
-        i = k-1# zero index
-        while i!=len(s):
+        i = 0
+        while len(s)>=k and i!=len(s)-1:
             char = s[i]
-            for j in range(i-1, i-k, -1):
-                if s[j]!=char:
-                    i +=1
+            for j in range(i+1, i+k):
+                if j<len(s) and s[j]!=char:
+                    i = j
                     break
-            else:# if not breaked
-                s = "".join([s[:i-k+1], s[i+1:]])
+            if j-i+1==k:# if not breaked. +1 for including both end-point
+                s = "".join([s[:i], s[j+1:]])
                 # back steping
-                # while 
-            # return
+                while i-1>=0 and s[i]==s[i-1]:
+                    i-=1
+
         return s
 
 s = Solution()
