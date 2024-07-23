@@ -47,7 +47,10 @@ class Solution:
 
             grid = []
             for x, y in available:
-                place_queen(x, y)
+                # print_grid(visit)
+                place_queen(x, y, place=x+1)# as x is zero based but zero means empty
+                # print("placed at ->", x, y)
+                # print_grid(visit)
                 if x==n-1:
                     return gen_row(y)
 
@@ -58,7 +61,7 @@ class Solution:
                     
                     return grid
                 else:
-                    place_queen(x, y, 0)
+                    place_queen(x, y, place=0, inplace=x+1)
             
             return False
 
