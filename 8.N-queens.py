@@ -37,16 +37,12 @@ class Solution:
         def dfs_row(x=0):
             available = []
             for y in range(n):
-                if not visit[x][y]:
-                    available.append((x, y))
+                if visit[x][y]: continue
 
-            grid = []
-            for x, y in available:
-                # print_grid(visit)
                 place_queen(x, y, place=x+1)# as x is zero based but zero means empty
                 # print("placed at ->", x, y)
                 # print_grid(visit)
-                if x==n-1:
+                if x==n-1:# base case
                     return gen_row(y)
 
                 r = dfs_row(x+1)
@@ -57,7 +53,7 @@ class Solution:
                     return grid
                 else:
                     place_queen(x, y, place=0, inplace=x+1)
-            
+
             return False
 
         return dfs_row()
