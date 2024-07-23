@@ -29,7 +29,11 @@ class Solution:
 
                 visit[i][j] = place
 
-        for x in range(n):
+        def gen_row(y):
+            grid = ["."]*n
+            grid[y] = "Q"
+            return ["".join(grid)]
+
             for y in range(n):
                 if not visit[x][y]:
                     place_queen(x, y, place=1)
