@@ -12,11 +12,6 @@ class Solution:
             pass
 
         def place_queen(x, y, inplace=0, place=1):
-            # mark row
-            for j in range(n):
-                if visit[x][j]==inplace:
-                    visit[x][j] = place
-
             # mark col
             for i in range(n):
                 if visit[i][y]==inplace:
@@ -65,14 +60,6 @@ class Solution:
             
             return False
 
-        # for x in range(n):
-        #     available = []
-        #     for y in range(n):
-        #         if not visit[x][y]:
-        #             available.append((x, y))
-
-        #     for x, y in available:
-        #         place_queen(x, y)
         return dfs_row()
 
 
