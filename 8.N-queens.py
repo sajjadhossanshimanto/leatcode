@@ -7,27 +7,32 @@ class Solution:
     def solveNQueens(self, n: int) -> list[str]:
         grid = ["."*n]*n
         visit = [[0]*n for _ in range(n)]
-        
+
         def is_valid(x, y):
             pass
 
-        def place_queen(x, y, place=1):
+        def place_queen(x, y, inplace=0, place=1):
             # mark row
-            visit[x] = [place]*n
+            for j in range(n):
+                if visit[x][j]==inplace:
+                    visit[x][j] = place
 
             # mark col
             for i in range(n):
-                visit[i][y] = place
+                if visit[i][y]==inplace:
+                    visit[i][y] = place
 
             # mark right-corner
             for i, j in zip(range(x+1, n), range(y+1, n)):
-                visit[i][j] = place
+                if visit[i][j]==inplace:
+                    visit[i][j] = place
 
             # mark left-corner
             for i, j in zip(range(x-1, -1, -1), range(y-1, -1, -1)):
                 if i<0 or j<0: break
 
-                visit[i][j] = place
+                if visit[i][j]==inplace:
+                    visit[i][j] = place
 
         def gen_row(y):
             grid = ["."]*n
