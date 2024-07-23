@@ -5,11 +5,7 @@ from itertools import combinations
 
 class Solution:
     def solveNQueens(self, n: int) -> list[str]:
-        grid = ["."*n]*n
         visit = [[0]*n for _ in range(n)]
-
-        def is_valid(x, y):
-            pass
 
         def place_queen(x, y, inplace=0, place=1):
             # mark col
