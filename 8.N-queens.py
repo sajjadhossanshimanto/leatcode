@@ -34,9 +34,41 @@ class Solution:
             grid[y] = "Q"
             return ["".join(grid)]
 
+        def dfs_row(x=0):
+            available = []
             for y in range(n):
                 if not visit[x][y]:
-                    place_queen(x, y, place=1)
-                    break
+                    available.append((x, y))
 
+            grid = []
+            for x, y in available:
+                place_queen(x, y)
+                if x==n-1:
+                    return gen_row(y)
+
+                r = dfs_row(x+1)
+                if r:
+                    grid = gen_row(y)
+                    grid.extend(r)
+                    
+                    return grid
+                else:
+                    place_queen(x, y, 0)
+            
+            return False
+
+        # for x in range(n):
+        #     available = []
+        #     for y in range(n):
+        #         if not visit[x][y]:
+        #             available.append((x, y))
+
+        #     for x, y in available:
+        #         place_queen(x, y)
+        return dfs_row()
+
+
+s = Solution()
+# %%
+s.solveNQueens(4)
 # %%
