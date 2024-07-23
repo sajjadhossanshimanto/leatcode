@@ -13,7 +13,7 @@ class Solution:
 
         def place_queen(x, y, place=1):
             # mark row
-            visit[0] = [place]*n
+            visit[x] = [place]*n
 
             # mark col
             for i in range(n):
