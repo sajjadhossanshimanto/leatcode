@@ -60,3 +60,30 @@ s = Solution()
 # %%
 s.solveNQueens(4)
 # %%
+class Solution:
+    def solveNQueens(self, n: int) -> list[str]:
+        visit_col = set()
+        left_corner = set()# if used arr need n+n space
+        right_corner = set()
+
+        def gen_row(y):
+            grid = ["."]*n
+            grid[y] = "Q"
+            return ["".join(grid)]
+
+        grid = []
+        def dfs_row(x):
+            for y in range(n):
+                if y not in visit_col:
+                    # mark queen area
+                    visit_col.add(y)
+                    right_corner.add(r-c)
+                    left_corner.add(r+c)
+
+                    grid.append(gen_row(y))
+                    dfs_row(x+1)
+
+
+        r= dfs_row()
+        
+        return r if r else -1
