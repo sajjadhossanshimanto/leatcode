@@ -46,7 +46,7 @@ class Solution:
                 
                 if x<n-1:# next row exists
                     dfs_row(x+1)
-                if len(grid)==n:# base case
+                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
                     return
                 remove_queen(x, y)
                 grid.pop()
