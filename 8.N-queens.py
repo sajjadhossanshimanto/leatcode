@@ -40,20 +40,18 @@ class Solution:
             for y in range(n):
                 if y in visit_col or (x+y) in left_corner or (x-y) in right_corner : continue
 
-                place_queen(x, y)# as x is zero based but zero means empty
+                grid = gen_row(y)
+                place_queen(x, y)
                 # print("placed at ->", x, y)
                 # print_grid(visit)
                 if x==n-1:# base case
-                    return gen_row(y)
+                    return grid
 
                 r = dfs_row(x+1)
                 if r:
-                    grid = gen_row(y)
                     grid.extend(r)
-                    
                     return grid
-                else:
-                    remove_queen(x, y, place=0, inplace=x+1)
+                remove_queen(x, y)
 
             return False
 
