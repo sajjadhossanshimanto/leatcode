@@ -35,27 +35,25 @@ class Solution:
             grid[y] = "Q"
             return ["".join(grid)]
 
+        grid = []
         def dfs_row(x=0):
             available = []
             for y in range(n):
                 if y in visit_col or (x+y) in left_corner or (x-y) in right_corner : continue
 
-                grid = gen_row(y)
                 place_queen(x, y)
-                # print("placed at ->", x, y)
-                # print_grid(visit)
-                if x==n-1:# base case
-                    return grid
-
-                r = dfs_row(x+1)
-                if r:
-                    grid.extend(r)
-                    return grid
+                grid.append(gen_row(y))
+                
+                if x<n-1:# next row exists
+                    dfs_row(x+1)
+                if len(grid)==n:# base case
+                    return
                 remove_queen(x, y)
+                grid.pop()
 
-            return False
+        dfs_row()
+        return grid
 
-        return dfs_row()
 
 
 s = Solution()
