@@ -5,25 +5,30 @@ from itertools import combinations
 
 class Solution:
     def solveNQueens(self, n: int) -> list[str]:
-        visit = [[0]*n for _ in range(n)]
+        visit_col = set()
+        left_corner = set()# if used arr need n+n space
+        right_corner = set()
 
-        def place_queen(x, y, inplace=0, place=1):
+        def place_queen(x, y):
             # mark col
-            for i in range(n):
-                if visit[i][y]==inplace:
-                    visit[i][y] = place
+            visit_col.add(x)
 
             # mark right-corner
-            for i, j in zip(range(x+1, n), range(y+1, n)):
-                if visit[i][j]==inplace:
-                    visit[i][j] = place
+            right_corner.add(x-y)
 
             # mark left-corner
-            for i, j in zip(range(x-1, -1, -1), range(y-1, -1, -1)):
-                if i<0 or j<0: break
+            left_corner.add(x+y)
 
-                if visit[i][j]==inplace:
-                    visit[i][j] = place
+        def remove_queen(x, y):
+            # mark col
+            visit_col.remove(x)
+
+            # mark right-corner
+            right_corner.remove(x-y)
+
+            # mark left-corner
+            left_corner.remove(x+y)
+
 
         def gen_row(y):
             grid = ["."]*n
@@ -35,7 +40,7 @@ class Solution:
             for y in range(n):
                 if visit[x][y]: continue
 
-                place_queen(x, y, place=x+1)# as x is zero based but zero means empty
+                place_queen(x, y)# as x is zero based but zero means empty
                 # print("placed at ->", x, y)
                 # print_grid(visit)
                 if x==n-1:# base case
@@ -48,7 +53,7 @@ class Solution:
                     
                     return grid
                 else:
-                    place_queen(x, y, place=0, inplace=x+1)
+                    remove_queen(x, y, place=0, inplace=x+1)
 
             return False
 
