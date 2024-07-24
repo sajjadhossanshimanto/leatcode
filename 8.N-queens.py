@@ -38,7 +38,7 @@ class Solution:
         def dfs_row(x=0):
             available = []
             for y in range(n):
-                if visit[x][y]: continue
+                if y in visit_col or (x+y) in left_corner or (x-y) in right_corner : continue
 
                 place_queen(x, y)# as x is zero based but zero means empty
                 # print("placed at ->", x, y)
