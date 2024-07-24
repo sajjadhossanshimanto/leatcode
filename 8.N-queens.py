@@ -11,7 +11,7 @@ class Solution:
 
         def place_queen(x, y):
             # mark col
-            visit_col.add(x)
+            visit_col.add(y)
 
             # mark right-corner
             right_corner.add(x-y)
@@ -21,7 +21,7 @@ class Solution:
 
         def remove_queen(x, y):
             # mark col
-            visit_col.remove(x)
+            visit_col.remove(y)
 
             # mark right-corner
             right_corner.remove(x-y)
@@ -33,7 +33,7 @@ class Solution:
         def gen_row(y):
             grid = ["."]*n
             grid[y] = "Q"
-            return ["".join(grid)]
+            return "".join(grid)
 
         grid = []
         def dfs_row(x=0):
