@@ -21,5 +21,12 @@ class Solution:
 
 s = Solution()
 #%%
-s.calPoint(ops=["5", "2", "C", "D", "+"])
+# ans = 30
+s.calPoints(operations=["5", "2", "C", "D", "+"])
+# %%
+# ans = 27
+s.calPoints(["5","-2","4","C","D","9","+","+"])
+# %%
+# 0
+s.calPoints(["1","C"])
 # %%
