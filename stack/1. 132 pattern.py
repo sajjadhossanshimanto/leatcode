@@ -5,9 +5,18 @@ https://leetcode.com/problems/132-pattern/description/
 from typing import List
 from itertools import combinations
 
+
 class Solution:
     def find132pattern(self, nums: List[int]) -> bool:
-        for i, j, k in combinations(nums, r = 3):
+        dub = set()
+        new = []
+        while nums:
+            i = nums.pop()
+            if i not in dub:
+                dub.add(i)
+                new.append(i)
+
+        for i, j, k in combinations(reversed(new), r = 3):
             if i<k<j:
                 return True
         return False
