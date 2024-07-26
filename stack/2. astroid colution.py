@@ -1,4 +1,6 @@
-# see web
+'''
+https://leetcode.com/problems/asteroid-collision/description/
+'''
 #%%
 from typing import List
 
@@ -10,16 +12,20 @@ class Solution:
             return 1
         
         ans = []
-        i = 0
-        while i<n:
-            a1 = asteroids[i]
-            a2 = asteroids[i+1]
-            if sign(a1) != sign(a2):
-                if abs(a1)>abs(a2):
-                    ans.append(a1)
-                elif abs(a1)<abs(a2):
-                    ans.append(a2)
-            i+=1
+        for next_ in asteroids:
+            if not ans: ans.append(next_)
+            else:
+                if sign(next_) != sign(ans[-1]):
+                    prev = ans.pop()
+                    if abs(next_)==abs(prev):
+                        # no append 
+                        continue
+                    if abs(next_)>abs(prev):
+                        ans.append(next_)
+                    else:
+                        ans.append(prev)
+                else:
+                    ans.append(next_)
         
         return ans
 
