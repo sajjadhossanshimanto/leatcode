@@ -23,6 +23,9 @@ class Solution:
                 heappush(index, list2.val)
                 list2 = list2.next
         
+        if not index:
+            return None
+        
         head = ListNode(heappop(index))
         node = head
         while index:
@@ -37,6 +40,10 @@ from link_helper import list_to_link, print_link
 
 l1 = [1, 2, 3, 4]
 l2 = [1, 2, 3, 4]
+l1=[]
+l2=[]
+# %%
 ans = s.mergeTwoLists(list_to_link(l1), list_to_link(l2))
 print_link(ans)
+
 # %%
