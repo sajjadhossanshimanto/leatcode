@@ -1,12 +1,14 @@
-# see web
+'''
+https://leetcode.com/problems/baseball-game/description/
+'''
 #%%
 from typing import List
 
 
 class Solution:
-    def calPoint(self, ops: List[str]) -> int:
+    def calPoints(self, operations: List[str]) -> int:
         scores = []
-        for i in ops:
+        for i in operations:
             if i=="C":
                 scores.pop()
             elif i=="D":
