@@ -22,3 +22,17 @@ class Solution:
             i+=1
         
         return ans
+
+s = Solution()
+# %%
+# ans = [5, 10]
+l = [5,10,-5]
+#%%
+# []
+l = [8, -8]
+#%%
+ans = [10]
+l = [10, 2, -5]
+#%%
+s.asteroidCollision(l)
+# %%
