@@ -24,4 +24,26 @@ class MyStack:
 
     def empty(self) -> bool:
         # return len(self.q) == 0
-        return not bool(self.q)
+
+# %%
+list(zip(
+    ["MyStack","push","push","top","pop","empty"],
+    [[],[1],[2],[],[],[]]
+))
+a = MyStack()
+a.push(1)
+a.push(2)
+a.top()
+a.pop()
+a.empty()
+# %%
+list(zip(
+    ["MyStack","push","pop","empty"],
+    [[],[1],[],[]]
+))
+
+a = MyStack()
+a.push(1)
+a.pop()
+a.empty()
+# %%
