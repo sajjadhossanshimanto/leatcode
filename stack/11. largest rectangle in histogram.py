@@ -24,3 +24,9 @@ s.largestRectangleArea([2, 1, 5, 6, 2, 3])
 # %% random
 s.largestRectangleArea([2, 1, 2, 3, 2])
 # %%
+# ans = 4
+s.largestRectangleArea([2, 4])
+# %%
+ans = 2
+out = 4
+s.largestRectangleArea([2,0,2])
