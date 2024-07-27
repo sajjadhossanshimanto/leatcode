@@ -1,3 +1,6 @@
+'''
+https://leetcode.com/problems/implement-stack-using-queues/description/
+'''
 #%%
 from typing import List
 from collections import deque
@@ -27,6 +30,7 @@ class MyStack:
 
     def empty(self) -> bool:
         # return len(self.q) == 0
+        return not self.q
 
 # %%
 list(zip(
