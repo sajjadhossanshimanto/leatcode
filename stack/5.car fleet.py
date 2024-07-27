@@ -16,8 +16,8 @@ class Solution:
         )
         print(cars)
         # for idx in range(len(position)-1, -1, -1):
-        for position, speed in reversed(cars):
-            time = (target-position)/speed
+        for pos, speed in reversed(cars):
+            time = (target-pos)/speed
             if not min_time:
                 min_time = time
                 print("min time", time)
