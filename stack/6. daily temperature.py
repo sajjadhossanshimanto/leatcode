@@ -63,3 +63,16 @@ s.dailyTemperatures([30,40,50,60])
 # [1,1,0]
 s.dailyTemperatures([30,60,90])
 # %%
+class Solution:
+    def dailyTemperatures(self, temps: List[int]) -> List[int]:
+        ans = [0]*len(temps)
+        stack = []
+        for idx, temp in enumerate(temps):
+            #print('temp, stack', temp, stack)
+            # condition for storing while decreasing
+            while stack and temps[stack[-1]] < temp:
+                # pop if stacked index is smaller than temp
+                r = stack.pop()
+                ans[r] = idx - r
+            stack.append(idx)
+        return ans
