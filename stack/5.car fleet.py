@@ -1,5 +1,6 @@
-
-# see web
+'''
+https://leetcode.com/problems/car-fleet/submissions/1334777640/
+'''
 #%%
 from typing import List
 
@@ -7,7 +8,7 @@ from typing import List
 inf = float('inf')
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        # return the number of car fleet that will arrive at the distination
+        # return the number of car after fleet that will arrive at the distination
         c = 0
         min_time = None
         cars = sorted(
@@ -25,11 +26,11 @@ class Solution:
                 c+=1
                 # print(time)
             elif time>min_time:
+                # if this time is greater that means this one is more slower
                 min_time = time
                 # print("min time", time)
-            # min_time = max(min_time, )
 
-        return c
+        return len(position)-c
 
 s= Solution()
 # %%
