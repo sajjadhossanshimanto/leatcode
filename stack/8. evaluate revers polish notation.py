@@ -27,9 +27,10 @@ class Solution:
         stack = []
         for i in tokens:
             if i in op:
-                for j in accumulate(stack, op[i]):
-                    pass
-                stack = [j]
+                b = stack.pop()
+                a = stack.pop()
+                j = op[i](a, b)
+                stack.append(j)
 
             else:
                 stack.append(int(i))
