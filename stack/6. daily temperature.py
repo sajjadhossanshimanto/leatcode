@@ -1,5 +1,6 @@
-# see web
-# see if is enmerate slow
+'''
+https://leetcode.com/problems/daily-temperatures/description/
+'''
 #%%
 from typing import List
 
@@ -30,6 +31,26 @@ class Solution:
                     ans[min_pos] = min_pos-pos+1# TODO: +! may not rewquired
 
             heappush(sol, (temp, pos))
+
+#%%
+from typing import List
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack = []
+        ans = [0]*len(temperatures)
+        pos = len(temperatures)
+        while temperatures:
+            ele = temperatures.pop()
+            pos -= 1
+            while stack and ele>=stack[-1][0]:
+                stack.pop()
+            
+            # finally we came to a position here `ele` is less than stac.top
+            ans[pos] = stack[-1][1]-pos if stack else 0
+            stack.append((ele, pos))
+        
+        return ans
 
 s = Solution()
 # %%
