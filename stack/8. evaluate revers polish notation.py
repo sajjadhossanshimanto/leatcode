@@ -14,7 +14,8 @@ def mul(a, b):
     return a*b
 
 def dev(a, b):
-    return a/b
+    # rount it toward zero
+    return int(a/b)
 
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
