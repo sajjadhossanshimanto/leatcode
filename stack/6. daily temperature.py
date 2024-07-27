@@ -30,3 +30,15 @@ class Solution:
                     ans[min_pos] = min_pos-pos+1# TODO: +! may not rewquired
 
             heappush(sol, (temp, pos))
+
+s = Solution()
+# %%
+# [1,1,4,2,1,1,0,0]
+s.dailyTemperatures([73,74,75,71,69,72,76,73])
+# %%
+# [1,1,1,0]
+s.dailyTemperatures([30,40,50,60])
+# %%
+# [1,1,0]
+s.dailyTemperatures([30,60,90])
+# %%
