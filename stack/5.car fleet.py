@@ -6,7 +6,7 @@ from typing import List
 
 inf = float('inf')
 class Solution:
-    def carFleet(self, target:int,  position: List[int],  speed: List[int]) -> int:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
         # return the number of car fleet that will arrive at the distination
         c = 0
         min_time = None
@@ -14,20 +14,19 @@ class Solution:
             zip(position, speed),
             key= lambda x: x[0]
         )
-        print(cars)
-        # for idx in range(len(position)-1, -1, -1):
+        # print(cars)
         for pos, speed in reversed(cars):
             time = (target-pos)/speed
             if not min_time:
                 min_time = time
-                print("min time", time)
+                # print("init min time", time)
             elif time<=min_time:
                 # ager garir chay aro kom time modhe jete casce
                 c+=1
-                print(time)
+                # print(time)
             elif time>min_time:
                 min_time = time
-                print("min time", time)
+                # print("min time", time)
             # min_time = max(min_time, )
 
         return c
