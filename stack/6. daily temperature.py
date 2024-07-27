@@ -73,6 +73,6 @@ class Solution:
             while stack and temps[stack[-1]] < temp:
                 # pop if stacked index is smaller than temp
                 r = stack.pop()
-                ans[r] = idx - r
-            stack.append(idx)
+                ans[r] = idx - r# pos diff to the element pos # that's what explained by neetcode
+            stack.append(idx)# where element & pos matter . no need of (ele, pos)
         return ans
