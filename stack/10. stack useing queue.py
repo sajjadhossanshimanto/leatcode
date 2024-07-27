@@ -11,13 +11,16 @@ class MyStack:
         self.q.appendleft(x)
 
     def pop(self) -> int:
+        if not self.q: return None
+
         q = deque()
-        while q:
+        while len(self.q)>1:
             ele = self.q.pop()
             q.appendleft(ele)
+        r = self.q.pop()
         self.q = q
         
-        return ele
+        return r
 
     def top(self) -> int:
         return self.q[0]
