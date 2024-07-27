@@ -1,4 +1,6 @@
-# see web
+'''
+https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
+'''
 #%%
 from typing import List
 from itertools import accumulate
@@ -30,14 +32,12 @@ class Solution:
             if i in op:
                 b = stack.pop()
                 a = stack.pop()
-                j = op[i](a, b)
-                stack.append(j)
+                stack.append(op[i](a, b))
 
             else:
                 stack.append(int(i))
         
-        return stack[-1]# TODO: can there be more than one
-        # return j
+        return stack[-1]
 
 s = Solution()
 #%%
