@@ -7,13 +7,17 @@ class Solution:
         area = 0
         stack = []
         for idx, h in enumerate(heights):
+            start = idx
             while stack and h < heights[stack[-1]]:
                 r = stack.pop()
                 area = max(
                     area,
                     heights[r]*(idx-r)
                 )
-            stack.append(idx)
+                start = r
+            stack.append(start)# most importantthing
+            # currentheight is less so the weight should include poped indixes
+        
         
         return area
 
