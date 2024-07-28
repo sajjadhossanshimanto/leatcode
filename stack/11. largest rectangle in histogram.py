@@ -18,6 +18,9 @@ class Solution:
             stack.append(start)# most importantthing
             # currentheight is less so the weight should include poped indixes
         
+        # some index goes to the end
+        for i in stack:
+            area = max(area, heights[i]*len(heights))
         
         return area
 
