@@ -16,12 +16,15 @@ class Solution:
                 heappush(pointer, -i)
 
         ans = -inf
-        while heights:
-            h = heights.pop()
-            pop_count += 1
-            area = h*pop_count
-            ans = max(ans, area)
-        
+        for height in hlist:
+            pop_count = 0
+            while height:
+                h = -heappop(height)
+                pop_count+=1
+
+                area = h*pop_count
+                ans = max(ans, area)
+
         return ans
 
 s = Solution()
