@@ -25,10 +25,11 @@ class Solution:
                 area = h*pop_count
                 ans = max(ans, area)
 
-        return ans
+        return 0 if ans==-inf else ans
 
 s = Solution()
 # %%
+# ans = 10
 s.largestRectangleArea([2, 1, 5, 6, 2, 3])
 # %% random
 s.largestRectangleArea([2, 1, 2, 3, 2])
@@ -36,6 +37,9 @@ s.largestRectangleArea([2, 1, 2, 3, 2])
 # ans = 4
 s.largestRectangleArea([2, 4])
 # %%
-ans = 2
-out = 4
+# ans = 2
+# out = 4
 s.largestRectangleArea([2,0,2])
+# %% wa 2
+s.largestRectangleArea([0])
+# %%
