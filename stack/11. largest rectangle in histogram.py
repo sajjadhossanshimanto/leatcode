@@ -1,14 +1,20 @@
 #%%
 from typing import List
+from heapq import heappush, heappop
 
 
 inf = float('inf')
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
-        # heights = sorted(heights)# TODO: iterable sorter. i think its not possible until loop over all the ilement can't determin confirmly whitch one the max
-        heights.sort()
-        # TODO: list sort vs sorted time
-        pop_count = 0
+        hlist = [[]]
+        pointer = hlist[-1]
+        for i in heights:
+            if i==0:
+                hlist.append([])
+                pointer = hlist[-1]
+            else:
+                heappush(pointer, -i)
+
         ans = -inf
         while heights:
             h = heights.pop()
