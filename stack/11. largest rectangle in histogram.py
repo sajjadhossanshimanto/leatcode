@@ -8,18 +8,18 @@ class Solution:
         stack = []
         for idx, h in enumerate(heights):
             start = idx
-            while stack and h < heights[stack[-1]]:
-                r = stack.pop()
+            while stack and h <  stack[-1][1]:
+                top_idx, top_h = stack.pop()
                 area = max(
                     area,
-                    heights[r]*(idx-r)
+                    top_h*(idx-top_idx)
                 )
-                start = r
-            stack.append(start)# most importantthing
+                start = top_idx
+            stack.append((start, h))# most importantthing
             # currentheight is less so the weight should include poped indixes
         
         # some index goes to the end
-        for i in stack:
+        for i, h in stack:
             area = max(area, heights[i]*len(heights))
         
         return area
