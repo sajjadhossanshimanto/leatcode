@@ -20,7 +20,7 @@ class Solution:
         
         # some index goes to the end
         for i, h in stack:
-            area = max(area, heights[i]*len(heights))
+            area = max(area, h * (len(heights)-i))
         
         return area
 
