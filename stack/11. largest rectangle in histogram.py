@@ -1,31 +1,21 @@
 #%%
 from typing import List
-from heapq import heappush, heappop
 
 
-inf = float('inf')
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
-        hlist = [[]]
-        pointer = hlist[-1]
-        for i in heights:
-            if i==0:
-                hlist.append([])
-                pointer = hlist[-1]
-            else:
-                heappush(pointer, -i)
-
-        ans = -inf
-        for height in hlist:
-            pop_count = 0
-            while height:
-                h = -heappop(height)
-                pop_count+=1
-
-                area = h*pop_count
-                ans = max(ans, area)
-
-        return 0 if ans==-inf else ans
+        area = 0
+        stack = []
+        for idx, h in enumerate(heights):
+            while stack and h < heights[stack[-1]]:
+                r = stack.pop()
+                area = max(
+                    area,
+                    heights[r]*(idx-r)
+                )
+            stack.append(idx)
+        
+        return area
 
 s = Solution()
 # %%
