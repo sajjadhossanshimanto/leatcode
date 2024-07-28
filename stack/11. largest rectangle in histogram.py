@@ -1,3 +1,8 @@
+'''
+https://leetcode.com/problems/largest-rectangle-in-histogram/
+- to me solving this by myself is impossible
+- totally viewed from video 
+'''
 #%%
 from typing import List
 
@@ -39,4 +44,11 @@ s.largestRectangleArea([2, 4])
 s.largestRectangleArea([2,0,2])
 # %% wa 2
 s.largestRectangleArea([0])
+# %% wa53
+# ans = 3
+# out = 4
+s.largestRectangleArea([2,1,2])
+# sorting issue
+# decition: position matters
+
 # %%
