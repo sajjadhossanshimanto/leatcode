@@ -20,4 +20,16 @@ class Solution:
                 opened.append(i)
         
         return True
-                
+
+s= Solution()
+# %%
+# 1
+s.isValid("()")
+# %%
+# ans = 1
+# out = 0
+s.isValid(r"()[]{}")
+# %%
+# ans = 0
+s.isValid("(]")
+# %%
