@@ -1,15 +1,10 @@
 #%%
-from typing import List
-from pathlib import Path
-
-
-inf = float('inf')
 class Solution:
     def isValid(self, s: str) -> bool:
         close_pair = {
             ")":"(",
             "}":"{",
-            "[":"["
+            "]":"["
         }
         opened = []
         for i in s:
