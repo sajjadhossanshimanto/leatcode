@@ -7,7 +7,7 @@ inf = float('inf')
 class Solution:
     def simplifyPath(self, path: str) -> str:
         path = path.split("/")
-        no_action = (".", "...", "/", "")
+        no_action = (".", "/", "")
         ans = []
         for i in path:
             if i ==".." and ans:# security for pop
