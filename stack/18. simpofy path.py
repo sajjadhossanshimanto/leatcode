@@ -17,8 +17,14 @@ class Solution:
                 
         return "/".join(ans)
 
-
+s = Solution()
 # %%
 p=r"top sort//..//top sort//readme.md"
-p=Path(p)
-p.absolute()
+#%%
+p="/home/"
+p= "/home//foo/"
+p="/home/user/Documents/../Pictures"
+p= "/../"
+p="/.../a/../b/c/../d/./"
+s.simplifyPath(p)
+# %%
