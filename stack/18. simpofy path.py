@@ -1,6 +1,6 @@
 #%%
 from typing import List
-from pathlib import Path
+from itertools import chain
 
 
 inf = float('inf')
@@ -10,8 +10,9 @@ class Solution:
         no_action = (".", "/", "")
         ans = []
         for i in path:
-            if i ==".." and ans:# security for pop
-                ans.pop()
+            if i =="..":
+                # security for pop
+                if ans: ans.pop()
             elif i not in no_action:
                 ans.append(i)# normal folder name
                 
