@@ -1,3 +1,6 @@
+'''
+https://leetcode.com/problems/simplify-path/description/
+'''
 #%%
 from typing import List
 from itertools import chain
@@ -16,7 +19,7 @@ class Solution:
             elif i not in no_action:
                 ans.append(i)# normal folder name
                 
-        return "/".join(chain([""], ans))
+        return "/"+"/".join(ans)
 
 s = Solution()
 # %%
@@ -28,4 +31,8 @@ p="/home/user/Documents/../Pictures"
 p= "/../"
 p="/.../a/../b/c/../d/./"
 s.simplifyPath(p)
+# %% wa190
+p="/../"
+s.simplifyPath(p)
+
 # %%
