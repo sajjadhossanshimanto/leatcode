@@ -10,7 +10,7 @@ class Solution:
         no_action = (".", "...", "/", "")
         ans = []
         for i in path:
-            if i =="..":
+            if i ==".." and ans:# security for pop
                 ans.pop()
             elif i not in no_action:
                 ans.append(i)# normal folder name
