@@ -34,6 +34,17 @@ class Solution:
             '''both end points are included'''
             return plus_string([s[:start], s[end+1:]])
 
+        def forward_match(char, start, step):
+            '''
+            returns: bool if all matches otherwise int:pos where it mismatches
+            disclimer: 1==True: true
+            '''
+            for j in range(start, start+step):
+                # as `start+step` can go out of boundry
+                if j<len(s) and s[j]!=char:
+                    return j
+            return True
+
 s = Solution()
 # %%
 # ans = "abcd"
