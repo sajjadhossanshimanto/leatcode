@@ -82,7 +82,7 @@ class Solution:
 
         counter = [1]
         cur=1
-        while cur!=len(s)-1 and len(s)>=k:
+        while cur<=len(s)-1 and len(s)>=k:
             char = s[cur]
 
             c = 1
@@ -108,4 +108,6 @@ s.removeDuplicates(s = "deeedbbcccbdaa", k = 3)
 # %%
 # ans = "ps"
 s.removeDuplicates(s = "pbbcggttciiippooaais", k = 2)
+# %% wa17
+s.removeDuplicates(s = "yfttttfbbbbnnnnffbgffffgbbbbgssssgthyyyy", k = 4)
 # %%
