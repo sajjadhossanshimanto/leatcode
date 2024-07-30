@@ -23,5 +23,12 @@ class Solution:
 
 s = Solution()
 # %%
-s.removeDuplicates("deeedbbcccbdaa", k=3)
+# ans = "abcd"
+s.removeDuplicates(s = "abcd", k = 2)
+# %%
+# ans = "aa"
+s.removeDuplicates(s = "deeedbbcccbdaa", k = 3)
+# %%
+# ans = "ps"
+s.removeDuplicates(s = "pbbcggttciiippooaais", k = 2)
 # %%
