@@ -1,4 +1,6 @@
-#TODO: check I'th question
+'''
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/description/
+'''
 #%%
 from typing import List
 
@@ -9,10 +11,12 @@ class Solution:
         i = 0
         while len(s)>=k and i!=len(s)-1:
             char = s[i]
-            for j in range(i+1, i+k):
+            for j in range(i+1, i+k):# forward checking
+                # as `i+k` is unsecuire
                 if j<len(s) and s[j]!=char:
                     i = j
                     break
+
             if j-i+1==k:# if not breaked. +1 for including both end-point
                 s = "".join([s[:i], s[j+1:]])
                 # back steping
