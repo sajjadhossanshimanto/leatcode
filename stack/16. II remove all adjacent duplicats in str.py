@@ -5,20 +5,16 @@ https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/descri
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> int:
         counter = []
-        string = []
         for char in s:
-            c = 1
-            if string and string[-1]==char:
-                c = counter[-1]+1
-            counter.append(c)
-            string.append(char)
+            if counter and counter[-1][0]==char:
+                counter[-1][1] += 1
+            else:
+                counter.append([char, 1])
 
-            if c==k:
-                for _ in range(k):
-                    counter.pop()
-                    string.pop()
+            if counter[-1][1]==k:
+                counter.pop()
 
-        return "".join(string)
+        return "".join(i*c for i, c in counter)
 
 s = Solution()
 # %%
