@@ -25,6 +25,15 @@ class Solution:
 
         return s
 
+class Solution:
+    def removeDuplicates(self, s: str, k: int) -> int:
+        def plus_string(*arg):
+            return "".join(arg)
+
+        def slice_s(start, end, s):
+            '''both end points are included'''
+            return plus_string([s[:start], s[end+1:]])
+
 s = Solution()
 # %%
 # ans = "abcd"
