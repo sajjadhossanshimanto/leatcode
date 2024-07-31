@@ -2,6 +2,9 @@
 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/description/
 '''
 #%%
+#  this is actully  Counter data class 
+#  except it's like a dict that supports one multiple time 
+#  stupid thought but worth it
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> int:
         counter = []
