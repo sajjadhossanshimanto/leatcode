@@ -12,8 +12,10 @@ from typing import List
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         index = {}
-        for pos, num in enumerate(nums1):
+        pos = 0# 3ms faster than enumirate
+        for num in nums1:
             index[num] = pos
+            pos+=1
         
         ans = [-1]*len(nums1)
         stack = []
