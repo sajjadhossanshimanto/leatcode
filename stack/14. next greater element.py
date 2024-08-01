@@ -1,7 +1,7 @@
 '''
 https://leetcode.com/problems/next-greater-element-i/description/
 - 0-indexed
-- arrays `nums1` and `nums2`, where `nums1` is a subset of `nums2`
+- `nums1` is a subset of `nums2`
 - All integers in `nums1` and `nums2` are unique
 - build  O(nums1.length + nums2.length) solution
 '''
