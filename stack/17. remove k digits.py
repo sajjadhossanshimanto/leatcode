@@ -1,20 +1,27 @@
+'''
+https://leetcode.com/problems/remove-k-digits/
+'''
 #%%
 from typing import List
-from itertools import combinations
+from itertools import islice
 
 
-
-inf = float('inf')
 class Solution:
     def removeKdigits(self, num: str, k: int) -> str:
-        # def comb()
-        n=len(s)
-        low = num# TODO: str inf. can be set to `num` if it is guranged k would be at least 1
+        if k==len(num): return "0"
 
-        for i in combinations(num, r=len(num)-k):
-            low = min("".join(i), low)
-        
-        return low
+        n = len(num) - k
+        stack = []
+        for i in num:
+            while stack and i>stack[-1]: 
+                # build stack prefering smaller number
+                stack.pop()
+                
+            stack.append(i)
+
+        #TODO: what if removal reduces stack ln tobe less than `n`
+        res = ''.join(islice(stack, len(stack)-n, None))
+        return res or "0"
 
 s = Solution()
 # %%
