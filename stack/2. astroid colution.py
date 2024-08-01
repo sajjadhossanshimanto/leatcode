@@ -10,38 +10,33 @@ from typing import List
 
 
 class Solution:
-    def asteroidCollision(self, asteroids:List[int]) -> List[int]:
-        def sign(num):
-            if num<0: return -1
-            return 1
-        
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []
         for a in asteroids:
-            if stack and stack[0]>0 and a<0:
-                a = -a# abs value
-                if a == stack[-1]:
+            append = 1
+            # setting a=0 also prevents looping
+            while stack and stack[0]>0 and a<0:
+                if -a == stack[-1]:
                     stack.pop()
-                elif a>stack[-1]:
-                    #TODO: this has to be iteratively
+                    a = 0
+                elif -a>stack[-1]:
                     stack.pop()
-                else:
-                    # nothing to append
-                    pass 
-            else:
-                stack.append(a)
+                else:# a is small
+                    # no append, no pop
+                    a = 0
+            
+            if a: stack.append(a)
 
-        return ans
+        return stack
 
 s = Solution()
 # %%
 # ans = [5, 10]
-l = [5,10,-5]
+s.asteroidCollision([5,10,-5])
 #%%
 # []
 l = [8, -8]
 #%%
-ans = [10]
-l = [10, 2, -5]
-#%%
-s.asteroidCollision(l)
+# ans = [10]
+s.asteroidCollision([10, 2, -5])
 # %%
