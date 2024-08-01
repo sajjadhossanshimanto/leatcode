@@ -11,11 +11,10 @@ from typing import List
 
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
-        stack = []
+        stack = []# proper varr name should be `right`
         for a in asteroids:
-            append = 1
             # setting a=0 also prevents looping
-            while stack and stack[0]>0 and a<0:
+            while stack and stack[-1]>0 and a<0:
                 if -a == stack[-1]:
                     stack.pop()
                     a = 0
@@ -39,4 +38,7 @@ l = [8, -8]
 #%%
 # ans = [10]
 s.asteroidCollision([10, 2, -5])
+# %% wa 194
+ans = [-2, -2, -2]
+s.asteroidCollision([-2,-2,1,-2])
 # %%
