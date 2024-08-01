@@ -18,19 +18,9 @@ class Solution:
 
 s = Solution()
 # %%
-s='1432219'
-l = combinations(s, r=7)
-list(l)
+s.removeKdigits('1432219', k=3)
 # %%
-"12">"90"
+s.removeKdigits("10200", k=1)
 # %%
-def combinations(l, r):
-    l = list(l)
-    # TODO: how this function is desiged
-    index = 
-    for removal in range(len(r), 0, -1):
-        for i in range(0, len(l)-r):
-            print(index+str(i))
-
-combinations([1, 2, 3, 4, 5], 3)
+s.removeKdigits("10", 2)
 # %%
