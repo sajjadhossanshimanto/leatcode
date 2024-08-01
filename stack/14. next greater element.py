@@ -16,6 +16,16 @@ class Solution:
             index[num] = pos
         
         ans = [-1]*len(nums1)
+        stack = []
+        for num in nums2:
+            while stack and num > stack[-1]:
+                pre = stack.pop()
+                if pre in index:
+                    ans[index[pre]] = num
+            stack.append(num)
+
+        return ans
+
 s = Solution()
 # %%
 # ans = [-1, 3, -1]
