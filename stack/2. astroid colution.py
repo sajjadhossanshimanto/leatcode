@@ -1,5 +1,9 @@
 '''
 https://leetcode.com/problems/asteroid-collision/description/
+- things to consider
+- not every opsite sign num will collide
+- 3, -1 will collide    --> <--
+- but -1, 3 will not    <-- -->
 '''
 #%%
 from typing import List
@@ -11,22 +15,21 @@ class Solution:
             if num<0: return -1
             return 1
         
-        ans = []
-        for next_ in asteroids:
-            if not ans: ans.append(next_)
-            else:
-                if sign(next_) != sign(ans[-1]):
-                    prev = ans.pop()
-                    if abs(next_)==abs(prev):
-                        # no append 
-                        continue
-                    if abs(next_)>abs(prev):
-                        ans.append(next_)
-                    else:
-                        ans.append(prev)
+        stack = []
+        for a in asteroids:
+            if stack and stack[0]>0 and a<0:
+                a = -a# abs value
+                if a == stack[-1]:
+                    stack.pop()
+                elif a>stack[-1]:
+                    #TODO: this has to be iteratively
+                    stack.pop()
                 else:
-                    ans.append(next_)
-        
+                    # nothing to append
+                    pass 
+            else:
+                stack.append(a)
+
         return ans
 
 s = Solution()
