@@ -1,3 +1,6 @@
+'''
+https://leetcode.com/problems/subsets/submissions/1341623331/
+'''
 #%%
 from typing import List
 from itertools import combinations
@@ -14,6 +17,7 @@ class Solution:
 
 # %%
 # [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+# return type not nececeruly have tobe list[list], list[tupe] also ok
 Solution().subsets([1, 2, 3])
 # %%
 Solution().subsets([0])
