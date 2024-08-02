@@ -5,17 +5,10 @@ from itertools import combinations
 
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        nums = tuple(nums)
+        nums = tuple(sorted(nums))
         ans = {tuple()}
         for ln in range(1, len(nums)):
-            ans.update(
-                map(
-                    tuple, # list not hashible
-                    map(# hash varies depending element pos (1, 4) & (4, 1) is diff
-                        sorted, combinations(nums, r=ln)
-                    )
-                )
-            )
+            ans.update(combinations(nums, r=ln))
 
         ans.add(nums)
         return ans
