@@ -1,3 +1,6 @@
+'''
+https://leetcode.com/problems/permutations/
+'''
 #%%
 from typing import List
 from itertools import permutations
@@ -9,22 +12,10 @@ class Solution:
 
 s= Solution()
 #%%
+#  [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 s.permute([1, 2, 3])
 # %%
+s.permute([0, 1])
 # %%
-def permutations(nums):
-    if len(nums)==1:
-        return [[nums[0]]]# coping element
-    
-    result = []
-    for i in range(len(nums)):
-        n = nums.pop(0)
-        perms = permutations(nums)
-
-        for perm in perms:
-            perm.append(n)
-        result.extend(perms)
-        nums.append(n)
-    
-    return result    
-
+s.permute([1])
+# %%
