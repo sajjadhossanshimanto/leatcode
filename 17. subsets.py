@@ -13,5 +13,8 @@ class Solution:
         return ans
 
 # %%
+# [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
 Solution().subsets([1, 2, 3])
+# %%
+Solution().subsets([0])
 # %%
