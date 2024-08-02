@@ -4,7 +4,7 @@ from itertools import combinations
 
 
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         nums = tuple(nums)
         ans = {tuple()}
         for ln in range(1, len(nums)):
@@ -14,9 +14,9 @@ class Solution:
         return ans
 
 # %%
-Solution().subsets([1, 2, 3])
+Solution().subsetsWithDup([1, 2, 3])
 # %%
-Solution().subsets([1, 2, 2])
+Solution().subsetsWithDup([1, 2, 2])
 # %%
-Solution().subsets([0])
+Solution().subsetsWithDup([0])
 # %%
