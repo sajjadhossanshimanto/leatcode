@@ -1,4 +1,5 @@
 '''
+https://leetcode.com/problems/permutations-ii/
 - only diff input might contain dublicates
 - but rest can't have any dublicate set
 '''
@@ -9,11 +10,13 @@ from itertools import permutations
 
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        return set(permutations(nums))# TODO: do i need to convert to list
+        nums.sort()
+        return set(permutations(nums))
 
 s= Solution()
 #%%
-s.permute([1, 2, 3])
+s.permuteUnique([1, 2, 3])
 # %%
-s.permute([1, 2, 1])
+# [[1,1,2], [1,2,1], [2,1,1]]
+s.permuteUnique([1, 2, 1])
 # %%
