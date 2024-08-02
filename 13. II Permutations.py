@@ -26,14 +26,16 @@ class Solution:
         res = []
         
         def helper(i):
+            # base case
             if i == len(nums) - 1:
                 res.append(nums[:])
                 return
-            
-            hash = {}
+
+            # recurtion
+            hash_map = {}
             for j in range(i, len(nums)):
-                if nums[j] not in hash:
-                    hash[nums[j]] = True
+                if nums[j] not in hash_map:
+                    hash_map[nums[j]] = True
                     nums[i], nums[j] = nums[j], nums[i]
                     helper(i+1)
                     nums[i], nums[j] = nums[j], nums[i]
