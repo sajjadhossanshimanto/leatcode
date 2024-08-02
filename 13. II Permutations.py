@@ -40,3 +40,17 @@ class Solution:
         helper(0)
         return res
 
+# %%
+def permutations(l, path):
+    if not l:
+        print(path)
+        return
+
+    for _ in range(len(l)):
+        i = l.pop()
+        permutations(l, path+[i])
+        l.insert(0, i)
+
+# %%
+permutations(list(reversed(range(3))), [])
+# %%
