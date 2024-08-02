@@ -99,3 +99,38 @@ def combinations(elements, r):
 elements = [1, 2, 3, 4]
 r = 3
 combinations(range(5), r)
+# %%
+def combinations_iterative(elements, r):
+  """Generates combinations of r elements from a given list of elements iteratively.
+
+  Args:
+    elements: A list of elements.
+    r: The number of elements to choose.
+
+  Returns:
+    A list of combinations.
+  """
+
+  n = len(elements)
+  indices = list(range(r))
+  combinations = []
+
+  while True:
+    combination = [elements[i] for i in indices]
+    combinations.append(combination)
+
+    j = r - 1
+    while j >= 0 and indices[j] == j + n - r:
+      j -= 1
+
+    if j < 0:
+      break
+
+    indices[j] += 1
+    for i in range(j + 1, r):
+      indices[i] = indices[i - 1] + 1
+
+  return combinations
+
+# %%
+combinations(5, 3)
