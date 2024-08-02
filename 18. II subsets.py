@@ -40,3 +40,36 @@ Solution().subsetsWithDup([0])
 # out = [[],[1],[4,4],[4,4,1,4],[4,4,4,4],[4,1,4],[4,4,1],[4],[1,4],[4,4,4],[4,4,4,1,4],[4,1],[4,4,4,1]]
 Solution().subsetsWithDup([4,4,4,1,4])
 # %%
+def combinations(n, r):
+  """Generates combinations of r elements from a set of n elements.
+
+  Args:
+    n: Total number of elements.
+    r: Number of elements to choose.
+  """
+
+  if r > n:
+    return  # Invalid input: r cannot be greater than n
+
+  # Initial combination indices
+  indices = list(range(r))
+
+  while True:
+    # Print the current combination (for debugging or testing)
+    print(indices)
+
+    # Find the rightmost index that can be incremented
+    for i in reversed(range(r)):
+      if indices[i] != i + (n - r):
+        break
+    else:
+      # All indices are at their maximum, no more combinations
+      return
+
+    # Increment the selected index
+    indices[i] += 1
+
+    # Adjust subsequent indices
+    for j in range(i + 1, r):
+      indices[j] = indices[j - 1] + 1
+
