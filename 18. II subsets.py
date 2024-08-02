@@ -73,3 +73,29 @@ def combinations(n, r):
     for j in range(i + 1, r):
       indices[j] = indices[j - 1] + 1
 
+#%%
+def combinations(elements, r):
+  """Generates combinations of r elements from a given list of elements.
+
+  Args:
+    elements: A list of elements.
+    r: The number of elements to choose.
+
+  Returns:
+    A list of combinations.
+  """
+
+  if r == 0:
+    return [[]]
+
+  result = []
+  for i in range(len(elements)):
+    for combo in combinations(elements[i+1:], r-1):
+      result.append([elements[i]] + combo)
+
+  return result
+
+# Example usage:
+elements = [1, 2, 3, 4]
+r = 3
+combinations(range(5), r)
