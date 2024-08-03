@@ -1,10 +1,13 @@
+'''
+https://leetcode.com/problems/n-queens/description/
+'''
 #%%
 from typing import List
 from itertools import combinations
 
 
 class Solution:
-    def solveNQueens(self, n: int) -> list[str]:
+    def solveNQueens(self, n: int) -> List[List[str]]:
         visit_col = set()
         left_corner = set()# if used arr need n+n space
         right_corner = set()
@@ -89,6 +92,14 @@ class Solution:
                 grid.append(gen_row(y))
                     dfs_row(x+1)
                     dfs_row(x+1)
+                    dfs_row(x+1)
+                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
+                    return
+                dfs_row(x+1)
+                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
+                    return
+                dfs_row(x+1)
+                    dfs_row(x+1)
                 if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
                     return
                 dfs_row(x+1)
@@ -105,3 +116,7 @@ class Solution:
         return ans
 
 s = Solution()
+# %%
+s.solveNQueens(4)
+# %%
+s.solveNQueens(1)
