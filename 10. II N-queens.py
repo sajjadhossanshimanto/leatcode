@@ -1,6 +1,8 @@
+'''
+https://leetcode.com/problems/n-queens-ii/description/
+'''
 #%%
 from typing import List
-from itertools import combinations
 
 
 class Solution:
@@ -31,7 +33,6 @@ class Solution:
 
         count = [0]
         def dfs_row(x):
-            available = []
             for y in range(n):
                 if y in visit_col or (x+y) in left_corner or (x-y) in right_corner : continue
 
@@ -50,4 +51,6 @@ class Solution:
 s = Solution()
 # %%
 s.totalNQueens (4)
+# %%
+s.totalNQueens(1)
 # %%
