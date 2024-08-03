@@ -71,8 +71,13 @@ class Solution:
             grid[y] = "Q"
             return "".join(grid)
 
+        ans = []
         grid = []
         def dfs_row(x=0):
+            if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
+                ans.append(grid[:])
+                return
+
             for y in range(n):
                 if y in visit_col or (x+y) in left_corner or (x-y) in right_corner : continue
                 
@@ -82,11 +87,14 @@ class Solution:
                 left_corner.add(x+y)
 
                 grid.append(gen_row(y))
-                if x<n-1:# next row exists
+                    dfs_row(x+1)
                     dfs_row(x+1)
                 if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
                     return
-                
+                dfs_row(x+1)
+                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
+                    return
+
                 # remove queen
                 grid.pop()
                 visit_col.remove(y)
@@ -94,6 +102,6 @@ class Solution:
                 left_corner.remove(x+y)
 
         dfs_row()
-        return grid
+        return ans
 
 s = Solution()
