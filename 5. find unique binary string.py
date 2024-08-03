@@ -15,5 +15,12 @@ class Solution:
 
 s = Solution()
 # %%
+# 11 or 10
 s.findDifferentBinaryString(["00", "01"])
+# %%
+# oo or 11
+s.findDifferentBinaryString(["10","01"])
+# %%
+# "000", "010", "100", and "110"
+s.findDifferentBinaryString(["111","011","001"])
 # %%
