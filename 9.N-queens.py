@@ -61,7 +61,7 @@ s = Solution()
 s.solveNQueens(4)
 # %%
 class Solution:
-    def solveNQueens(self, n: int) -> list[str]:
+    def solveNQueens(self, n: int) -> List[List[str]]:
         visit_col = set()
         left_corner = set()# if used arr need n+n space
         right_corner = set()
@@ -69,21 +69,31 @@ class Solution:
         def gen_row(y):
             grid = ["."]*n
             grid[y] = "Q"
-            return ["".join(grid)]
+            return "".join(grid)
 
         grid = []
-        def dfs_row(x):
+        def dfs_row(x=0):
             for y in range(n):
-                if y not in visit_col:
-                    # mark queen area
-                    visit_col.add(y)
-                    right_corner.add(r-c)
-                    left_corner.add(r+c)
+                if y in visit_col or (x+y) in left_corner or (x-y) in right_corner : continue
+                
+                # mark queen area
+                visit_col.add(y)
+                right_corner.add(x-y)
+                left_corner.add(x+y)
 
-                    grid.append(gen_row(y))
+                grid.append(gen_row(y))
+                if x<n-1:# next row exists
                     dfs_row(x+1)
+                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
+                    return
+                
+                # remove queen
+                grid.pop()
+                visit_col.remove(y)
+                right_corner.remove(x-y)
+                left_corner.remove(x+y)
 
+        dfs_row()
+        return grid
 
-        r= dfs_row()
-        
-        return r if r else -1
+s = Solution()
