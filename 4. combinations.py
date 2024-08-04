@@ -1,3 +1,6 @@
+'''
+https://leetcode.com/problems/combinations/description/
+'''
 #%%
 from typing import List
 from itertools import combinations
@@ -9,5 +12,8 @@ class Solution:
 
 s = Solution()
 # %%
-s.combinationSum(4, 2)
+# [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
+s.combine(4, 2)
+# %%
+s.combine(1, 1)
 # %%
