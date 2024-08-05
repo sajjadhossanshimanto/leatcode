@@ -14,6 +14,8 @@ key_map = {
 }
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
+        ans = []
+
         n = len(digits)
         boundery = []
         # letters = []
@@ -21,23 +23,22 @@ class Solution:
             boundery.append(len(key_map[i]))
         
         index = [0]*n
-        print("".join(key_map[digits[i]][index[i]] for i in range(n)))
+        ans.append("".join(key_map[digits[i]][index[i]] for i in range(n)))
 
         while True:            
             for i in range(n-1, -1, -1):
                 # if in boundery
                 if index[i]>=boundery[i]-1: # if == that leans out of boundery
-
                     continue
 
                 index[i]+=1
                 for j in range(i+1, n):
                     index[j] = 0
                 
-                print("".join(key_map[digits[i]][index[i]] for i in range(n)))
+                ans.append("".join(key_map[digits[i]][index[i]] for i in range(n)))
                 break
             else:
-                return
+                return ans
 
 s = Solution()
 # %%
