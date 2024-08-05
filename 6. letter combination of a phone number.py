@@ -19,8 +19,25 @@ class Solution:
         # letters = []
         for i in digits:
             boundery.append(len(key_map[i]))
-
         
+        index = [0]*n
+        print("".join(key_map[digits[i]][index[i]] for i in range(n)))
+
+        while True:            
+            for i in range(n-1, -1, -1):
+                # if in boundery
+                if index[i]>=boundery[i]-1: # if == that leans out of boundery
+
+                    continue
+
+                index[i]+=1
+                for j in range(i+1, n):
+                    index[j] = 0
+                
+                print("".join(key_map[digits[i]][index[i]] for i in range(n)))
+                break
+            else:
+                return
 
 s = Solution()
 # %%
