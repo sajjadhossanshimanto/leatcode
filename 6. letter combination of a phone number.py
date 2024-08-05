@@ -1,3 +1,6 @@
+'''
+https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+'''
 #%%
 from typing import List
 from itertools import permutations
@@ -44,7 +47,7 @@ class Solution:
 
 s = Solution()
 # %%
-s.letterCombinations("23")
+s.letterCombinations("234")
 # %%
 def combination(n):
     index = [0]*n
@@ -68,5 +71,4 @@ def combination(n):
 
 # %%
 com(3)
-
 # %%
