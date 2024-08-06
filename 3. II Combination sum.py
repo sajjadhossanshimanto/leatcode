@@ -18,7 +18,7 @@ class Solution:
 
             for pos in range(start, len(candidates)):
                 i = candidates[pos]
-                if i == candidates[pos-1]: continue
+                if i>start and i == candidates[pos-1]: continue
 
                 total = pre_sum + i
                 path.append(i)
@@ -40,4 +40,25 @@ s.combinationSum2(candidates = [10,1,2,7,6,1,5], target = 8)
 s.combinationSum2(candidates = [2,5,2,1,2], target = 5)
 #%% TL172
 s.combinationSum2([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 30)
+# %%
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        candidates.sort()
+        res = []
+
+        def dfs(target, start, comb):
+            if target < 0:
+                return
+            if target == 0:
+                res.append(comb)
+                return
+            for i in range(start, len(candidates)):
+                if i > start and candidates[i] == candidates[i-1]:
+                    continue
+                if candidates[i] > target:
+                    break
+                dfs(target-candidates[i], i+1, comb+[candidates[i]])
+
+        dfs(target, 0, [])
+        return res
 # %%
