@@ -5,18 +5,23 @@ class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         candidates.sort()
 
-        res = set()
+        res = []
         def backtrack(start: int, pre_sum: int, path: list) -> list[int, list]:
             if start>=len(candidates): return
             if pre_sum>=target: return
 
+            level_cache = set()
             for pos in range(start+1, len(candidates)):
-                total = pre_sum + candidates[pos]
-                path.append(candidates[pos])
+                i = candidates[pos]
+                if i in level_cache: continue
+                level_cache.add(i)
+
+                total = pre_sum + i
+                path.append(i)
                 if total<target:
                     backtrack(pos, total, path)
                 elif total==target:
-                    res.add(tuple(path))
+                    res.append(tuple(path))
                 path.pop()
 
         backtrack(-1, 0, [])
@@ -29,4 +34,6 @@ s.combinationSum2(candidates = [10,1,2,7,6,1,5], target = 8)
 # %%
 # [ [1,2,2], [5] ]
 s.combinationSum2(candidates = [2,5,2,1,2], target = 5)
-#%%
+#%% TL172
+s.combinationSum2([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 30)
+# %%
