@@ -16,11 +16,9 @@ class Solution:
             if start>=len(candidates): return
             if pre_sum>=target: return
 
-            level_cache = set()
             for pos in range(start, len(candidates)):
                 i = candidates[pos]
-                if i in level_cache: continue
-                level_cache.add(i)
+                if i == candidates[pos-1]: continue
 
                 total = pre_sum + i
                 path.append(i)
