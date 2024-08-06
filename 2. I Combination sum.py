@@ -1,3 +1,7 @@
+'''
+https://leetcode.com/problems/combination-sum/description/
+- one item can be used multiple time
+'''
 #%%
 from typing import List
 
