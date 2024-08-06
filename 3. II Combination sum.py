@@ -10,7 +10,7 @@ class Solution:
             if start>=len(candidates): return
             if pre_sum>=target: return
 
-            for pos in range(start, len(candidates)):
+            for pos in range(start+1, len(candidates)):
                 total = pre_sum + candidates[pos]
                 path.append(candidates[pos])
                 if total<target:
@@ -19,7 +19,7 @@ class Solution:
                     res.add(tuple(path))
                 path.pop()
 
-        backtrack(0, 0, [])
+        backtrack(-1, 0, [])
         return res
 
 s = Solution()
