@@ -17,7 +17,7 @@ class Solution:
             if pre_sum>=target: return
 
             level_cache = set()
-            for pos in range(start+1, len(candidates)):
+            for pos in range(start, len(candidates)):
                 i = candidates[pos]
                 if i in level_cache: continue
                 level_cache.add(i)
@@ -25,12 +25,12 @@ class Solution:
                 total = pre_sum + i
                 path.append(i)
                 if total<target:
-                    backtrack(pos, total, path)
+                    backtrack(pos+1, total, path)
                 elif total==target:
                     res.append(tuple(path))
                 path.pop()
 
-        backtrack(-1, 0, [])
+        backtrack(0, 0, [])
         return res
 
 s = Solution()
