@@ -20,7 +20,12 @@ class Solution:
 
 s = Solution()
 # %%
+# Output: [[2,2,3], [7]]
 s.combinationSum([2, 3, 6, 7], 7)
 # %%
-s.combinationSum([10, 1, 2, 7, 6, 1, 5], 8)
+# Output: [[2,2,2,2],[2,3,3],[3,5]]
+s.combinationSum([2, 3, 5], 8)
+# %%
+# []
+s.combinationSum([2], 1)
 # %%
