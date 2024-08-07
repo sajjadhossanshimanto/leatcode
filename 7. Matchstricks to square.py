@@ -19,23 +19,22 @@ class Solution:
         sides = [side]*4
         while matchsticks:
             stick = matchsticks.pop()
-            if stick==side: sides.pop()
+
+            # error: there are stick left but no place
+            if not sides: return False
+            
+            # find a proper pos to place stick
+            pos = len(sides) - 1
+            while pos>=0:
+                if sides[pos] >= stick:
+                    break
+                pos -=1
             else:
-                # error: there are stick left but no place
-                if not sides: return False
-                
-                # find a proper pos to place stick
-                pos = len(sides) - 1
-                while pos>=0:
-                    if sides[pos] >= stick:
-                        break
-                    pos -=1
-                else:
-                    # error: no place found to place
-                    return False
-                
-                sides[pos] -= stick
-                if sides[pos]==0: sides.pop(pos)
+                # error: no place found to place
+                return False
+            
+            sides[pos] -= stick
+            if sides[pos]==0: sides.pop(pos)
         
         return True
 
