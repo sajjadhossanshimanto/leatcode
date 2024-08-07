@@ -1,23 +1,40 @@
-
+'''
+https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
+'''
 #%%
 from typing import List
-from itertools import combinations
-from collections import Counter
 
 
 class Solution:
     def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
-        c = Counter()
-        for i in range(1, len(nums)):
-            c.update(Counter(map(
-                sum,
-                combinations(nums, r=i)
-            )))
-            if k in c.values():
+        n = len(nums)
+        if n<k: return False
+
+        target, remin = divmod(sum(nums), k)# O(n)
+        if remin: return False
+
+        if max(nums)>target: return False
+
+        visit = [0]*n
+        def backtrack(i, k, pre_sum):
+            if k==0:
                 return True
+            if pre_sum==target:
+                # start checking from zero 
+                return backtrack(0, k-1, 0)
 
-        return False
+            # starting from i
+            for i in range(i, n):
+                if visit[i] or nums[i] + pre_sum > target: continue
 
+                visit[i] = 1
+                if backtrack(i+1, k, pre_sum + nums[i]):
+                    return True
+                visit[i] = 0
+            
+            return False
+
+        return backtrack(0, k, 0)
 
 s = Solution()
 # %%
