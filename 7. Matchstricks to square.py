@@ -13,9 +13,9 @@ class Solution:
         target, remin = divmod(sum(matchsticks), 4)# O(n)
         if remin: return False
 
-        matchsticks.sort()# O(n)
+        # matchsticks.sort()# O(nlogn)
         # error: we can't bend any stick
-        if matchsticks[-1]>target: return False
+        if max(matchsticks)>target: return False
 
         visit = [0]*n
         def backtrack(i, k, pre_sum):
@@ -24,10 +24,10 @@ class Solution:
             if pre_sum==target:
                 # start checking from zero 
                 return backtrack(0, k-1, 0)
-            
+
             # starting from i
             for i in range(i, n):
-                if visit[i] and matchsticks[i] + pre_sum > target: continue
+                if visit[i] or matchsticks[i] + pre_sum > target: continue
 
                 visit[i] = 1
                 if backtrack(i+1, k, pre_sum + matchsticks[i]):
