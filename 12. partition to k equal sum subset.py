@@ -38,5 +38,9 @@ class Solution:
 
 s = Solution()
 # %%
+# 1
 s.canPartitionKSubsets([4, 3, 2, 3, 5, 2, 1], k=4)
+# %%
+# 0
+s.canPartitionKSubsets([1,2,3,4], k=3)
 # %%
