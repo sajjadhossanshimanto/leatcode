@@ -13,7 +13,7 @@ class Solution:
         target, remin = divmod(sum(nums), k)# O(n)
         if remin: return False
 
-        if max(nums)>target: return False
+        # if max(nums)>target: return False
 
         visit = [0]*n
         def backtrack(i, k, pre_sum):
@@ -31,7 +31,11 @@ class Solution:
                 if backtrack(i+1, k, pre_sum + nums[i]):
                     return True
                 visit[i] = 0
-            
+
+                # Optimization: If the current number didn't work when it was the start of a new subset, it will never work
+                if pre_sum==0:
+                    break
+
             return False
 
         return backtrack(0, k, 0)
