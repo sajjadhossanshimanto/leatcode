@@ -3,7 +3,6 @@ https://leetcode.com/problems/matchsticks-to-square/
 '''
 #%%
 from typing import List
-from itertools import combinations
 
 
 class Solution:
@@ -28,7 +27,7 @@ class Solution:
                 # find a proper pos to place stick
                 pos = len(sides) - 1
                 while pos>=0:
-                    if sides[pos] > stick:
+                    if sides[pos] >= stick:
                         break
                     pos -=1
                 else:
