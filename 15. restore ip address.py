@@ -15,6 +15,11 @@ class Solution:
         shift = 12 - n
         ips = []
         def backtrack(start, shift, path):
+            if path and len(path[-1])>1 and path[-1][0]=="0":
+                return
+            if path and path[-1]=="": return
+            if path and int(path[-1]) > 255: return
+            
             if len(path)==4:
                 if not shift:
                     ips.append(".".join(path))
