@@ -29,5 +29,10 @@ class Solution:
 
 s = Solution()
 # %%
+# ["JFK","MUC","LHR","SFO","SJC"]
 s.findItinerary([["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]])
+# %%
+# ["JFK","ATL","JFK","SFO","ATL","SFO"]
+# Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"] but it is larger in lexical order.
+s.findItinerary([["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]])
 # %%
