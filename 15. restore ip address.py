@@ -24,6 +24,8 @@ class Solution:
                 # leading zero not valid
                 return
 
+            if path and path[-1] > "255": return
+
             if not shift:
                 path.append(s[start:start+3])
                 backtrack(start+3, 0, path)
