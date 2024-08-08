@@ -24,11 +24,11 @@ class Solution:
             if len(result) == len(tickets)+1:
                 return True
 
-            for _ in range(len(adj[node])):
+            for pos in range(len(adj[node])):
                 # if not adj[node] loopwould auto refuse
-                child = adj[node].pop()
+                child = adj[node].pop(pos)
                 if dfs(child): return True
-                adj[node].insert(0, child)
+                adj[node].insert(pos, child)
                 result.pop()# pop child
 
             return False
@@ -44,7 +44,7 @@ s.findItinerary([["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]])
 # ["JFK","ATL","JFK","SFO","ATL","SFO"]
 # Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"] but it is larger in lexical order.
 s.findItinerary([["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]])
-# %%
+# %% wa 8
 # ans = ["JFK","NRT","JFK","KUL"]
 # out = ["JFK","KUL","NRT","JFK"]
 s.findItinerary([["JFK","KUL"], ["JFK","NRT"], ["NRT","JFK"]])
@@ -57,4 +57,8 @@ s.findItinerary([["JFK","KUL"], ["JFK","NRT"], ["NRT","JFK"]])
 # ans = ["JFK","ANU","EZE","AXA","TIA","ANU","JFK","TIA","ANU","TIA","JFK"]
 # out = ["JFk"]
 s.findItinerary([["EZE","AXA"],["TIA","ANU"],["ANU","JFK"],["JFK","ANU"],["ANU","EZE"],["TIA","ANU"],["AXA","TIA"],["TIA","JFK"],["ANU","TIA"],["JFK","TIA"]])
+# %% wa8
+# ans = ["JFK","NRT","JFK","KUL"]
+# out = ['JFK']
+s.findItinerary([["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]])
 # %%
