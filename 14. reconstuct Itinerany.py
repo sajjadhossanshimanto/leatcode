@@ -22,7 +22,8 @@ class Solution:
             for child in adj[node]:
                 if edge[node][child]: continue
 
-                dfs(node)
+                edge[node][child] = 1
+                dfs(child)
 
         dfs("JFK")# TODO: smallest lexical order
         return result
