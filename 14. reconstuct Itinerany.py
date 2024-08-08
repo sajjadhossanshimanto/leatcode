@@ -28,7 +28,7 @@ class Solution:
                 # if not adj[node] loopwould auto refuse
                 child = adj[node].pop()
                 if dfs(child): return True
-                adj[node].append(child)
+                adj[node].insert(0, child)
                 result.pop()# pop child
 
             return False
