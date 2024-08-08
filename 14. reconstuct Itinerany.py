@@ -15,7 +15,7 @@ class Solution:
             adj[a].append(b)
         
         for a in adj:
-            adj[a].sort(reverse=True)
+            adj[a].sort()
 
         edge = defaultdict(lambda :defaultdict(lambda :0))
         result = []
@@ -62,3 +62,6 @@ s.findItinerary([["EZE","AXA"],["TIA","ANU"],["ANU","JFK"],["JFK","ANU"],["ANU",
 # out = ['JFK']
 s.findItinerary([["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]])
 # %%
+# ans = ["JFK","ATL","JFK","SFO","ATL","SFO"]
+# out = ["JFK","SFO","ATL","JFK","ATL","SFO"]
+s.findItinerary([["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]])
