@@ -15,7 +15,7 @@ class Solution:
             adj[a].append(b)
         
         for a in adj:
-            adj[a].sort()
+            adj[a].sort(reverse=True)
 
         edge = defaultdict(lambda :defaultdict(lambda :0))
         result = []
@@ -24,13 +24,13 @@ class Solution:
             if len(result) == len(tickets)+1:
                 return True
 
-            for child in adj[node]:
-                if edge[node][child]: continue
-
-                edge[node][child] = 1
+            for _ in range(len(adj[node])):
+                # if not adj[node] loopwould auto refuse
+                child = adj[node].pop()
                 if dfs(child): return True
+                adj[node].append(child)
                 result.pop()# pop child
-                edge[node][child] = 0
+
             return False
 
         dfs("JFK")
@@ -53,4 +53,8 @@ s.findItinerary([["JFK","KUL"], ["JFK","NRT"], ["NRT","JFK"]])
 # j is connected to n
 # but from j if we go to k first we got stuck. k is not connected to n
 
+# %% wa8
+# ans = ["JFK","ANU","EZE","AXA","TIA","ANU","JFK","TIA","ANU","TIA","JFK"]
+# out = ["JFk"]
+s.findItinerary([["EZE","AXA"],["TIA","ANU"],["ANU","JFK"],["JFK","ANU"],["ANU","EZE"],["TIA","ANU"],["AXA","TIA"],["TIA","JFK"],["ANU","TIA"],["JFK","TIA"]])
 # %%
