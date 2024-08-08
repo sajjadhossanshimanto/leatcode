@@ -20,6 +20,10 @@ class Solution:
                     ips.append(".".join(path))
                 return 
 
+            if path and len(path[-1])>1 and path[-1][0]=="0":
+                # leading zero not valid
+                return
+
             if not shift:
                 path.append(s[start:start+3])
                 backtrack(start+3, 0, path)
