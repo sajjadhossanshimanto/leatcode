@@ -12,9 +12,8 @@ class Solution:
         adj = defaultdict(list)
         for a, b in tickets:
             adj[a].append(b)
-        n = len(adj)
 
-        edge = [[0]*n for _ in range(n)]
+        edge = defaultdict(lambda :defaultdict(lambda :0))
         result = []
         def dfs(node):
             result.append(node)
