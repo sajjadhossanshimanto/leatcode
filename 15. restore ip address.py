@@ -15,22 +15,22 @@ class Solution:
         shift = 12 - n
         ips = []
         def backtrack(start, shift, path):
+            # valadity checks. checks can be done befor call and after call as well
+            # here if i do checks before call i have to repeat same code twice
+            # checks apare before basecase so that even the last callback get checked
             if path and len(path[-1])>1 and path[-1][0]=="0":
+                # leading zero not valid
                 return
             if path and path[-1]=="": return
             if path and int(path[-1]) > 255: return
             
+            # base case
             if len(path)==4:
                 if not shift:
                     ips.append(".".join(path))
                 return 
 
-            if path and len(path[-1])>1 and path[-1][0]=="0":
-                # leading zero not valid
-                return
-
-            if path and path[-1] > "255": return
-
+            # recurtion
             if not shift:
                 path.append(s[start:start+3])
                 backtrack(start+3, 0, path)
