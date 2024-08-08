@@ -1,4 +1,5 @@
 '''
+- falto question korar isse nei
 https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
 '''
 #%%
@@ -17,6 +18,7 @@ class Solution:
                 # here `comb` is a list of set from power set
                 set1 = set()
                 for set2 in comb:
+                    # TODO: should i use Mo's algo. do i need???
                     temp = set1.union(set2)
                     if len(set1) + len(set2) == len(temp):
                         set1 = temp
