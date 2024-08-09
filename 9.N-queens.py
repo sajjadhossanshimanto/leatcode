@@ -89,6 +89,9 @@ class Solution:
                 right_corner.add(x-y)
                 left_corner.add(x+y)
 
+                grid.append(gen_row(y))
+                dfs_row(x+1)
+
                 # remove queen
                 grid.pop()
                 visit_col.remove(y)
