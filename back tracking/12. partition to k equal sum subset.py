@@ -33,7 +33,7 @@ class Solution:
                 visit[i] = 0
 
                 # Optimization: If the current number didn't work when it was the start of a new subset, it will never work
-                if pre_sum==0:
+                if pre_sum==0:# TODO
                     break
 
             return False
