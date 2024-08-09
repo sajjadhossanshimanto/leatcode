@@ -2,9 +2,6 @@
 https://leetcode.com/problems/find-all-anagrams-in-a-string/
 '''
 #%%
-a = set("abc")
-b = set("bca")
-#%%
 from typing import List
 from collections import defaultdict
 
@@ -14,6 +11,7 @@ class Solution:
         p = set(p)
         window = set()
         count = defaultdict(lambda :0)
+        i=0
         for i in range(len(p)-1):
             window.add(s[i])
             count[s[i]] += 1
@@ -44,4 +42,6 @@ s.findAnagrams(s = "cbaebabacd", p = "abc")
 #%%
 # [0,1,2]
 s.findAnagrams(s = "abab", p = "ab")
+# %% error 2
+s.findAnagrams("aa", "bb")
 # %%
