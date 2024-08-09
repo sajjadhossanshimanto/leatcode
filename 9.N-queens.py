@@ -89,23 +89,6 @@ class Solution:
                 right_corner.add(x-y)
                 left_corner.add(x+y)
 
-                grid.append(gen_row(y))
-                    dfs_row(x+1)
-                    dfs_row(x+1)
-                    dfs_row(x+1)
-                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
-                    return
-                dfs_row(x+1)
-                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
-                    return
-                dfs_row(x+1)
-                    dfs_row(x+1)
-                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
-                    return
-                dfs_row(x+1)
-                if len(grid)==n:# optimazation: no need to treverse any ferther if sol found
-                    return
-
                 # remove queen
                 grid.pop()
                 visit_col.remove(y)
