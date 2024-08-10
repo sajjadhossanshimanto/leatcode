@@ -11,19 +11,19 @@ class Solution:
 
         ans = []
         visit = set()
-        l = 0
-        r=10
-        while r< len(s):
+        r = len(s)
+        l = r-10
+        while r>=0:
             sub = s[l:r]
             if sub in visit:
                 ans.append(sub)
-                l+=10
-                r+=10
+                l-=10
+                r-=10
             else:
                 visit.add(sub)
                 visit.add(sub[::-1])
-                l+=1
-                r+=1
+                l-=1
+                r-=1
         
         return ans
 
