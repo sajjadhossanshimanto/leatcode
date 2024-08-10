@@ -12,15 +12,18 @@ class Solution:
         ans = []
         visit = set()
         l = 0
-        for r in range(10, len(s)):
+        r=10
+        while r< len(s):
             sub = s[l:r]
             if sub in visit:
                 ans.append(sub)
-                # ans.append(sub[::-1])
+                l+=10
+                r+=10
             else:
                 visit.add(sub)
                 visit.add(sub[::-1])
-            l+=1
+                l+=1
+                r+=1
         
         return ans
 
