@@ -13,7 +13,7 @@ class Solution:
             profit = 0
             while stack and stack[-1][0] <= i :
                 prev = stack.pop()
-                profit = (i - prev[0]) + prev[1]
+                profit = max((i - prev[0]) + prev[1], profit)
             ans = max(ans, profit)
             stack.append((i, profit))
         
@@ -26,4 +26,8 @@ s.maxProfit([7,1,5,3,6,4])
 # %%
 # 0
 s.maxProfit([7,6,4,3,1])
+# %% wa113
+# ans = 3
+s.maxProfit([2,1,4])
+
 # %%
