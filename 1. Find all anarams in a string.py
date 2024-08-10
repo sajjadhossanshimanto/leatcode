@@ -8,34 +8,29 @@ from collections import defaultdict
 
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        mod = 10000000
-        base = 26
-        m = len(p)
-        def hash_string(s):
-            h = 0
-            for i in range(m):
-                h += ord(s[i])*pow(base, m-i-1, mod)
-            return h
-        phash = hash_string(p)
+        window = {}
+        pattern = {}
+        i=0# edge for while loop
+        for i in range(len(p)):
+            window[s[i]] = window.get(s[i], 0) + 1
+            pattern[p[i]] = pattern.get(p[i], 0) + 1
 
-        window = 0
-        for i in range(len(p)-1):
-            window += ord(s[i])*pow(base, m-i-1, mod)
-
-        ans = []
+        ans = [0] if window==pattern else []
+        start = 0
         while i!=len(s)-1:
             # add
             i+=1
-            window += ord(s[i])# * base power 0
+            window[s[i]] = window.get(s[i], 0) + 1
+
+            # remove
+            window[s[start]] -= 1
+            if window[s[start]] == 0:
+                window.pop(s[start])
+            start += 1
 
             # check
-            if phash==window:
+            if pattern==window:
                 ans.append(start)
-            
-            # remove
-            start = i-m+1
-            window -= ord(s[start])*pow(base, m-1, mod)
-            window *= 10
 
         return ans
 
@@ -48,4 +43,7 @@ s.findAnagrams(s = "cbaebabacd", p = "abc")
 s.findAnagrams(s = "abab", p = "ab")
 # %% error 2
 s.findAnagrams("aa", "bb")
+# %%
+# [1]
+s.findAnagrams("baa", "aa")
 # %%
