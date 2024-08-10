@@ -8,6 +8,8 @@ from collections import defaultdict
 
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
+        if len(p)>len(s): return []
+
         window = {}
         pattern = {}
         i=0# edge for while loop
@@ -46,4 +48,5 @@ s.findAnagrams("aa", "bb")
 # %%
 # [1]
 s.findAnagrams("baa", "aa")
-# %%
+# %% runtime error
+s.findAnagrams("aa", "aaaaa")
