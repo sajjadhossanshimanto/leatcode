@@ -9,22 +9,14 @@ class Solution:
     def findRepeatedDnaSequences(self, s: str) -> List[str]:
         if len(s)<10: return []
 
-        ans = []
+        ans = set()
         visit = set()
-        r = len(s)
-        l = r-10
-        while r>=0:
-            sub = s[l:r]
+        for l in range(len(s)-9):
+            sub = s[l:l+10]
             if sub in visit:
-                ans.append(sub)
-                l-=10
-                r-=10
-            else:
-                visit.add(sub)
-                visit.add(sub[::-1])
-                l-=1
-                r-=1
-        
+                ans.add(sub)
+            visit.add(sub)
+
         return ans
 
 s = Solution()
