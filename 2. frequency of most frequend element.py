@@ -12,17 +12,22 @@ from typing import List
 # who said the sum has to be from start to i
 class Solution:
     def maxFrequency(self, nums: List[int], k: int) -> int:
-        pre_sum = [k]
-        
-        for i in range(1, len(nums)+1):
-            # i is 1 indexed. 
-            # It is the devidor - index - count
-            pre_sum.append(pre_sum[i-1] + nums[i-1])
+        nums.sort()
 
-            # at most k
-            num = int(pre_sum[-1]/i)
+        res, total = 0, 0
+        l, r = 0, 0
+        while r < len(nums):
+            total += nums[r]
+            
+            # ulta condition
+            while nums[r] * (r-l+1) > total+k:
+                total -= nums[l]
+                l+=1
+            
+            res = max(res, r-l+1)
+            r += 1
 
-        return i
+        return res
 
 s = Solution()
 # %%
