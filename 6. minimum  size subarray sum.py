@@ -20,8 +20,6 @@ class Solution:
 
             if total==target:
                 ans = min(ans, r-l+1)
-                l = r+1
-                total = 0
         
         return 0 if ans==inf else ans
 
