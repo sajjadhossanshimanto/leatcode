@@ -7,6 +7,8 @@ from collections import defaultdict
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        if len(t)> len(s): return ""
+
         pattern = defaultdict(lambda :0)
         mismatch = defaultdict(lambda :0)
         for i in t:
