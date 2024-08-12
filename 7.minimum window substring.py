@@ -7,30 +7,38 @@ from collections import defaultdict
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        window = defaultdict(lambda :0)
         pattern = defaultdict(lambda :0)
-        for r in range(len(t)):
-            pattern[t[r]]+=1
-            window[s[r]]+=1
-        l, r = 0,  len(t)-1
+        mismatch = defaultdict(lambda :0)
+        for i in t:
+            pattern[i]+=1
+            mismatch[i]+=1
 
-        def match():
-            for i in pattern:
-                if i not in window: return False
-                if pattern[i] > window[i]: return False
-            
-            return True
-
-        while r<=len(s):
-            if match(): break
-
-            r+=1
-            window[s[r]]+=1
-
-        while 1:
-            s[l]
+        ans = (0, len(s)-1)# l, r
+        l, r = 0,  0
+        while r < len(s):
+            if not mismatch:
+                # if matched
+                if (r-l+1) < ans[1]-ans[0]+1:
+                    ans = (l, r)
                 
-        return s[:r+1]
+                while not mismatch:
+                    if s[l] in pattern:
+                        mismatch[s[l]]+=1
+                        if mismatch[s[l]] > pattern[s[l]]:
+                            mismatch[s[l]] -= 1
+                    l+=1
+
+            if s[r] in mismatch:
+                mismatch[s[r]] -= 1
+                if mismatch[s[r]]==0:
+                    mismatch.pop(s[r])
+            r+=1
+                
+        return s[ans[0]:ans[1]+1]
 
 
+s = Solution()
+# %%
+# "BANC"
+s.minWindow(s = "ADOBECODEBANC", t = "ABC")
 # %%
