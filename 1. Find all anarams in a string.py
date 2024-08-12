@@ -3,7 +3,6 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string/
 '''
 #%%
 from typing import List
-from collections import defaultdict
 
 
 class Solution:
