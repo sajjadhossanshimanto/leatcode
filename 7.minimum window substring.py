@@ -17,19 +17,8 @@ class Solution:
 
         ans = (0, len(s)-1)# l, r
         window = defaultdict(lambda :0)
-        l, r = 0,  0
+        l = 0
         for r in range(len(s)):
-            while not mismatch:
-                if (r-l+1) < (ans[1]-ans[0]+1):
-                    ans = (l, r)
-                
-                char = s[l]
-                if char in pattern:
-                    window[char] -= 1
-                    if window[char] < pattern[char]:
-                        mismatch[char] += 1
-                l+=1
-
             char = s[r]
             if char in pattern:
                 window[char] += 1
@@ -39,6 +28,17 @@ class Solution:
                     if mismatch[s[r]]==0:
                         mismatch.pop(s[r])
 
+            while not mismatch:
+                if (r-l+1) < (ans[1]-ans[0]+1):
+                    ans = (l, r)
+
+                char = s[l]
+                if char in pattern:
+                    window[char] -= 1
+                    if window[char] < pattern[char]:
+                        mismatch[char] += 1
+                l+=1
+
         return s[ans[0]:ans[1]+1]
 
 
@@ -46,4 +46,10 @@ s = Solution()
 # %%
 # "BANC"
 s.minWindow(s = "ADOBECODEBANC", t = "ABC")
+# %%
+# "a"
+s.minWindow(s = "a", t = "a")
+# %%
+# ""
+s.minWindow(s= "a", t="aa")
 # %%
