@@ -15,6 +15,8 @@ class TreeNode:
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root: return []
+
         res = [[root.val]]
 
         stack = deque([root])
@@ -28,7 +30,7 @@ class Solution:
                 l.append(node.right.val)
                 stack.append(node.right)
             
-            res.append(l)
+            if l: res.append(l)
 
         return res
 
@@ -37,7 +39,8 @@ s = Solution()
 from tree_helper import etu_to_tree
 
 t = [3,9,20,None,None,15,7]
-t = etu_to_tree(t)
+t = []
+t = etu_to_tree(TreeNode(None))
 
 s.levelOrder(t)
 # %%
