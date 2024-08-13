@@ -45,3 +45,25 @@ def draw_graph(cache=True, seed=None):
     nx.draw_networkx_edges(G, pos)
     
     plt.show()
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def etu_to_tree(nums):
+    
+    def dfs(i):
+        if not 0<i<=len(nums):
+            return 
+
+        # i is 1 indexed
+        node = TreeNode(nums[i-1])
+        node.left = dfs(2*i)
+        node.right = dfs(2*i+1)
+
+        return node
+    
+    return dfs(1)
