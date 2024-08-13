@@ -16,26 +16,29 @@ class Solution:
             mismatch[i]+=1
 
         ans = (0, len(s)-1)# l, r
+        window = defaultdict(lambda :0)
         l, r = 0,  0
-        while r < len(s):
-            if not mismatch:
-                # if matched
-                if (r-l+1) < ans[1]-ans[0]+1:
+        for r in range(len(s)):
+            while not mismatch:
+                if (r-l+1) < (ans[1]-ans[0]+1):
                     ans = (l, r)
                 
-                while not mismatch:
-                    if s[l] in pattern:
-                        mismatch[s[l]]+=1
-                        if mismatch[s[l]] > pattern[s[l]]:
-                            mismatch[s[l]] -= 1
-                    l+=1
+                char = s[l]
+                if char in pattern:
+                    window[char] -= 1
+                    if window[char] < pattern[char]:
+                        mismatch[char] += 1
+                l+=1
 
-            if s[r] in mismatch:
-                mismatch[s[r]] -= 1
-                if mismatch[s[r]]==0:
-                    mismatch.pop(s[r])
-            r+=1
+            char = s[r]
+            if char in pattern:
+                window[char] += 1
                 
+                if s[r] in mismatch:
+                    mismatch[s[r]] -= 1
+                    if mismatch[s[r]]==0:
+                        mismatch.pop(s[r])
+
         return s[ans[0]:ans[1]+1]
 
 
