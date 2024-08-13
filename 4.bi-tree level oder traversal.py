@@ -20,27 +20,37 @@ class Solution:
         res = [[root.val]]
 
         stack = deque([root])
+        pop_count = 0
         while stack:
             node = stack.popleft()
-            l = []
+            pop_count += 1
+            if pop_count==2:
+                res.append([])
+                pop_count = 0
+
             if node.left:
-                l.append(node.left.val)
+                res[-1].append(node.left.val)
                 stack.append(node.left)
             if node.right:
-                l.append(node.right.val)
+                res[-1].append(node.right.val)
                 stack.append(node.right)
-            
-            if l: res.append(l)
+
+        while not res[-1]:
+            res.pop()
 
         return res
 
 s = Solution()
 # %%
-from tree_helper import etu_to_tree
+from tree_helper import etu_to_tree, process_tree, draw_graph
 
 t = [3,9,20,None,None,15,7]
 t = []
-t = etu_to_tree(TreeNode(None))
+t = [1,2,3,4,None,None,5]
+t = etu_to_tree(t)
 
 s.levelOrder(t)
+# %%
+process_tree(t)
+draw_graph(0)
 # %%
