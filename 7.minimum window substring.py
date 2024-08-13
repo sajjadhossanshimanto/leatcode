@@ -5,6 +5,7 @@ https://leetcode.com/problems/minimum-window-substring/
 from collections import defaultdict
 
 
+inf = float("inf")
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if len(t)> len(s): return ""
@@ -15,7 +16,7 @@ class Solution:
             pattern[i]+=1
             mismatch[i]+=1
 
-        ans = (0, len(s)-1)# l, r
+        ans = (0, inf)# l, r
         window = defaultdict(lambda :0)
         l = 0
         for r in range(len(s)):
@@ -39,7 +40,7 @@ class Solution:
                         mismatch[char] += 1
                 l+=1
 
-        return s[ans[0]:ans[1]+1]
+        return s[ans[0]:ans[1]+1] if ans[1]!=inf else ""
 
 
 s = Solution()
@@ -52,4 +53,7 @@ s.minWindow(s = "a", t = "a")
 # %%
 # ""
 s.minWindow(s= "a", t="aa")
+# %% wa224
+# ""
+s.minWindow(s="a", t="b")
 # %%
