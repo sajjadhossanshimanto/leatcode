@@ -58,6 +58,8 @@ def etu_to_tree(nums):
     def dfs(i):
         if not 0<i<=len(nums):
             return 
+        if nums[i-1] == None:
+            return None
 
         # i is 1 indexed
         node = TreeNode(nums[i-1])
