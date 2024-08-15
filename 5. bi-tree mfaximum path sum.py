@@ -17,9 +17,9 @@ class Solution:
 
             ans[0] = max(ans[0], node.val+r+l)
 
-            return node.val+max(l,r)
+            return max(node.val+max(l,r), node.val)
         
-        dfs(root)
+        ans[0] = max(dfs(root), ans[0])
         return ans[0]
 
 s = Solution()
@@ -41,3 +41,10 @@ s.maxPathSum(t)
 t = [-3]
 # ans = -3
 # out = 0
+# %% wa69
+t = [2, -1]
+t = etu_to_tree(t)
+
+# 2
+s.maxPathSum(t)
+# %%
