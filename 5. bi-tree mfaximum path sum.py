@@ -5,16 +5,10 @@ https://leetcode.com/problems/binary-tree-maximum-path-sum/description/
 from typing import List, Optional
 
 
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
+inf = float('inf')
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        ans = [0]
+        ans = [-inf]
         def dfs(node):
             if not node: return 0
 
@@ -43,4 +37,7 @@ t = etu_to_tree(t)
 
 # 42
 s.maxPathSum(t)
-# %%
+# %% wa65
+t = [-3]
+# ans = -3
+# out = 0
