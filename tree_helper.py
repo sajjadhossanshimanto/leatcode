@@ -41,6 +41,7 @@ def draw_graph(cache=True, seed=None):
     ~ - if you use `seed must enable redrawing`
     '''
     pos = graphviz_layout(G, prog="dot")
+    # pos = nx.spring_layout(G)
 
     # nodes with level
     nx.draw_networkx_nodes(G, pos)
