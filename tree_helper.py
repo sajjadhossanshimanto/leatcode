@@ -1,4 +1,5 @@
-from collections import defaultdict
+#%%
+from collections import defaultdict, deque
 from random import randint
 
 import matplotlib.pyplot as plt
@@ -11,15 +12,27 @@ G = nx.DiGraph()
 def process_tree(tree):
     G.clear()
 
-    def dfs(node):
-        if node.right!=None:
-            G.add_edge(node.val, node.right.val)
-            dfs(node.right)
+    etu = [tree.val]
+    q = deque([tree])
+    while q:
+        node = q.popleft()
+
+        etu.append(None)
         if node.left!=None:
             G.add_edge(node.val, node.left.val)
-            dfs(node.left)
+            q.append(node.left)
+            etu[-1] = node.left.val
+        
+        etu.append(None)
+        if node.right!=None:
+            G.add_edge(node.val, node.right.val)
+            q.append(node.right)
+            etu[-1] = node.right.val
 
-    dfs(tree)
+    while etu[-1]==None:
+        etu.pop()
+    
+    return etu
 
 pos = None
 def draw_graph(cache=True, seed=None):
@@ -69,3 +82,9 @@ def etu_to_tree(nums):
         return node
     
     return dfs(1)
+
+if __name__=="__main__":
+    t = [4,1,6,0,2,5,7,None,None,None,3,None,None,None,8]
+    t = etu_to_tree(t)
+    print(process_tree(t))
+    # %%
