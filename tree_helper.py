@@ -5,6 +5,7 @@ from random import randint
 import matplotlib.pyplot as plt
 import networkx as nx
 
+from networkx.drawing.nx_pydot import graphviz_layout
 
 
 G = nx.DiGraph()
@@ -34,21 +35,12 @@ def process_tree(tree):
     
     return etu
 
-pos = None
 def draw_graph(cache=True, seed=None):
     ''' 
     - use `cache=False` to forcefully redraw 
     ~ - if you use `seed must enable redrawing`
     '''
-    # subax1 = plt.subplot(121)
-    global pos
-
-    if seed:
-        pos = nx.spring_layout(G, seed=seed)
-    elif (not cache) or (not pos):
-        seed = randint(1000, 9999)
-        print(f"seed = {seed}")
-        pos = nx.spring_layout(G, seed=seed)
+    pos = graphviz_layout(G, prog="dot")
 
     # nodes with level
     nx.draw_networkx_nodes(G, pos)
@@ -88,3 +80,6 @@ if __name__=="__main__":
     t = etu_to_tree(t)
     print(process_tree(t))
     # %%
+    draw_graph(0)
+
+# %%
