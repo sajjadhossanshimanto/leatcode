@@ -10,24 +10,37 @@ from networkx.drawing.nx_pydot import graphviz_layout
 
 G = nx.DiGraph()
 
+labels = {}
 def process_tree(tree):
     G.clear()
+    c = 1
+    labels[c] = tree.val
 
     etu = [tree.val]
-    q = deque([tree])
+    q = deque([[tree, c]])
     while q:
-        node = q.popleft()
+        node, c = q.popleft()
 
         etu.append(None)
         if node.left!=None:
-            G.add_edge(node.val, node.left.val)
-            q.append(node.left)
+            pos = c+1
+            if q:
+                pos = q[-1][1] + 1
+            G.add_edge(c, pos)
+            labels[pos] = node.left.val
+
+            q.append((node.left, pos))
             etu[-1] = node.left.val
         
         etu.append(None)
         if node.right!=None:
-            G.add_edge(node.val, node.right.val)
-            q.append(node.right)
+            pos = c+1
+            if q:
+                pos = q[-1][1] + 1
+            G.add_edge(c, pos)
+            labels[pos] = node.right.val
+
+            q.append((node.right, pos))
             etu[-1] = node.right.val
 
     while etu[-1]==None:
@@ -45,7 +58,7 @@ def draw_graph(cache=True, seed=None):
 
     # nodes with level
     nx.draw_networkx_nodes(G, pos)
-    nx.draw_networkx_labels(G, pos)
+    nx.draw_networkx_labels(G, pos, labels)
 
     # edges -> straight
     nx.draw_networkx_edges(G, pos)
@@ -77,10 +90,9 @@ def etu_to_tree(nums):
     return dfs(1)
 
 if __name__=="__main__":
-    t = [4,1,6,0,2,5,7,None,None,None,3,None,None,None,8]
+    t = [1,2,3,4,5,6,None, None, 6]
     t = etu_to_tree(t)
     print(process_tree(t))
     # %%
     draw_graph()
-
 # %%
