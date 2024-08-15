@@ -37,5 +37,5 @@ t = s.sortedArrayToBST(nums = [-10,-3,0,5,9])
 from tree_helper import process_tree, draw_graph, G
 
 process_tree(t)
-draw_graph(0)
+draw_graph()
 # %%

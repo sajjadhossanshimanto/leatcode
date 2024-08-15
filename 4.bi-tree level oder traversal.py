@@ -56,5 +56,5 @@ s.levelOrder(t)
 #%%
 
 process_tree(t)
-draw_graph(0)
+draw_graph()
 # %%

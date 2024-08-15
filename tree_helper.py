@@ -80,6 +80,6 @@ if __name__=="__main__":
     t = etu_to_tree(t)
     print(process_tree(t))
     # %%
-    draw_graph(0)
+    draw_graph()
 
 # %%

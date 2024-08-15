@@ -39,5 +39,5 @@ from tree_helper import process_tree, draw_graph
 
 process_tree(t)
 # %%
-draw_graph(0)
+draw_graph()
 # %%
