@@ -14,6 +14,7 @@ class TreeNode:
 
 class Solution:
     def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root: return 
 
         def dfs(node, pre):
             r = pre
