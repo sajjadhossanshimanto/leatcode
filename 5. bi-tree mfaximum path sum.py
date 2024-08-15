@@ -12,13 +12,14 @@ class Solution:
         def dfs(node):
             if not node: return 0
 
-            l = dfs(node.left)
-            r = dfs(node.right)
+            # this trick will decide either to add one or two or none
+            l = max(dfs(node.left), 0)
+            r = max(dfs(node.right), 0)
 
             # with attached
             ans[0] = max(ans[0], node.val+r+l)
-            # without attached
-            ans[0] = max(ans[0], node.val)
+            # # without attached
+            # ans[0] = max(ans[0], node.val)
 
             # among all return the max possible
             return max(node.val+max(l,r), node.val)
