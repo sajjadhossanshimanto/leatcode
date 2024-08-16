@@ -24,7 +24,7 @@ class Solution:
             if node.right: dfs(node.right)
 
         dfs(root)
-        return ans[-1]
+        return ans[k-1]
 
 s = Solution()
 # %%
