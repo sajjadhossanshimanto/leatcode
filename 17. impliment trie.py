@@ -9,38 +9,39 @@ class Trie_node:
 
 class Trie:
     def __init__(self):
-        self.root = Trie_node()
+        self.root = [False, {}]# parent: list[bool, {child_tree}]
 
     def insert(self, word: str) -> None:
         cur = self.root
         for c in word:
-            if c not in cur.child:
-                cur.child[c] = Trie_node()
-            cur = cur.child[c]
+            if c not in cur[1]:
+                cur[1][c] = [False, {}]# default value
+            cur = cur[1][c]
         
-        cur.end = True
+        cur[0] = True
 
     def search(self, word: str) -> bool:
         cur = self.root
         for c in word:
-            if c not in cur.child:
+            if c not in cur[1]:
                 return False
-            cur = cur.child[c]
+            cur = cur[1][c]
         
-        return cur.end
+        return cur[0]
 
     def startsWith(self, prefix: str) -> bool:
         cur = self.root
         for c in prefix:
-            if c not in cur.child:
+            if c not in cur[1]:
                 return False
-            cur = cur.child[c]
+            cur = cur[1][c]
         
         return True
 
 s = Trie()
 # %%
 s.insert("apple")
+#%%
 s.insert("app")
 s.search("app")
 # %%
