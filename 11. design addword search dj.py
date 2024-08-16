@@ -22,6 +22,7 @@ class WordDictionary:
             c = word[pos]
             
             if c==".":
+                if pos == n-1: return True
                 for i in node[1]:
                     if dfs(node[1][i], pos+1): return True
                 
