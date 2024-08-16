@@ -4,7 +4,6 @@ https://leetcode.com/problems/design-add-and-search-words-data-structure/descrip
 #%%
 class WordDictionary:
     def __init__(self):
-        # TODO: do i even need to point end of word
         self.root = [False, {}]
 
     def addWord(self, word: str) -> None:
@@ -22,9 +21,12 @@ class WordDictionary:
             c = word[pos]
             
             if c==".":
-                if pos == n-1 and node[1]: return True
-                for i in node[1]:
-                    if dfs(node[1][i], pos+1): return True
+                if pos == n-1 and node[1]:
+                    for i in node[1]:# match length
+                        if node[1][i][0]: return True
+                else:
+                    for i in node[1]:
+                        if dfs(node[1][i], pos+1): return True
                 
                 return False
             else:
@@ -44,4 +46,7 @@ s.search("ap..e")
 # %% wa
 s.addWord("a")
 s.search("a.")
+# %% wa
+s.addWord("bat")
+s.search("b.")
 # %%
