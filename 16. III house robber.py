@@ -16,12 +16,13 @@ class Solution:
 
         ans = []
         def dfs(node):
-            if node.left: dfs(node.left)
-
+            if node.left: 
+                if dfs(node.left): return
             ans.append(node.val)
             if len(ans)==k:
-                return
-            if node.right: dfs(node.right)
+                return True
+            if node.right: 
+                if dfs(node.right): return
 
         dfs(root)
         return ans[k-1]
