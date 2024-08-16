@@ -2,9 +2,6 @@
 https://leetcode.com/problems/design-add-and-search-words-data-structure/description/
 '''
 #%%
-from collections import deque
-
-
 class WordDictionary:
     def __init__(self):
         # TODO: do i even need to point end of word
@@ -16,6 +13,8 @@ class WordDictionary:
             if c not in cur[1]:
                 cur[1][c] = [False, {}]
             cur = cur[1][c]
+        
+        cur[0] = True
 
     def search(self, word: str) -> bool:
         n = len(word)
@@ -31,23 +30,14 @@ class WordDictionary:
                 if c not in node[1]:
                     return False
                 
-                if pos == n-1: return True
+                if pos == n-1: return node[1][c][0]
                 return dfs(node[1][c], pos+1)
 
-        dfs(self.root, 0)
-
-
-
-
-
-
-        cur = self.root
-        for c in word:
-            if c not in cur[1]:
-                return False
-            cur = cur[1][c]
-        
-        return cur[0]
+        return dfs(self.root, 0)
 
 s = WordDictionary()
+# %%
+s.addWord("apple")
+# %%
+s.search("ap..e")
 # %%
