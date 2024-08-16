@@ -22,7 +22,7 @@ class WordDictionary:
             c = word[pos]
             
             if c==".":
-                if pos == n-1: return True
+                if pos == n-1 and node[1]: return True
                 for i in node[1]:
                     if dfs(node[1][i], pos+1): return True
                 
@@ -41,4 +41,7 @@ s = WordDictionary()
 s.addWord("apple")
 # %%
 s.search("ap..e")
+# %% wa
+s.addWord("a")
+s.search("a.")
 # %%
