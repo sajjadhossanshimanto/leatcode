@@ -25,7 +25,7 @@ class Solution:
                 node.right = node.left
                 node.left = None# del operation
 
-                if node.right: return dfs(l.right)# avtullay the node.right
+                if l.right: return dfs(l.right)# avtullay the node.right
                 return l
             
             else:
