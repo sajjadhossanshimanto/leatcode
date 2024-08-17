@@ -16,7 +16,7 @@ class Solution:
         if not root: return 
 
         def dfs(node):
-            if not (node.left and node.right):
+            if node.left==None and node.right==None:
                 return node
             
             if node.left:
@@ -39,6 +39,9 @@ s = Solution()
 from tree_helper import etu_to_tree, process_tree, draw_graph
 
 t = [1, 2, 5, 3, 4, None, 6]
+
+t = [1, 2]
+
 t = etu_to_tree(t)
 t = s.flatten(t)
 # %%
