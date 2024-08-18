@@ -89,9 +89,33 @@ def etu_to_tree(nums):
     
     return dfs(1)
 
+def list_to_bitree(nums):
+    nums = deque(nums)
+    root = TreeNode(nums.popleft())
+    cur = deque([root])
+    while nums:
+        node = cur.popleft()
+        
+        if nums:
+            v = nums.popleft()
+            if v is not None:
+                node.left = TreeNode(v)
+        if nums:
+            v = nums.popleft()
+            if v is not None:
+                node.right = TreeNode(v)
+
+        # if object
+        if node.left: cur.append(node.left)
+        if node.right: cur.append(node.right)
+    
+    return root
+
+#%%
 if __name__=="__main__":
-    t = [1,2,3,4,5,6,None, None, 6]
-    t = etu_to_tree(t)
+    t = [4,-7,-3,None,None,-9,-3,9,-7,-4,None,6,None,-6,-6,None,None,0,6,5,None,9,None,None,-1,-4,None,None,None,-2]
+    t = [4,1,None,2,None,3]
+    t = list_to_bitree(t)
     print(process_tree(t))
     # %%
     draw_graph()
