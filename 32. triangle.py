@@ -1,5 +1,6 @@
 '''
 https://leetcode.com/problems/triangle/description/
+- is this possible with log(n)
 '''
 #%%
 from typing import List, Optional
@@ -12,6 +13,8 @@ class Solution:
         ans = [inf]
         def dfs(x, y, pre_sum):
             pre_sum+=triangle[x][y]
+            if pre_sum>=ans[0]:
+                return # no need tocheck any further
 
             if x==gx:
                 # leaf node. no left & right
