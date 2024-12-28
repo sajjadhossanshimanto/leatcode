@@ -5,12 +5,16 @@ from typing import List
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if len(nums)<=2: return max(nums)
+        def rob(start):
+            if len(nums)-start<=2: return max(nums[start:])
 
-        return max(
-            nums[0] + self.rob(nums[2:]),
-            self.rob(nums[1:])
-        )
+            return max(
+                nums[start] + rob(start+2),
+                rob(start+1)
+            )
+        
+        return rob(0)
+
 
 #%%
 s = Solution()
