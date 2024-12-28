@@ -1,13 +1,15 @@
 # https://leetcode.com/problems/house-robber/description/
 
 #%%
-from itertools import islice
+from typing import List
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
+        if len(nums)<=2: return max(nums)
+
         return max(
-            sum(islice(nums, 0, len(nums), 2)),
-            sum(islice(nums, 1, len(nums), 2))
+            nums[0] + self.rob(nums[2:]),
+            self.rob(nums[1:])
         )
 
 #%%
@@ -20,3 +22,4 @@ s.rob(
 s.rob(
     [2,1,1,2]
 )
+# %%
