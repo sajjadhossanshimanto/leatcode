@@ -8,6 +8,8 @@ from itertools import islice
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
+        if len(nums)==1: return nums[0]
+        
         @lru_cache
         def rob(start, end=len(nums)):
             if end-start<=2: return max(nums[start:end])
@@ -23,7 +25,7 @@ class Solution:
 #%%
 s = Solution()
 s.rob(
-    [2,3,2]
+    [2]
 )
 # %%
 # wa -> ans: 4 out: 3
