@@ -2,9 +2,11 @@
 
 #%%
 from typing import List
+from functools import lru_cache
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
+        @lru_cache
         def rob(start):
             if len(nums)-start<=2: return max(nums[start:])
 
