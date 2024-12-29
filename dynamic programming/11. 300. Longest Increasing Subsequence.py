@@ -4,26 +4,18 @@
 from typing import List
 from functools import lru_cache
 
-
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        max_ln = [0]
-        @lru_cache
+        @lru_cache(None)
         def dfs(start):
-            if start==len(nums)-1:
-                return 1
-            
-            r=1
-            for i in range(start+1, len(nums)):
-                if nums[i]>nums[start]:
-                    r = dfs(i)+1
-                    if r>max_ln[0]: max_ln[0] = r
-            return r
+            max_length = 1  # The current element itself forms a subsequence of length 1
+            for i in range(start + 1, len(nums)):
+                if nums[i] > nums[start]:
+                    max_length = max(max_length, dfs(i) + 1)
+            return max_length
 
-        for i in range(len(nums)):
-            dfs(i)
-        
-        return max_ln[0]
+        return max(dfs(i) for i in range(len(nums)))
+
 
 s = Solution()
 # %%
