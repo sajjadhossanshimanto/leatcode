@@ -11,6 +11,7 @@ class Solution:
             if start==len(s):
                 count[0]+=1
                 return 
+            if s[start]=="0": return
             
             # take one
             dfs(start+1)
@@ -34,4 +35,5 @@ s.numDecodings("12")
 # ans = 0
 # out = 2
 s.numDecodings("06")
-# %%
+# %% tl
+s.numDecodings("111111111111111111111111111111111111111111111")
