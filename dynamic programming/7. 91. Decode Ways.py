@@ -1,28 +1,29 @@
 # https://leetcode.com/problems/decode-ways/description/
 
 #%%
-from itertools import permutations
+from functools import lru_cache
 
 
 class Solution:
     def numDecodings(self, s: str) -> int:
-        count = [0]
+
+        @lru_cache
         def dfs(start):
             if start==len(s):
-                count[0]+=1
-                return 
-            if s[start]=="0": return
+                return 1
+            if s[start]=="0": return 0
             
             # take one
-            dfs(start+1)
+            r=dfs(start+1)
 
             # take 2
             if start<len(s)-1:
                 if s[start: start+2] <= "26":
-                    dfs(start+2)
+                    r+=dfs(start+2)
             
-        dfs(0)
-        return count[0]
+            return r
+            
+        return dfs(0)
 
 # %%
 s = Solution()
@@ -37,3 +38,4 @@ s.numDecodings("12")
 s.numDecodings("06")
 # %% tl
 s.numDecodings("111111111111111111111111111111111111111111111")
+# %%
