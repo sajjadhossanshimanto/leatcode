@@ -1,25 +1,29 @@
 # https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/
 
 #%%
+from functools import lru_cache
+
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        pro = [0]
+        @lru_cache(None)
         def dfs(level, brought=False, profits=0):
             # level -> indicate price day
             # brought -> if true can sell
             if level>=len(prices): 
-                pro[0] = max(pro[0], profits)
-                return 
+                return profits
 
+            pro = 0 
             if brought:
-                dfs(level+2, False, profits+prices[level])# sell
-                dfs(level+1, True, profits)
+                pro  = max(pro, dfs(level+2, False, profits+prices[level]))# sell
+                pro  = max(pro, dfs(level+1, True, profits))
             else:
-                dfs(level+1, True, profits-prices[level])
-                dfs(level+1, False, profits)
+                pro  = max(pro, dfs(level+1, True, profits-prices[level]))
+                pro  = max(pro, dfs(level+1, False, profits))
+            
+            return pro
         
-        dfs(0)
-        return pro[0]
+        return dfs(0)
 
 s = Solution()
 # %%
