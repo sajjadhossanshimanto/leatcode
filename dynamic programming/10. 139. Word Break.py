@@ -2,10 +2,11 @@
 
 #%%
 from typing import List
-
+from functools import lru_cache
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        @lru_cache
         def dfs(start=""):
             if start==s: return True
             if len(start)>=len(s): return False
