@@ -7,12 +7,12 @@ from functools import lru_cache
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         @lru_cache
-        def dfs(start=""):
-            if start==s: return True
-            if len(start)>=len(s): return False
+        def dfs(start=0)-> bool:
+            if start==len(s): return True
 
             for i in wordDict:
-                if dfs(start+i): return True
+                if s[start:start+len(i)]==i:
+                    if dfs(start+len(i)): return True
             
             return False
         
