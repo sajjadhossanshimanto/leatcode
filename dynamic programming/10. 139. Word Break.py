@@ -6,14 +6,16 @@ from typing import List
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        combi = set([""])
-        for i in wordDict:
-            for j in combi.copy():
-                new = j+i
-                combi.add(new)
-                if new==s: return True
+        def dfs(start=""):
+            if start==s: return True
+            if len(start)>=len(s): return False
+
+            for i in wordDict:
+                if dfs(start+i): return True
+            
+            return False
         
-        return combi
+        return dfs()
 
 s= Solution()
 # %%
@@ -21,5 +23,13 @@ s= Solution()
 # out: false
 s.wordBreak(
     "cars", ["car","ca","rs"]
+)
+# %%
+s.wordBreak(
+    s = "leetcode", wordDict = ["leet","code"]
+)
+# %%
+s.wordBreak(
+    s = "applepenapple", wordDict = ["apple","pen"]
 )
 # %%
