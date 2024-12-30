@@ -13,17 +13,18 @@ class Solution:
                 return cache[(level, brought)]
 
             pro = 0 
-            pro  = max(pro, dfs(level+1, brought))# cooldown
+            cooldown  = max(pro, dfs(level+1, brought))# cooldown
             if brought:
-                pro  = max(pro, dfs(level+2, not brought) + prices[level])# sell
+                sell  = dfs(level+2, not brought) + prices[level]# sell
+                pro = max(cooldown, sell)
             else:# buying
-                pro  = max(pro, dfs(level+1, True) - prices[level])
+                buy  = dfs(level+1, True) - prices[level]
+                pro = max(cooldown, buy)
             
             cache[(level, brought)] = pro
             return pro
         
         return dfs(0)
-
 
 s = Solution()
 # %%
