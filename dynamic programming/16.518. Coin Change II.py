@@ -8,29 +8,28 @@ class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         # path counting proablem
         # but only unique path
-        coins.sort()
+        
+        # coins.sort()
         cache = {}
-        def dfs(money_left, start=0) -> List[List[int]]:# number of ways
+        def dfs(money_left, start=0) -> int:# number of ways
             # if money_left in cache: return cache[money_left]
-            if start>=len(coins): return []
+            if start>=len(coins): return 0
 
-            paths=[]
+            counter = 0
             for pos in range(start, len(coins)):
                 i = coins[pos]
                 if money_left-i==0:
-                    paths.append([i])
+                    counter += 1
                 elif money_left-i<0:
                     continue
                 else:
-                    for path in dfs(money_left-i, pos):
-                        path.append(i)
-                        paths.append(path)
+                    counter+=dfs(money_left-i, pos)
 
             # cache[money_left] = paths
-            return paths
+            return counter
         
         
-        return len(dfs(amount))
+        return (dfs(amount))
 
 s = Solution()
 # %%
