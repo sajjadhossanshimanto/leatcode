@@ -10,10 +10,9 @@ class Solution:
         # but only unique path
         if amount==0: return 1
         
-        # coins.sort()
         cache = {}
         def dfs(money_left, start=0) -> int:# number of ways
-            # if money_left in cache: return cache[money_left]
+            if (money_left, start) in cache: return cache[(money_left, start)]
             if start>=len(coins): return 0
 
             counter = 0
@@ -26,7 +25,7 @@ class Solution:
                 else:
                     counter+=dfs(money_left-i, pos)
 
-            # cache[money_left] = paths
+            cache[(money_left, start)] = counter
             return counter
         
         
