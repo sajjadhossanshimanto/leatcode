@@ -31,12 +31,28 @@ class Solution:
 
         return (dfs(amount))
 
+
+## solution by neetcode
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        cache = {}
+
+        def dfs(i, money_left):
+            if (i, money_left) in cache: return cache[(i, money_left)]
+
+            if money_left==0: return 1
+            if money_left<0: return 0
+
+            if i==len(coins): return 0
+
+            cache[(i, money_left)] = dfs(i, a+coins[i]) + dfs(i+1, a)
+
 s = Solution()
 # %%
 # ans: 5
 # out: 9 as it contain replacement
 s.change(
-    amount = 5, coins = [1, 2,5]
+    amount = 10, coins = [5, 2, 1]
 )
 # %%
 s.change(
@@ -54,6 +70,7 @@ class Solution:
         for coin in coins:
             for i in range(coin, amount + 1):
                 dp[i] += dp[i - coin]
+                # print(f"coin={coin}, i={i}", dp)
 
         return dp[amount]
 
@@ -61,3 +78,4 @@ s = Solution()
 s.change(
     amount = 5, coins = [2, 1, 5]
 )
+# %%
