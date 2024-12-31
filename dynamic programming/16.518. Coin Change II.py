@@ -8,6 +8,7 @@ class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         # path counting proablem
         # but only unique path
+        if amount==0: return 1
         
         # coins.sort()
         cache = {}
