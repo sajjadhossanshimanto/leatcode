@@ -11,24 +11,24 @@ class Solution:
         if amount==0: return 1
         
         cache = {}
+        # dfs number of inputs represents --> dimention
+        # 2 inputs means 2d
+        # every dfs with caching can be represented as dynamic programming
         def dfs(money_left, start=0) -> int:# number of ways
             if (money_left, start) in cache: return cache[(money_left, start)]
-            if start>=len(coins): return 0
+        
+            if start>=len(coins) or money_left<0: return 0
+            if money_left==0: return 1
 
             counter = 0
             for pos in range(start, len(coins)):
                 i = coins[pos]
-                if money_left-i==0:
-                    counter += 1
-                elif money_left-i<0:
-                    continue
-                else:
-                    counter+=dfs(money_left-i, pos)
+                counter+=dfs(money_left-i, pos)
 
             cache[(money_left, start)] = counter
             return counter
-        
-        
+
+
         return (dfs(amount))
 
 s = Solution()
