@@ -30,6 +30,7 @@ class Solution:
         index = [0]*n
         ans.append("".join(key_map[digits[i]][index[i]] for i in range(n)))
 
+        # code description: simulating the combination function from itertools
         while True:            
             for i in range(n-1, -1, -1):
                 # if in boundery
