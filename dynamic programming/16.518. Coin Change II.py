@@ -137,15 +137,11 @@ class Solution:
             for i in range(1, len(dp[0])):# just reversed the column labelling
                 
                 # seleting the coin
-                if i-coins[coin_index]<0:# out of boundery check
-                    dp[coin_index][i] = 0
-                else:
+                if i-coins[coin_index]>=0:# out of boundery check
                     dp[coin_index][i] = dp[coin_index][i-coins[coin_index]]
                 
                 # seleting rest coins bellow
-                if coin_index+1>=len(dp):
-                    dp[coin_index][i] += 0# we can also reduce this if statement as it is a meaningless addition
-                else:
+                if coin_index+1<len(dp):
                     dp[coin_index][i] += dp[coin_index+1][i]
 
         return dp[0][-1]
