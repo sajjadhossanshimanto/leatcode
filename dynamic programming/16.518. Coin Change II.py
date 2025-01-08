@@ -146,28 +146,37 @@ class Solution:
 
         return dp[0][-1]
 
+#%%
+# row reduced space observed solution
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        below_row = [0]*(amount+1)
+        curr_row = [0]*(amount+1)
+
+
+        # base case
+        below_row[0] = 1
+        curr_row[0] = 1
+        
+        for coin_index in range(len(coins)-1, -1, -1):# solving dp row by row from right toward left
+            for i in range(1, len(curr_row)):# just reversed the column labelling
+                
+                # seleting the coin
+                if i-coins[coin_index]>=0:# out of boundery check
+                    curr_row[i] = curr_row[i-coins[coin_index]]
+                # seleting rest coins bellow
+                curr_row[i] += below_row[i]
+            
+            below_row = curr_row
+            curr_row = [0]*(amount+1)
+            curr_row[0] = 1
+        
+        # actually rest is current row but reseted by end lines of for loop
+        # and now array below row cointain backup of curr_row
+        return below_row
+
 s = Solution()
 s.change(
     amount = 5, coins = [5, 2, 1]
-)
-# %%
-class Solution:
-    def change(self, amount: int, coins: List[int]) -> int:
-        # Dynamic Programming approach
-        # dp[i] represents the number of ways to make up the amount `i`
-        dp = [0] * (amount + 1)
-        dp[0] = 1  # There is one way to make amount 0, which is using no coins
-
-        # Iterate over each coin
-        for coin in coins:
-            for i in range(coin, amount + 1):
-                dp[i] += dp[i - coin]
-                # print(f"coin={coin}, i={i}", dp)
-
-        return dp[amount]
-
-s = Solution()
-s.change(
-    amount = 5, coins = [2, 1, 5]
 )
 # %%
