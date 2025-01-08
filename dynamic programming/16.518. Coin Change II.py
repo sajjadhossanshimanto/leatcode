@@ -180,3 +180,37 @@ s.change(
     amount = 5, coins = [5, 2, 1]
 )
 # %%
+'''
+so far so good.
+but there exists one just optimisation/observation that we can apply
+which will lead us to a solution with single matrix solution only
+
+if we observe for any perticuler index we need values from right and bellow
+- for right we might need any of them
+- but for the bellow matrix we only need value that is specifically direct bellow
+    once the bellowth value is used for the upper index there is no more use of it for any other upper row index
+so to optimise we can overwrite our generated cur row value to the index of below_ row index
+what i mean is,
+'''
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        below_row = [0]*(amount+1)
+        
+        # base case
+        below_row[0] = 1
+
+        for coin_index in range(len(coins)-1, -1, -1):# solving dp row by row from right toward left
+            for i in range(1, len(below_row)):# just reversed the column labelling
+                
+                # seleting the coin && addition of value from below row
+                if i-coins[coin_index]>=0:# out of boundery check
+                    below_row[i] += below_row[i-coins[coin_index]]
+                # curr_row[i] += below_row[i]
+        
+        return below_row
+
+s = Solution()
+s.change(
+    amount = 5, coins = [5, 2, 1]
+)
+# %%
