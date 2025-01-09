@@ -2,13 +2,14 @@
 
 #%%
 from typing import List
+from functools import lru_cache
 
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        if target==0: return 0
-        target = (sum(nums)-target)//2
-        # print(target)
+        target = (sum(nums)-target)/2
+        if target-int(target)!=0: return 0
 
+        @lru_cahce(None)
         def backtrack(start=0, presum=0):
             count = 0
             if presum==target:
@@ -33,4 +34,14 @@ s.findTargetSumWays(nums = [1,1,1,1,1], target = 3)
 s.findTargetSumWays([1, 0], 1)
 # %%
 # ans: 0
+'''
+test case failed due to fraction chekcking
+'''
 s.findTargetSumWays([7,9,3,8,0,2,4,8,3,9], 0)
+#%%
+# ans: 2
+'''as the ans is 2 it is totaly clear that they are asking for a 
+    pick and nonpick solution
+'''
+s.findTargetSumWays([0], 0)
+# %%
