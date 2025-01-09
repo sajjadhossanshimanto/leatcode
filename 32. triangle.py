@@ -1,6 +1,7 @@
 '''
 https://leetcode.com/problems/triangle/description/
 - is this possible with log(n)
+solution by me: https://github.com/sajjadhossanshimanto/dynamic-programming/blob/main/2.%20dp%20on%20grib/3.%20triangle%20120.py
 '''
 #%%
 from typing import List, Optional
@@ -13,7 +14,8 @@ class Solution:
         ans = [inf]
         def dfs(x, y, pre_sum):
             pre_sum+=triangle[x][y]
-            if pre_sum>=ans[0]:
+            # if pre_sum>=ans[0]:# what if there is a negative number forward
+            if pre_sum>ans[0]:
                 return # no need tocheck any further
 
             if x==gx:
@@ -38,5 +40,8 @@ t = [[2],[3,4],[6,5,7],[4,1,8,3]]
 s.minimumTotal(t)
 # %%
 t = [[-10]]
+s.minimumTotal(t)
+# %%
+t = [[-1],[2,3],[1,-1,-3]]
 s.minimumTotal(t)
 # %%
