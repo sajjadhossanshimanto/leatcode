@@ -5,6 +5,7 @@ from typing import List
 
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        if target==0: return 0
         target = (sum(nums)-target)//2
         # print(target)
 
@@ -30,3 +31,6 @@ s.findTargetSumWays(nums = [1,1,1,1,1], target = 3)
 # %%
 # ans: 2
 s.findTargetSumWays([1, 0], 1)
+# %%
+# ans: 0
+s.findTargetSumWays([7,9,3,8,0,2,4,8,3,9], 0)
