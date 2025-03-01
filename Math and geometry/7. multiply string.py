@@ -4,6 +4,11 @@ num1 and num2 -> are digits only
     - so no sign and so no negative value
 
 '''
+# TODO: in case int convertion is not usable at all
+multi_table = {
+    ("1", "1"): "1"
+}
+
 #%%
 def single_digit(a:str, b:str, carry=0):
     # TODO: am i allowed to at least convert single digit to integer
